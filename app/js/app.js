@@ -57,27 +57,54 @@ var baseSatteliteWithTransportMap = L.layerGroup([L.tileLayer("http://{s}.mqcdn.
 })]);
 
 /* Overlay Layers */
-var boroughs = L.geoJson(null, {
-  style: function (feature) {
-    return {
-      color: "black",
-      fill: false,
-      opacity: 1,
-      clickable: false
-    };
-  },
-  onEachFeature: function (feature, layer) {
-    boroughSearch.push({
-      name: layer.feature.properties.BoroName,
-      source: "Boroughs",
-      id: L.stamp(layer),
-      bounds: layer.getBounds()
+  function colorCountyFeature(feature){
+    var colorVal = '#F00';
+    if (feature.properties.TotalBOA_BOW < 50){
+      colorVal = '#0FF';
+    }
+    else if (feature.properties.TotalBOA_BOW < 100){
+      colorVal = '#0F0';
+    }
+    else if (feature.properties.TotalBOA_BOW < 300){
+      colorVal = '#FF0';
+    }
+    else if (feature.properties.TotalBOA_BOW < 1000){
+      colorVal = '#F60';
+    }
+    return {color: colorVal};
+  }
+
+  function configureCountyFeature(feature, layer) {
+    layer.on('mouseover mousemove', function(e){
+      var hover_bubble = new L.Rrose({
+        offset: new L.Point(0,-10),
+        closeButton: false,
+        autoPan: false}
+        ).setContent('<p>'+feature.properties.NAME_LC+'<br>'+feature.properties.TotalBOA_BOW + ' Permits</p>')
+      .setLatLng(e.latlng)
+      .openOn(map);
+    });
+    layer.on('mouseout', function(e){
+      map.closePopup();
+    });
+    layer.on('click', function(e){
+      var html = '<h4>{{CountyName}} County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>';
+      $('#divFeatureInfo').html('<h4>'+feature.properties.NAME_LC+' County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>');
+      dispChart("localChart",buildCountyChartOptions(feature.properties));
+       // Put together an UL with the Total Permits for the County and the Total for each of the bureaus.
+      var infoHtml = '<ul><li>Total Permits - ' + feature.properties.TotalBOA_BOW + '</li><li>Bureau of Air - ' +
+        feature.properties.Total_BOA + '</li><li>Bureau of Water - ' +
+        feature.properties.Total_BOW + '</li></ul>';
+      $('#localTable').html(infoHtml);
     });
   }
+
+var generalPermitLayer = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/TPservices/PermitTotalsCounty_WM/FeatureServer/0", {
+  style: colorCountyFeature,
+  onEachFeature: configureCountyFeature
 });
-$.getJSON("data/boroughs.geojson", function (data) {
-  boroughs.addData(data);
-});
+
+
 
 var subwayLines = L.geoJson(null, {
   style: function (feature) {
@@ -310,7 +337,7 @@ map = L.map("map", {
   minZoom:6,
   zoom: 7,
   center: [40, -89.5],
-  layers: [baseStreetMap, boroughs, markerClusters],
+  layers: [baseStreetMap, generalPermitLayer],
   zoomControl: false,
   attributionControl: true
 });
@@ -400,10 +427,6 @@ var groupedOverlays = {
   "Points of Interest": {
     "<img src='assets/img/theater.png' width='24' height='28'>&nbsp;Theaters": theaterLayer,
     "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;Museums": museumLayer
-  },
-  "Reference": {
-    "Boroughs": boroughs,
-    "Subway Lines": subwayLines
   }
 };
 
