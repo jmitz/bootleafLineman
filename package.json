@@ -1,0 +1,15 @@
+{
+  "name": "bootleaf-lineman",
+  "description": "An HTML/JS/CSS app",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Jeff Mitzelfelt",
+  "devDependencies": {
+    "lineman": "~0.32.2",
+    "lineman-less": "0.0.1"
+  },
+  "scripts": {
+    "start": "lineman run",
+    "test": "lineman spec-ci"
+  }
+}
