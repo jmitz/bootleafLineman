@@ -41,11 +41,7 @@ function sidebarClick(lat, lng, id, layer) {
 }
 
 /* Basemap Layers */
-var baseStreetMap = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  subdomains: ["otile1", "otile2", "otile3", "otile4"],
-  attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-});
+var baseStreetMap = L.esri.basemapLayer("Topographic");
 var baseSatteliteMap = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
   maxZoom: 18,
   subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
@@ -310,11 +306,13 @@ $.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
 });
 
 map = L.map("map", {
-  zoom: 10,
-  center: [40.702222, -73.979378],
+  maxZoom: 17,
+  minZoom:6,
+  zoom: 7,
+  center: [40, -89.5],
   layers: [baseStreetMap, boroughs, markerClusters],
   zoomControl: false,
-  attributionControl: false
+  attributionControl: true
 });
 
 /* Layer control listeners that allow for a single markerClusters layer */
