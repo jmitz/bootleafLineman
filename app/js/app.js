@@ -157,6 +157,9 @@ function configureCountyFeature(feature, layer) {
     map.closePopup();
   });
   layer.on('click', function(e){
+    if (!sidebar.isVisible()){
+      sidebar.show();
+    }
     var html = '<h4>{{CountyName}} County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>';
     $('#divFeatureInfo').html('<h4>'+feature.properties.NAME_LC+' County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>');
     dispChart("localChart",buildCountyChartOptions(feature.properties));
@@ -166,6 +169,9 @@ function configureCountyFeature(feature, layer) {
        feature.properties.Total_BOW + '</li></ul>';
        $('#localTable').html(infoHtml);
      });
+  layer.on('doubleclick', function(e){
+    console.log('doubleclick');
+  });
 }
 
 var generalPermitLayer = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/TPservices/PermitTotalsCounty_WM/FeatureServer/0", {
@@ -186,12 +192,12 @@ var permitMarkers = new L.MarkerClusterGroup({
 
 var featureLayerInfos = [
 {
-  name:'Air Permits',
+  name:'FESOP or LSO Permits',
   testLayer : L.geoJson(null),
       //url: 'http://services1.arcgis.com/qI0WaD4k85ljbKGT/arcgis/rest/services/Medicine_Disposal_Locations/FeatureServer/0',
       url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/1',
       bindMarker: function(geojson, marker){
-        marker.bindPopup("<h5>Air Permit<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+        marker.bindPopup("<h5>Air Permit - FESOP or LSO<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
       },
       createMarker: function(geojson, latlng){
         return L.marker(latlng, {icon: L.icon({
@@ -206,13 +212,55 @@ var featureLayerInfos = [
       });
       }
     },
+{
+  name:'ROSS Permits',
+  testLayer : L.geoJson(null),
+      //url: 'http://services1.arcgis.com/qI0WaD4k85ljbKGT/arcgis/rest/services/Medicine_Disposal_Locations/FeatureServer/0',
+      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/2',
+      bindMarker: function(geojson, marker){
+        marker.bindPopup("<h5>Air Permit - ROSS<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+      },
+      createMarker: function(geojson, latlng){
+        return L.marker(latlng, {icon: L.icon({
+          iconUrl: 'img/rossPermit.png',
+          iconRetinaUrl: 'img/rossPermit.png',
+          iconSize: [32, 37],
+          iconAnchor: [16, 37],
+          popupAnchor:[0, -27]
+        }),
+        title: geojson.properties.SITE_ID,
+        riseOnHover: true
+      });
+      }
+    },
+{
+  name:'CAAPP Permits',
+  testLayer : L.geoJson(null),
+      //url: 'http://services1.arcgis.com/qI0WaD4k85ljbKGT/arcgis/rest/services/Medicine_Disposal_Locations/FeatureServer/0',
+      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/3',
+      bindMarker: function(geojson, marker){
+        marker.bindPopup("<h5>Air Permit - CAAPP<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+      },
+      createMarker: function(geojson, latlng){
+        return L.marker(latlng, {icon: L.icon({
+          iconUrl: 'img/caappPermit.png',
+          iconRetinaUrl: 'img/caappPermit.png',
+          iconSize: [32, 37],
+          iconAnchor: [16, 37],
+          popupAnchor:[0, -27]
+        }),
+        title: geojson.properties.SITE_ID,
+        riseOnHover: true
+      });
+      }
+    },
     {
-      name:'Water Permits',
+      name:'NPDES Permits',
       testLayer: L.geoJson(null),
       //url: 'http://epa084pgis02.illinois.gov/arcgis/rest/services/OCR/ewastecollectsites_062613/MapServer',
-      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/0',
+      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/4',
       bindMarker: function(geojson, marker){
-        marker.bindPopup("<h5>NPDES Permit<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+        marker.bindPopup("<h5>Water Permit - NPDES<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
       },
       createMarker: function(geojson, latlng){
         return L.marker(latlng, {icon: L.icon({
@@ -247,7 +295,7 @@ var featureLayerInfos = [
       }
     }
 
-    addFeatureLayers([0, 1], localPermitLayer);
+    addFeatureLayers([0, 1, 2, 3], localPermitLayer);
 
 
     map = L.map("map", {
@@ -294,25 +342,25 @@ var featureLayerInfos = [
 // });
 
 /* Attribution control */
-function updateAttribution(e) {
-  $.each(map._layers, function(index, layer) {
-    if (layer.getAttribution) {
-      $("#attribution").html((layer.getAttribution()));
-    }
-  });
-}
-map.on("layeradd", updateAttribution);
-map.on("layerremove", updateAttribution);
+// function updateAttribution(e) {
+//   $.each(map._layers, function(index, layer) {
+//     if (layer.getAttribution) {
+//       $("#attribution").html((layer.getAttribution()));
+//     }
+//   });
+// }
+// map.on("layeradd", updateAttribution);
+// map.on("layerremove", updateAttribution);
 
-var attributionControl = L.control({
-  position: "bottomright"
-});
-attributionControl.onAdd = function (map) {
-  var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "Developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> | <a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
-  return div;
-};
-map.addControl(attributionControl);
+// var attributionControl = L.control({
+//   position: "bottomright"
+// });
+// attributionControl.onAdd = function (map) {
+//   var div = L.DomUtil.create("div", "leaflet-control-attribution");
+//   div.innerHTML = "Developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> | <a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
+//   return div;
+// };
+//map.addControl(attributionControl);
 
 var zoomControl = L.control.zoom({
   position: "bottomright"
@@ -357,8 +405,13 @@ var locateControl = L.control.locate({
 
 var groupedOverlays = {
   "Permit Types": {
-    "<img src='assets/img/airPemit.png' width='24' height='28'>&nbsp;Air Permits": featureLayerInfos[0].testLayer,
-    "<img src='assets/img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": featureLayerInfos[1].testLayer
+    "<img src='assets/img/airPemit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": featureLayerInfos[0].testLayer,
+    "<img src='assets/img/rossPemit.png' width='24' height='28'>&nbsp;ROSS Permits": featureLayerInfos[1].testLayer,
+    "<img src='assets/img/caappPemit.png' width='24' height='28'>&nbsp;CAAPP Permits": featureLayerInfos[2].testLayer,
+    "<img src='assets/img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": featureLayerInfos[3].testLayer
+  },
+  "Reference":{
+    "Counties": generalPermitLayer
   }
 };
 

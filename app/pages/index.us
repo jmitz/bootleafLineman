@@ -77,67 +77,15 @@
         <div id='divFeatureInfo' class='col-md-12'>
         </div>
       </div>
-      <h4>Points of Interest</h4>
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs" id="poi-tabs">
-        <li class="active"><a href="#counties" onclick="$('#poi-tabs a[href=\'#counties\']').tab('show'); return false;">Counties</a></li>
-        <li><a href="#museums" onclick="$('#poi-tabs a[href=\'#museums\']').tab('show'); return false;">Museums</a></li>
-      </ul>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="counties">
-          <p>
-            <div class="row">
-              <div class="col-xs-8 col-md-8">
-                <input type="text" class="form-control search" placeholder="Search" />
-              </div>
-              <div class="col-xs-4 col-md-4">
-                <button type="button" class="btn btn-primary pull-right sort" data-sort="theater-name"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
-              </div>
-            </div>
-          </p>
-          <table class="table table-condensed table-striped" id="theater-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-              <tr>
-            </thead>
-            <tbody class="list"></tbody>
-          </table>
-        </div>
-        <div class="tab-pane active" id="museums">
-          <p>
-            <div class="row">
-              <div class="col-xs-8 col-md-8">
-                <input type="text" class="form-control search" placeholder="Search" />
-              </div>
-              <div class="col-xs-4 col-md-4">
-                <button type="button" class="btn btn-primary pull-right sort" data-sort="museum-name"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
-              </div>
-            </div>
-          </p>
-          <table class="table table-condensed table-striped" id="museum-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Address</th>
-              <tr>
-            </thead>
-            <tbody class="list"></tbody>
-          </table>
-        </div>
-      </div>
     </div>
-    <div id="loading">
+<!--     <div id="loading">
       <div class="loading-indicator">
         <div class="progress progress-striped active">
           <div class="progress-bar progress-bar-info" style="width: 100%"></div>
         </div>
       </div>
     </div>
-
-    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+ -->    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
