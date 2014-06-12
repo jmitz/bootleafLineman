@@ -22,11 +22,72 @@ function getViewport() {
   }
 }
 
+function buildCountyChartOptions(countyAttributes){
+  var options = {
+    data: [
+    {
+      value: countyAttributes.Total_BOA,
+      color:"#F38630",
+      label: 'BOA',
+      labelColor: '#000',
+      labelFontSize: '.8em'
+    },
+    {
+      value : countyAttributes.Total_BOW,
+      color : "#E0E4CC",
+      label: 'BOW',
+      labelColor: '#000',
+      labelFontSize: '.8em'
+    }
+    ]
+  };
+  return options;
+}
+
+function dispChart(divName,options){
+  divString = '#' + divName;
+  var ctx = $(divString)[0].getContext("2d");
+  var data = options.data;
+  var chartOptions = {
+    animation: false
+  };
+  var chart = new Chart(ctx).Pie(data, chartOptions);
+  return this;
+}
+
+var stateChartOptions = {
+  data: [
+  {
+    value: 7810,
+    color:"#F38630",
+    label: 'BOA',
+    labelColor: '#000',
+    labelFontSize: '.8em'
+  },
+  {
+    value : 4133,
+    color : "#E0E4CC",
+    label: 'BOW',
+    labelColor: '#000',
+    labelFontSize: '.8em'
+  },
+  {
+    value : 5262,
+    color : "#69D2E7",
+    label: 'BOL',
+    labelColor: '#000',
+    labelFontSize: '.8em'
+  }
+  ]
+};
+
+dispChart('stateChart', stateChartOptions);
+
 $(document).ready(function() {
   getViewport();
   /* Hack to refresh tabs after append */
   $("#poi-tabs a[href='#museums']").tab("show");
-  $("#poi-tabs a[href='#theaters']").tab("show");
+  $("#poi-tabs a[href='#counties']").tab("show");
 });
 
 function sidebarClick(lat, lng, id, layer) {
@@ -77,6 +138,12 @@ function colorCountyFeature(feature){
 }
 
 function configureCountyFeature(feature, layer) {
+  countySearch.push({
+    name: layer.feature.properties.NAME_LC,
+    source: "Counties",
+    id: L.stamp(layer),
+    bounds: layer.getBounds()
+  });
   layer.on('mouseover mousemove', function(e){
     var hover_bubble = new L.Rrose({
       offset: new L.Point(0,-10),
@@ -133,7 +200,10 @@ var featureLayerInfos = [
           iconSize: [32, 37],
           iconAnchor: [16, 37],
           popupAnchor:[0, -27]
-        })});
+        }),
+        title: geojson.properties.SITE_ID,
+        riseOnHover: true
+      });
       }
     },
     {
@@ -151,7 +221,10 @@ var featureLayerInfos = [
           iconSize: [32, 37],
           iconAnchor: [16, 37],
           popupAnchor:[0, -27]
-        })});
+        }),
+        title: geojson.properties.SITE_ID,
+        riseOnHover: true
+      });
       }
     }
     ];
