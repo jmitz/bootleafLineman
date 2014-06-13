@@ -1,4 +1,5 @@
 var map, sidebar, countySearch = []; //, theaterSearch = [], museumSearch = [];
+var featureCount = 0;
 
 var maxMapBounds = L.latLngBounds(L.latLng(36.9, -91.6),L.latLng(42.6, -87.4));
 
@@ -169,8 +170,10 @@ function configureCountyFeature(feature, layer) {
        feature.properties.Total_BOW + '</li></ul>';
        $('#localTable').html(infoHtml);
      });
-  layer.on('doubleclick', function(e){
+  layer.on('dblclick', function(e){
     console.log('doubleclick');
+    map.fitBounds(e.target.getBounds());
+
   });
 }
 
@@ -186,8 +189,7 @@ var localPermitLayer = new L.LayerGroup();
 var permitMarkers = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
   showCoverageOnHover: false,
-  zoomToBoundsOnClick: true,
-  disableClusteringAtZoom: 16
+  zoomToBoundsOnClick: true
 });
 
 var featureLayerInfos = [
@@ -198,6 +200,7 @@ var featureLayerInfos = [
       url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/1',
       bindMarker: function(geojson, marker){
         marker.bindPopup("<h5>Air Permit - FESOP or LSO<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+        featureCount++;        
       },
       createMarker: function(geojson, latlng){
         return L.marker(latlng, {icon: L.icon({
@@ -219,6 +222,7 @@ var featureLayerInfos = [
       url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/2',
       bindMarker: function(geojson, marker){
         marker.bindPopup("<h5>Air Permit - ROSS<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+        featureCount++;        
       },
       createMarker: function(geojson, latlng){
         return L.marker(latlng, {icon: L.icon({
@@ -240,6 +244,7 @@ var featureLayerInfos = [
       url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/3',
       bindMarker: function(geojson, marker){
         marker.bindPopup("<h5>Air Permit - CAAPP<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+        featureCount++;        
       },
       createMarker: function(geojson, latlng){
         return L.marker(latlng, {icon: L.icon({
@@ -261,6 +266,7 @@ var featureLayerInfos = [
       url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/4',
       bindMarker: function(geojson, marker){
         marker.bindPopup("<h5>Water Permit - NPDES<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
+        featureCount++;        
       },
       createMarker: function(geojson, latlng){
         return L.marker(latlng, {icon: L.icon({
@@ -314,10 +320,13 @@ var featureLayerInfos = [
       console.log(map.getZoom());
       if (map.getZoom()>10){
         map.removeLayer(generalPermitLayer);
+        $('#heatPatch').css('visibility', 'hidden');
+        map.closePopup();
         map.addLayer(localPermitLayer);
       }
       else{
         map.removeLayer(localPermitLayer);
+        $('#heatPatch').css('visibility', 'visible');
         map.addLayer(generalPermitLayer);
       }
     });
