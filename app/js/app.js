@@ -1,5 +1,51 @@
 var map, sidebar, countySearch = []; //, theaterSearch = [], museumSearch = [];
 var featureCount = 0;
+var permitCount;
+var permitTypes = [{
+  name: 'FESOP or LSO Permits',
+  interestType: 'PERMIT',
+  mediaType: 'Air',
+  color: '#C563E6',
+  markerIcon: 'img/airPermit.png',
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/1',
+  popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
+  markerTitle: "NAME"
+},
+{
+  name: 'ROSS Permits',
+  interestType: 'ROSS',
+  mediaType: 'Air',
+  color: '#C563E6',
+  markerIcon: 'img/rossPermit.png',
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/2',
+  popupTemplate: "<h5>Air Permit - ROSS<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
+  markerTitle: "NAME"
+},
+{
+  name: 'CAAPP Permits',
+  interestType: 'USEPA',
+  mediaType: 'Air',
+  color: '#C563E6',
+  markerIcon: 'img/caappPermit.png',
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/3',
+  popupTemplate: "<h5>Air Permit - CAAPP<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
+  markerTitle: "NAME"
+},
+{
+  name: 'NPDES Permits',
+  interestType: 'BOW',
+  mediaType: 'Water',
+  color: '#88F0D3',
+  markerIcon: 'img/npdesPermit.png',
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/4',
+  popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
+  markerTitle: "NAME"
+}
+];
+
+$.getJSON('data/permitCount.json', function(data){
+  permitCount = data;
+});
 
 var maxMapBounds = L.latLngBounds(L.latLng(36.9, -91.6),L.latLng(42.6, -87.4));
 
@@ -71,15 +117,15 @@ var stateChartOptions = {
     label: 'BOW',
     labelColor: '#000',
     labelFontSize: '.8em'
-  },
-  {
-    value : 5262,
-    color : "#69D2E7",
-    label: 'BOL',
-    labelColor: '#000',
-    labelFontSize: '.8em'
-  }
-  ]
+  // },
+  // {
+  //   value : 5262,
+  //   color : "#69D2E7",
+  //   label: 'BOL',
+  //   labelColor: '#000',
+  //   labelFontSize: '.8em'
+}
+]
 };
 
 dispChart('stateChart', stateChartOptions);
@@ -192,146 +238,93 @@ var permitMarkers = new L.MarkerClusterGroup({
   zoomToBoundsOnClick: true
 });
 
-var featureLayerInfos = [
-{
-  name:'FESOP or LSO Permits',
-  testLayer : L.geoJson(null),
-      //url: 'http://services1.arcgis.com/qI0WaD4k85ljbKGT/arcgis/rest/services/Medicine_Disposal_Locations/FeatureServer/0',
-      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/1',
-      bindMarker: function(geojson, marker){
-        marker.bindPopup("<h5>Air Permit - FESOP or LSO<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
-        featureCount++;        
-      },
-      createMarker: function(geojson, latlng){
-        return L.marker(latlng, {icon: L.icon({
-          iconUrl: 'img/airPermit.png',
-          iconRetinaUrl: 'img/airPermit.png',
-          iconSize: [32, 37],
-          iconAnchor: [16, 37],
-          popupAnchor:[0, -27]
-        }),
-        title: geojson.properties.SITE_ID,
-        riseOnHover: true
-      });
-      }
-    },
-{
-  name:'ROSS Permits',
-  testLayer : L.geoJson(null),
-      //url: 'http://services1.arcgis.com/qI0WaD4k85ljbKGT/arcgis/rest/services/Medicine_Disposal_Locations/FeatureServer/0',
-      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/2',
-      bindMarker: function(geojson, marker){
-        marker.bindPopup("<h5>Air Permit - ROSS<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
-        featureCount++;        
-      },
-      createMarker: function(geojson, latlng){
-        return L.marker(latlng, {icon: L.icon({
-          iconUrl: 'img/rossPermit.png',
-          iconRetinaUrl: 'img/rossPermit.png',
-          iconSize: [32, 37],
-          iconAnchor: [16, 37],
-          popupAnchor:[0, -27]
-        }),
-        title: geojson.properties.SITE_ID,
-        riseOnHover: true
-      });
-      }
-    },
-{
-  name:'CAAPP Permits',
-  testLayer : L.geoJson(null),
-      //url: 'http://services1.arcgis.com/qI0WaD4k85ljbKGT/arcgis/rest/services/Medicine_Disposal_Locations/FeatureServer/0',
-      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/3',
-      bindMarker: function(geojson, marker){
-        marker.bindPopup("<h5>Air Permit - CAAPP<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
-        featureCount++;        
-      },
-      createMarker: function(geojson, latlng){
-        return L.marker(latlng, {icon: L.icon({
-          iconUrl: 'img/caappPermit.png',
-          iconRetinaUrl: 'img/caappPermit.png',
-          iconSize: [32, 37],
-          iconAnchor: [16, 37],
-          popupAnchor:[0, -27]
-        }),
-        title: geojson.properties.SITE_ID,
-        riseOnHover: true
-      });
-      }
-    },
-    {
-      name:'NPDES Permits',
-      testLayer: L.geoJson(null),
-      //url: 'http://epa084pgis02.illinois.gov/arcgis/rest/services/OCR/ewastecollectsites_062613/MapServer',
-      url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/4',
-      bindMarker: function(geojson, marker){
-        marker.bindPopup("<h5>Water Permit - NPDES<h5><h3>"+geojson.properties.NAME+"</h3><p>"+geojson.properties.LOCATION_ADDR_3+"<br>"+ geojson.properties.CITY_NAME+",  IL</p><p>"+geojson.properties.SITE_ID+"</p>");
-        featureCount++;        
-      },
-      createMarker: function(geojson, latlng){
-        return L.marker(latlng, {icon: L.icon({
-          iconUrl: 'img/npdesPermit.png',
-          iconRetinaUrl: 'img/npdesPermit.png',
-          iconSize: [32, 37],
-          iconAnchor: [16, 37],
-          popupAnchor:[0, -27]
-        }),
-        title: geojson.properties.SITE_ID,
-        riseOnHover: true
-      });
-      }
-    }
-    ];
+function makePermitMarker(inPermitType){
+  return function(geojson, latlng){
+    return L.marker(latlng, {icon: L.icon({
+      iconUrl: inPermitType.markerIcon,
+      iconRetinaUrl: inPermitType.markerIcon,
+      iconSize: [32, 37],
+      iconAnchor: [16, 37],
+      popupAnchor:[0, -27]
+    }),
+    title: geojson.properties[inPermitType.markerTitle],
+    riseOnHover: true
+  });
+  };
+}
+
+function makePermitBindMarker(inPermitType){
+  return function(geojson, marker){
+    marker.bindPopup(_.template(inPermitType.popupTemplate,geojson));
+    featureCount++;
+  };
+}
+
+function loadFeatureLayerInfos (featureArray){
+  var layerInfos = [];
+  var index;
+  for (index = 0; index < featureArray.length; ++index){
+    var newFeatureLayer = {};
+    newFeatureLayer.name = permitTypes[index].name;
+    newFeatureLayer.testLayer = L.geoJson(null);
+    newFeatureLayer.url = permitTypes[index].url;
+    newFeatureLayer.bindMarker = makePermitBindMarker(permitTypes[index]);
+    newFeatureLayer.createMarker = makePermitMarker(permitTypes[index]);
+    layerInfos.push(newFeatureLayer);
+  }
+  return layerInfos;
+}
+
+var featureLayerInfos = loadFeatureLayerInfos(permitTypes);
+
+function loadFeatureLayer (featureLayerInfo, markerLayer, loadLayer){
+  var curLayer = new L.esri.ClusteredFeatureLayer(featureLayerInfo.url,{
+    cluster: markerLayer,
+    createMarker: featureLayerInfo.createMarker,
+    onEachMarker: featureLayerInfo.bindMarker
+  });
+  loadLayer.addLayer(curLayer);
+}
+
+function addFeatureLayers (inArray, loadLayer){
+  permitMarkers.clearLayers();
+  var index;
+  for(index = 0; index < inArray.length; ++index){
+    loadFeatureLayer(featureLayerInfos[inArray[index]], permitMarkers, loadLayer);
+  }
+}
+
+addFeatureLayers([0, 1, 2, 3], localPermitLayer);
 
 
-    function loadFeatureLayer (featureLayerInfo, markerLayer, loadLayer){
-      var curLayer = new L.esri.ClusteredFeatureLayer(featureLayerInfo.url,{
-        cluster: markerLayer,
-      createMarker: featureLayerInfo.createMarker,
-      onEachMarker: featureLayerInfo.bindMarker
-    });
-      loadLayer.addLayer(curLayer);
-    }
-
-    function addFeatureLayers (inArray, loadLayer){
-      permitMarkers.clearLayers();
-      var index;
-      for(index = 0; index < inArray.length; ++index){
-        loadFeatureLayer(featureLayerInfos[inArray[index]], permitMarkers, loadLayer);
-      }
-    }
-
-    addFeatureLayers([0, 1, 2, 3], localPermitLayer);
-
-
-    map = L.map("map", {
-      maxZoom: 17,
-      minZoom:6,
-      zoom: 7,
-      center: [40, -89.5],
-      layers: [baseStreetMap, generalPermitLayer],
-      zoomControl: false,
-      attributionControl: true,
+map = L.map("map", {
+  maxZoom: 17,
+  minZoom:6,
+  zoom: 7,
+  center: [40, -89.5],
+  layers: [baseStreetMap, generalPermitLayer],
+  zoomControl: false,
+  attributionControl: true,
 //      maxBounds: maxMapBounds,
-      bounceAtZoomLimits: false
-    });
+bounceAtZoomLimits: false
+});
 
-    map.on('viewreset', function(e){
-      console.log(map.getZoom());
-      if (map.getZoom()>10){
-        map.removeLayer(generalPermitLayer);
-        $('#heatPatch').css('visibility', 'hidden');
-        map.closePopup();
-        map.addLayer(localPermitLayer);
-      }
-      else{
-        map.removeLayer(localPermitLayer);
-        $('#heatPatch').css('visibility', 'visible');
-        map.addLayer(generalPermitLayer);
-      }
-    });
+map.on('viewreset', function(e){
+  console.log(map.getZoom());
+  if (map.getZoom()>10){
+    map.removeLayer(generalPermitLayer);
+    $('#heatPatch').css('visibility', 'hidden');
+    map.closePopup();
+    map.addLayer(localPermitLayer);
+  }
+  else{
+    map.removeLayer(localPermitLayer);
+    $('#heatPatch').css('visibility', 'visible');
+    map.addLayer(generalPermitLayer);
+  }
+});
 
-    /* Layer control listeners that allow for a single markerClusters layer */
+/* Layer control listeners that allow for a single markerClusters layer */
 // map.on("overlayadd", function(e) {
 //   if (e.layer === featureLayerInfos[0].testLayer) {
 //     markerClusters.addLayer(theaters);
@@ -466,36 +459,36 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
 
-countyBH.initialize();
+  countyBH.initialize();
 
-/* instantiate the typeahead UI */
-$("#searchbox").typeahead({
-  minLength: 3,
-  highlight: true,
-  hint: false
-}, {
-  name: "Counties",
-  displayKey: "name",
-  source: countyBH.ttAdapter(),
-  templates: {
-    header: "<h4 class='typeahead-header'>Counties</h4>"
-}}).on("typeahead:selected", function (obj, datum) {
-  if (datum.source === "Counties") {
-    map.fitBounds(datum.bounds);
-  }
-  if ($(".navbar-collapse").height() > 50) {
-    $(".navbar-collapse").collapse("hide");
-  }
-}).on("typeahead:opened", function () {
-  $(".navbar-collapse.in").css("max-height", $(document).height() - $(".navbar-header").height());
-  $(".navbar-collapse.in").css("height", $(document).height() - $(".navbar-header").height());
-}).on("typeahead:closed", function () {
-  $(".navbar-collapse.in").css("max-height", "");
-  $(".navbar-collapse.in").css("height", "");
-});
-$(".twitter-typeahead").css("position", "static");
-$(".twitter-typeahead").css("display", "block");
-});
+  /* instantiate the typeahead UI */
+  $("#searchbox").typeahead({
+    minLength: 3,
+    highlight: true,
+    hint: false
+  }, {
+    name: "Counties",
+    displayKey: "name",
+    source: countyBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'>Counties</h4>"
+    }}).on("typeahead:selected", function (obj, datum) {
+      if (datum.source === "Counties") {
+        map.fitBounds(datum.bounds);
+      }
+      if ($(".navbar-collapse").height() > 50) {
+        $(".navbar-collapse").collapse("hide");
+      }
+    }).on("typeahead:opened", function () {
+      $(".navbar-collapse.in").css("max-height", $(document).height() - $(".navbar-header").height());
+      $(".navbar-collapse.in").css("height", $(document).height() - $(".navbar-header").height());
+    }).on("typeahead:closed", function () {
+      $(".navbar-collapse.in").css("max-height", "");
+      $(".navbar-collapse.in").css("height", "");
+    });
+    $(".twitter-typeahead").css("position", "static");
+    $(".twitter-typeahead").css("display", "block");
+  });
 
 /* Placeholder hack for IE */
 if (navigator.appName === "Microsoft Internet Explorer") {

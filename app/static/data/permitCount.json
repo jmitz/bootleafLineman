@@ -1,0 +1,1854 @@
+[
+  {
+    "countyFips": 1,
+    "count": 191,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 49
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 113
+      },
+      {
+        "interestType": "ROSS",
+        "count": 29
+      }
+    ]
+  },
+  {
+    "countyFips": 3,
+    "count": 23,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 4
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 15
+      },
+      {
+        "interestType": "ROSS",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "countyFips": 5,
+    "count": 50,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 7
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 35
+      },
+      {
+        "interestType": "ROSS",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "countyFips": 7,
+    "count": 115,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 27
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 72
+      },
+      {
+        "interestType": "ROSS",
+        "count": 16
+      }
+    ]
+  },
+  {
+    "countyFips": 9,
+    "count": 15,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 2
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 10
+      },
+      {
+        "interestType": "ROSS",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 11,
+    "count": 145,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 20
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 105
+      },
+      {
+        "interestType": "ROSS",
+        "count": 20
+      }
+    ]
+  },
+  {
+    "countyFips": 13,
+    "count": 9,
+    "detail": [
+      {
+        "interestType": "PERMIT",
+        "count": 7
+      },
+      {
+        "interestType": "ROSS",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "countyFips": 15,
+    "count": 72,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 7
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 54
+      },
+      {
+        "interestType": "ROSS",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "countyFips": 17,
+    "count": 58,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 8
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 39
+      },
+      {
+        "interestType": "ROSS",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "countyFips": 19,
+    "count": 317,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 42
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 223
+      },
+      {
+        "interestType": "ROSS",
+        "count": 52
+      }
+    ]
+  },
+  {
+    "countyFips": 21,
+    "count": 119,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 19
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 85
+      },
+      {
+        "interestType": "ROSS",
+        "count": 15
+      }
+    ]
+  },
+  {
+    "countyFips": 23,
+    "count": 66,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 8
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 45
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 25,
+    "count": 60,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 4
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 41
+      },
+      {
+        "interestType": "ROSS",
+        "count": 15
+      }
+    ]
+  },
+  {
+    "countyFips": 27,
+    "count": 96,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 17
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 55
+      },
+      {
+        "interestType": "ROSS",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "countyFips": 29,
+    "count": 163,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 26
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 109
+      },
+      {
+        "interestType": "ROSS",
+        "count": 28
+      }
+    ]
+  },
+  {
+    "countyFips": 31,
+    "count": 6637,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 779
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 5153
+      },
+      {
+        "interestType": "ROSS",
+        "count": 658
+      },
+      {
+        "interestType": "USEPA",
+        "count": 47
+      }
+    ]
+  },
+  {
+    "countyFips": 33,
+    "count": 82,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 12
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 57
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 35,
+    "count": 27,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 3
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 19
+      },
+      {
+        "interestType": "ROSS",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "countyFips": 37,
+    "count": 161,
+    "detail": [
+      {
+        "interestType": "PERMIT",
+        "count": 125
+      },
+      {
+        "interestType": "ROSS",
+        "count": 36
+      }
+    ]
+  },
+  {
+    "countyFips": 39,
+    "count": 75,
+    "detail": [
+      {
+        "interestType": "PERMIT",
+        "count": 65
+      },
+      {
+        "interestType": "ROSS",
+        "count": 10
+      }
+    ]
+  },
+  {
+    "countyFips": 41,
+    "count": 90,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 14
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 62
+      },
+      {
+        "interestType": "ROSS",
+        "count": 14
+      }
+    ]
+  },
+  {
+    "countyFips": 43,
+    "count": 1040,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 3
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 847
+      },
+      {
+        "interestType": "ROSS",
+        "count": 182
+      },
+      {
+        "interestType": "USEPA",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "countyFips": 45,
+    "count": 90,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 18
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 56
+      },
+      {
+        "interestType": "ROSS",
+        "count": 16
+      }
+    ]
+  },
+  {
+    "countyFips": 47,
+    "count": 33,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 3
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 26
+      },
+      {
+        "interestType": "ROSS",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "countyFips": 49,
+    "count": 117,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 24
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 64
+      },
+      {
+        "interestType": "ROSS",
+        "count": 29
+      }
+    ]
+  },
+  {
+    "countyFips": 51,
+    "count": 90,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 9
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 68
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 53,
+    "count": 87,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 11
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 63
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 55,
+    "count": 107,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 17
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 80
+      },
+      {
+        "interestType": "ROSS",
+        "count": 10
+      }
+    ]
+  },
+  {
+    "countyFips": 57,
+    "count": 104,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 15
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 78
+      },
+      {
+        "interestType": "ROSS",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "countyFips": 59,
+    "count": 33,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 11
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 20
+      },
+      {
+        "interestType": "ROSS",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "countyFips": 61,
+    "count": 40,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 4
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 31
+      },
+      {
+        "interestType": "ROSS",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "countyFips": 63,
+    "count": 160,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 31
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 109
+      },
+      {
+        "interestType": "ROSS",
+        "count": 20
+      }
+    ]
+  },
+  {
+    "countyFips": 65,
+    "count": 23,
+    "detail": [
+      {
+        "interestType": "PERMIT",
+        "count": 20
+      },
+      {
+        "interestType": "ROSS",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 67,
+    "count": 90,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 23
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 54
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 69,
+    "count": 26,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 2
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 19
+      },
+      {
+        "interestType": "ROSS",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "countyFips": 71,
+    "count": 28,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 1
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 20
+      },
+      {
+        "interestType": "ROSS",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "countyFips": 73,
+    "count": 191,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 35
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 125
+      },
+      {
+        "interestType": "ROSS",
+        "count": 31
+      }
+    ]
+  },
+  {
+    "countyFips": 75,
+    "count": 143,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 11
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 110
+      },
+      {
+        "interestType": "ROSS",
+        "count": 22
+      }
+    ]
+  },
+  {
+    "countyFips": 77,
+    "count": 138,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 58
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 67
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 79,
+    "count": 42,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 8
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 26
+      },
+      {
+        "interestType": "ROSS",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "countyFips": 81,
+    "count": 90,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 19
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 54
+      },
+      {
+        "interestType": "ROSS",
+        "count": 17
+      }
+    ]
+  },
+  {
+    "countyFips": 83,
+    "count": 31,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 11
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 13
+      },
+      {
+        "interestType": "ROSS",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "countyFips": 85,
+    "count": 131,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 40
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 67
+      },
+      {
+        "interestType": "ROSS",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "countyFips": 87,
+    "count": 22,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 3
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 16
+      },
+      {
+        "interestType": "ROSS",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 89,
+    "count": 709,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 127
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 468
+      },
+      {
+        "interestType": "ROSS",
+        "count": 111
+      },
+      {
+        "interestType": "USEPA",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 91,
+    "count": 259,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 47
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 173
+      },
+      {
+        "interestType": "ROSS",
+        "count": 36
+      },
+      {
+        "interestType": "USEPA",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 93,
+    "count": 126,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 26
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 77
+      },
+      {
+        "interestType": "ROSS",
+        "count": 23
+      }
+    ]
+  },
+  {
+    "countyFips": 95,
+    "count": 115,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 15
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 76
+      },
+      {
+        "interestType": "ROSS",
+        "count": 24
+      }
+    ]
+  },
+  {
+    "countyFips": 97,
+    "count": 807,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 151
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 541
+      },
+      {
+        "interestType": "ROSS",
+        "count": 110
+      },
+      {
+        "interestType": "USEPA",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "countyFips": 99,
+    "count": 346,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 5
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 273
+      },
+      {
+        "interestType": "ROSS",
+        "count": 65
+      },
+      {
+        "interestType": "USEPA",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 101,
+    "count": 44,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 1
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 32
+      },
+      {
+        "interestType": "ROSS",
+        "count": 8
+      },
+      {
+        "interestType": "USEPA",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 103,
+    "count": 151,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 34
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 94
+      },
+      {
+        "interestType": "ROSS",
+        "count": 23
+      }
+    ]
+  },
+  {
+    "countyFips": 105,
+    "count": 203,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 29
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 147
+      },
+      {
+        "interestType": "ROSS",
+        "count": 27
+      }
+    ]
+  },
+  {
+    "countyFips": 107,
+    "count": 119,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 20
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 77
+      },
+      {
+        "interestType": "ROSS",
+        "count": 22
+      }
+    ]
+  },
+  {
+    "countyFips": 109,
+    "count": 117,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 30
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 71
+      },
+      {
+        "interestType": "ROSS",
+        "count": 16
+      }
+    ]
+  },
+  {
+    "countyFips": 111,
+    "count": 487,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 95
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 315
+      },
+      {
+        "interestType": "ROSS",
+        "count": 77
+      }
+    ]
+  },
+  {
+    "countyFips": 113,
+    "count": 334,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 65
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 218
+      },
+      {
+        "interestType": "ROSS",
+        "count": 51
+      }
+    ]
+  },
+  {
+    "countyFips": 115,
+    "count": 264,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 37
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 193
+      },
+      {
+        "interestType": "ROSS",
+        "count": 34
+      }
+    ]
+  },
+  {
+    "countyFips": 117,
+    "count": 119,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 26
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 76
+      },
+      {
+        "interestType": "ROSS",
+        "count": 17
+      }
+    ]
+  },
+  {
+    "countyFips": 119,
+    "count": 528,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 102
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 351
+      },
+      {
+        "interestType": "ROSS",
+        "count": 74
+      },
+      {
+        "interestType": "USEPA",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "countyFips": 121,
+    "count": 139,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 27
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 89
+      },
+      {
+        "interestType": "ROSS",
+        "count": 23
+      }
+    ]
+  },
+  {
+    "countyFips": 123,
+    "count": 54,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 7
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 34
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 125,
+    "count": 68,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 5
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 53
+      },
+      {
+        "interestType": "ROSS",
+        "count": 10
+      }
+    ]
+  },
+  {
+    "countyFips": 127,
+    "count": 48,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 15
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 29
+      },
+      {
+        "interestType": "ROSS",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "countyFips": 129,
+    "count": 32,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 8
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 19
+      },
+      {
+        "interestType": "ROSS",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "countyFips": 131,
+    "count": 51,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 11
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 29
+      },
+      {
+        "interestType": "ROSS",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "countyFips": 133,
+    "count": 50,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 11
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 25
+      },
+      {
+        "interestType": "ROSS",
+        "count": 14
+      }
+    ]
+  },
+  {
+    "countyFips": 135,
+    "count": 123,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 22
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 79
+      },
+      {
+        "interestType": "ROSS",
+        "count": 22
+      }
+    ]
+  },
+  {
+    "countyFips": 137,
+    "count": 127,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 21
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 90
+      },
+      {
+        "interestType": "ROSS",
+        "count": 16
+      }
+    ]
+  },
+  {
+    "countyFips": 139,
+    "count": 46,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 3
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 35
+      },
+      {
+        "interestType": "ROSS",
+        "count": 8
+      }
+    ]
+  },
+  {
+    "countyFips": 141,
+    "count": 199,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 42
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 129
+      },
+      {
+        "interestType": "ROSS",
+        "count": 28
+      }
+    ]
+  },
+  {
+    "countyFips": 143,
+    "count": 386,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 79
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 269
+      },
+      {
+        "interestType": "ROSS",
+        "count": 38
+      }
+    ]
+  },
+  {
+    "countyFips": 145,
+    "count": 64,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 17
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 44
+      },
+      {
+        "interestType": "ROSS",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 147,
+    "count": 66,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 8
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 47
+      },
+      {
+        "interestType": "ROSS",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "countyFips": 149,
+    "count": 101,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 16
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 71
+      },
+      {
+        "interestType": "ROSS",
+        "count": 14
+      }
+    ]
+  },
+  {
+    "countyFips": 151,
+    "count": 2,
+    "detail": [
+      {
+        "interestType": "PERMIT",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "countyFips": 153,
+    "count": 21,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 6
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 12
+      },
+      {
+        "interestType": "ROSS",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 155,
+    "count": 31,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 6
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 21
+      },
+      {
+        "interestType": "ROSS",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "countyFips": 157,
+    "count": 116,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 30
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 67
+      },
+      {
+        "interestType": "ROSS",
+        "count": 19
+      }
+    ]
+  },
+  {
+    "countyFips": 159,
+    "count": 50,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 10
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 34
+      },
+      {
+        "interestType": "ROSS",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "countyFips": 161,
+    "count": 379,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 71
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 271
+      },
+      {
+        "interestType": "ROSS",
+        "count": 36
+      },
+      {
+        "interestType": "USEPA",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "countyFips": 163,
+    "count": 365,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 5
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 278
+      },
+      {
+        "interestType": "ROSS",
+        "count": 82
+      }
+    ]
+  },
+  {
+    "countyFips": 165,
+    "count": 60,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 13
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 40
+      },
+      {
+        "interestType": "ROSS",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "countyFips": 167,
+    "count": 305,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 61
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 213
+      },
+      {
+        "interestType": "ROSS",
+        "count": 31
+      }
+    ]
+  },
+  {
+    "countyFips": 169,
+    "count": 27,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 2
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 20
+      },
+      {
+        "interestType": "ROSS",
+        "count": 5
+      }
+    ]
+  },
+  {
+    "countyFips": 171,
+    "count": 26,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 1
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 23
+      },
+      {
+        "interestType": "ROSS",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "countyFips": 173,
+    "count": 60,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 7
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 40
+      },
+      {
+        "interestType": "ROSS",
+        "count": 13
+      }
+    ]
+  },
+  {
+    "countyFips": 175,
+    "count": 21,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 1
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 14
+      },
+      {
+        "interestType": "ROSS",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "countyFips": 177,
+    "count": 165,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 45
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 97
+      },
+      {
+        "interestType": "ROSS",
+        "count": 23
+      }
+    ]
+  },
+  {
+    "countyFips": 179,
+    "count": 288,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 77
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 171
+      },
+      {
+        "interestType": "ROSS",
+        "count": 40
+      }
+    ]
+  },
+  {
+    "countyFips": 181,
+    "count": 24,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 4
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 17
+      },
+      {
+        "interestType": "ROSS",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 183,
+    "count": 306,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 53
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 221
+      },
+      {
+        "interestType": "ROSS",
+        "count": 32
+      }
+    ]
+  },
+  {
+    "countyFips": 185,
+    "count": 34,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 3
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 28
+      },
+      {
+        "interestType": "ROSS",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "countyFips": 187,
+    "count": 74,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 16
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 48
+      },
+      {
+        "interestType": "ROSS",
+        "count": 10
+      }
+    ]
+  },
+  {
+    "countyFips": 189,
+    "count": 58,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 21
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 26
+      },
+      {
+        "interestType": "ROSS",
+        "count": 11
+      }
+    ]
+  },
+  {
+    "countyFips": 191,
+    "count": 75,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 10
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 58
+      },
+      {
+        "interestType": "ROSS",
+        "count": 7
+      }
+    ]
+  },
+  {
+    "countyFips": 193,
+    "count": 67,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 13
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 48
+      },
+      {
+        "interestType": "ROSS",
+        "count": 6
+      }
+    ]
+  },
+  {
+    "countyFips": 195,
+    "count": 194,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 40
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 120
+      },
+      {
+        "interestType": "ROSS",
+        "count": 34
+      }
+    ]
+  },
+  {
+    "countyFips": 197,
+    "count": 808,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 124
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 555
+      },
+      {
+        "interestType": "ROSS",
+        "count": 125
+      },
+      {
+        "interestType": "USEPA",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "countyFips": 199,
+    "count": 132,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 28
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 92
+      },
+      {
+        "interestType": "ROSS",
+        "count": 12
+      }
+    ]
+  },
+  {
+    "countyFips": 201,
+    "count": 756,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 211
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 461
+      },
+      {
+        "interestType": "ROSS",
+        "count": 84
+      }
+    ]
+  },
+  {
+    "countyFips": 203,
+    "count": 111,
+    "detail": [
+      {
+        "interestType": "BOW",
+        "count": 19
+      },
+      {
+        "interestType": "PERMIT",
+        "count": 77
+      },
+      {
+        "interestType": "ROSS",
+        "count": 15
+      }
+    ]
+  }
+]

@@ -70,6 +70,7 @@
     <div id="sidebar">
       <div class='row'>
         <div id='divChart' class='col-md-12'>
+          <h4>Statewide Permits</h4>
           <canvas class='pieChart' id='stateChart'></canvas>
         </div>
       </div>
