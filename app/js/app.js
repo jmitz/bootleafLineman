@@ -333,6 +333,23 @@ map.on('viewreset', function(e){
 });
 
 /* Layer control listeners that allow for a single markerClusters layer */
+map.on("overlayadd", function(e){
+  var index;
+  for (index = 0; index < featureLayerInfos.length; ++index){
+    if (e.layer === featureLayerInfos[index].testLayer) {
+      console.log('Add Layer ' + featureLayerInfos[index].name);
+    }
+  }
+});
+
+map.on('overlayremove', function(e){
+  var index;
+  for (index = 0; index < featureLayerInfos.length; ++index){
+    if (e.layer === featureLayerInfos[index].testLayer) {
+      console.log('Remove Layer ' + featureLayerInfos[index].name);
+    }
+  }
+});
 // map.on("overlayadd", function(e) {
 //   if (e.layer === featureLayerInfos[0].testLayer) {
 //     markerClusters.addLayer(theaters);
@@ -407,21 +424,20 @@ var locateControl = L.control.locate({
   }
 }).addTo(map);
 
-// var baseLayers = {
-//   "Street Map": baseStreetMap,
-//   "Aerial Imagery": baseSatteliteMap,
-//   "Imagery with Streets": baseSatteliteWithTransportMap
-// };
+var baseLayers = {
+  "Street Map": baseStreetMap,
+  "Aerial Imagery": baseSatteliteMap,
+  "Imagery with Streets": baseSatteliteWithTransportMap
+};
 
 var groupedOverlays = {
-  "Permit Types": {
-    "<img src='assets/img/airPemit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": featureLayerInfos[0].testLayer,
-    "<img src='assets/img/rossPemit.png' width='24' height='28'>&nbsp;ROSS Permits": featureLayerInfos[1].testLayer,
-    "<img src='assets/img/caappPemit.png' width='24' height='28'>&nbsp;CAAPP Permits": featureLayerInfos[2].testLayer,
-    "<img src='assets/img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": featureLayerInfos[3].testLayer
+  "BOA Permits": {
+    "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": featureLayerInfos[0].testLayer,
+    "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": featureLayerInfos[1].testLayer,
+    "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": featureLayerInfos[2].testLayer
   },
-  "Reference":{
-    "Counties": generalPermitLayer
+  "BOW Permits": {
+    "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": featureLayerInfos[3].testLayer
   }
 };
 
@@ -432,9 +448,9 @@ if (document.body.clientWidth <= 767) {
   var isCollapsed = false;
 }
 
-var layerControl = L.control.groupedLayers(groupedOverlays, {
+var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
   collapsed: isCollapsed,
-  closeButton: true,
+  closeButton: true
 }).addTo(map);
 
 sidebar = L.control.sidebar("sidebar", {
