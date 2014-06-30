@@ -20,16 +20,14 @@
     <link rel="stylesheet" href="assets/leaflet-locatecontrol-0.27.0/L.Control.Locate.css">
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/leaflet-locatecontrol-0.27.0/L.Control.Locate.ie.css"><![endif]-->
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
-      <!--[if lte IE 8]><link rel="stylesheet" href="css/MarkerCluster.Default.ie.css"><![endif]-->
-    <!--[if lte IE 9]><link rel="stylesheet" href="css/L.Control.Locate.ie.css"><![endif]-->
-
     <link rel="apple-touch-icon" href="img/favicon-152.png">
     <link rel="shortcut icon" sizes="196x196" href="img/favicon-196.png">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-        <script src="js/respond.min.js"></script>
+        <script src="assets/js/html5shiv.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+        <script src="assets/excanvas/excanvas.js"></script>
     <![endif]-->
   </head>
 
@@ -57,8 +55,6 @@
             <ul class="dropdown-menu">
               <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="map.fitBounds(maxMapBounds); return false;"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Zoom To Full Extent</a></li>
               <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#legendModal').modal('show'); return false;"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;Show Legend</a></li>
-              <li class="divider hidden-xs"></li>
-              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="$('#loginModal').modal('show'); return false;"><i class="fa fa-user"></i>&nbsp;&nbsp;Login</a></li>
             </ul>
           </li>
           <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="sidebar.toggle(); return false;"><i class="fa fa-list" style="color: white"></i>&nbsp;&nbsp;Sidebar</a></li>
@@ -94,74 +90,49 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Welcome to the BootLeaf template!</h4>
+            <h4 class="modal-title">Welcome to the Permit Review Dashboard!</h4>
           </div>
           <div class="modal-body">
             <ul class="nav nav-tabs" id="aboutTabs">
-              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the project</a></li>
-              <li><a href="#contact" data-toggle="tab"><i class="fa fa-envelope"></i>&nbsp;Contact us</a></li>
+              <li class="active"><a href="#about" data-toggle="tab"><i class="fa fa-question-circle"></i>&nbsp;About the Dashboard</a></li>
               <li><a href="#disclaimer" data-toggle="tab"><i class="fa fa-exclamation-circle"></i>&nbsp;Disclaimer</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-globe"></i>&nbsp;Metadata <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#boroughs-tab" data-toggle="tab">Boroughs</a></li>
-                  <li><a href="#subway-lines-tab" data-toggle="tab">Subway Lines</a></li>
-                  <li><a href="#counties-tab" data-toggle="tab">Counties</a></li>
-                  <li><a href="#museums-tab" data-toggle="tab">Museums</a></li>
-                </ul>
-              </li>
             </ul>
             <div class="tab-content" id="aboutTabsContent" style="padding-top: 10px;">
               <div class="tab-pane fade active in" id="about">
-                <p>A simple, responsive template for building web mapping applications with <a href="http://getbootstrap.com/">Bootstrap 3</a>, <a href="http://leafletjs.com/" target="_blank">Leaflet</a>, and <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a>. Open source, MIT licensed, and available on <a href="https://github.com/bmcbride/bootleaf" target="_blank">GitHub</a>.</p>
+                <p>A simple viewer on the Illinois EPA Permits that are centrally available with location data that can be mapped and easily classified.</p>
                 <div class="panel panel-primary">
-                  <div class="panel-heading">Features</div>
+                  <div class="panel-heading">Current Features</div>
                   <ul class="list-group">
-                    <li class="list-group-item">Fullscreen mobile-friendly map template with responsive navbar and modal placeholders</li>
-                    <li class="list-group-item">Integration of Bootstrap tables into Leaflet popups</li>
-                    <li class="list-group-item">Logic for minimizing layer control and switching to modal popups on small screens</li>
-                    <li class="list-group-item">jQuery loading of external GeoJSON files</li>
-                    <li class="list-group-item">Logical multiple layer marker clustering via the <a href="https://github.com/Leaflet/Leaflet.markercluster" target="_blank">leaflet marker cluster</a> plugin</li>
-                    <li class="list-group-item">Elegant client-side multi-layer feature search with autocomplete using <a href="http://twitter.github.io/typeahead.js/" target="_blank">typeahead.js</a></li>
-                    <li class="list-group-item">Responsive sidebar functionality via the <a href="https://github.com/turbo87/leaflet-sidebar/" target="_blank">leaflet-sidebar</a> plugin</li>
-                    <li class="list-group-item">Marker icons included in grouped layer control via the <a href="https://github.com/ismyrnow/Leaflet.groupedlayercontrol" target="_blank">grouped layer control</a> plugin</li>
+                    <li class="list-group-item">Charting is available and can be easily added to any parameters we would like to throw at it.
+                      <ul>
+                        <li>Open the Sidebar by clicking the sidebar link at the top to see the charts.</li>
+                        <li>Sidebar can be closed by clicking on the x in it’s upper right corner or clicking on the sidebar link.</li>
+                      </ul>
+                    </li>
+                    <li class="list-group-item">Move mouse over counties to see a pop up showing county name and number of permits in county.</li>
+                    <li class="list-group-item">Click on county to show a chart of the county’s permits in the sidebar</li>
+                    <li class="list-group-item">Double click on a county to zoom to the county and update the county’s permit chart</li>
+                    <li class="list-group-item">Zoom in to see permit locations
+                      <ul>
+                        <li>Click or tap the "+" or "-" in the lower right side of the map.</li>
+                        <li>Mouse scroll wheel zooms in and out</li>
+                        <li>Shift-click drag a box will zoom to the box</li>
+                      </ul>
+                    </li>
+                    <li class="list-group-item">Permits will cluster if they are too close together.
+                      <ul>
+                        <li>Click on a cluster will zoom to the cluster.</li>
+                        <li>Permits in the same location when at the maximum zoom will display a cluster and will spider out to show the individual permits in that location.</li>
+                      </ul>
+                    </li>
+                    <li class="list-group-item">Hovering over a pin will show a tooltip of the site name. This tooltip can contain anything we would like.</li>
+                    <li class="list-group-item">Clicking on a pin will show a larger pop up with more information. This pop up can contain anything we would like. The pop up provides for a bit more interactivity that could include links or charts or other items.</li>
                   </ul>
                 </div>
               </div>
               <div id="disclaimer" class="tab-pane fade text-danger">
-                <p>The data provided on this site is for informational and planning purposes only.</p>
-                <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections as might result from a complete title search and/or accurate field survey.</p>
-              </div>
-              <div class="tab-pane fade" id="contact">
-                <form id="contact-form">
-                  <div class="well well-sm">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="first-name">First Name:</label>
-                          <input type="text" class="form-control" id="first-name">
-                        </div>
-                        <div class="form-group">
-                          <label for="last-name">Last Name:</label>
-                          <input type="text" class="form-control" id="last-email">
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Email:</label>
-                          <input type="text" class="form-control" id="email">
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <label for="message">Message:</label>
-                        <textarea class="form-control" rows="8" id="message"></textarea>
-                      </div>
-                      <div class="col-md-12">
-                        <p>
-                          <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+                <p>This tool is currently displaying data that are available in the ACES database. Data available to categorize permits types as well as locations are limited. This does not represent all the Agency's permits or permit interest locations. This is a demonstration of the tool only.</p>
+                <p>Absolutely no accuracy or completeness guarantee is implied or intended. All information on this map is subject to such variations and corrections.</p>
               </div>
               <div class="tab-pane fade" id="boroughs-tab">
                 <p>Borough data courtesy of <a href="http://www.nyc.gov/html/dcp/html/bytes/meta_dis_nyboroughwi.shtml" target="_blank">New York City Department of City Planning</a></p>
@@ -190,34 +161,6 @@
           </div>
           <div class="modal-body">
             <p>Map Legend goes here...</p>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Login</h4>
-          </div>
-          <div class="modal-body">
-            <form id="contact-form">
-              <fieldset>
-                <div class="form-group">
-                  <label for="name">Username:</label>
-                  <input type="text" class="form-control" id="username">
-                </div>
-                <div class="form-group">
-                  <label for="email">Password:</label>
-                  <input type="password" class="form-control" id="password">
-                </div>
-              </fieldset>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">Login</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

@@ -49,6 +49,11 @@ $.getJSON('data/permitCount.json', function(data){
 
 var maxMapBounds = L.latLngBounds(L.latLng(36.9, -91.6),L.latLng(42.6, -87.4));
 
+function isCanvasSupported(){
+  var elem = document.createElement('canvas');
+  return !!(elem.getContext && elem.getContext('2d'));
+}
+
 function getViewport() {
   if (sidebar.isVisible()) {
     map.setActiveArea({
@@ -74,14 +79,14 @@ function buildCountyChartOptions(countyAttributes){
     data: [
     {
       value: countyAttributes.Total_BOA,
-      color:"#F38630",
+      color:"#C563E6",
       label: 'BOA',
       labelColor: '#000',
       labelFontSize: '.8em'
     },
     {
       value : countyAttributes.Total_BOW,
-      color : "#E0E4CC",
+      color : "#88F0D3",
       label: 'BOW',
       labelColor: '#000',
       labelFontSize: '.8em'
@@ -93,6 +98,9 @@ function buildCountyChartOptions(countyAttributes){
 
 function dispChart(divName,options){
   divString = '#' + divName;
+  // if (!isCanvasSupported()){
+  //   G_vmlCanvasManager.initElement(divString);
+  // }
   var ctx = $(divString)[0].getContext("2d");
   var data = options.data;
   var chartOptions = {
@@ -105,15 +113,15 @@ function dispChart(divName,options){
 var stateChartOptions = {
   data: [
   {
-    value: 7810,
-    color:"#F38630",
+    value: 18880,
+    color:"#C563E6",
     label: 'BOA',
     labelColor: '#000',
     labelFontSize: '.8em'
   },
   {
-    value : 4133,
-    color : "#E0E4CC",
+    value : 3384,
+    color : "#88F0D3",
     label: 'BOW',
     labelColor: '#000',
     labelFontSize: '.8em'
