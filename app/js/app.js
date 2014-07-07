@@ -1,15 +1,16 @@
 var map, sidebar, countySearch = []; //, theaterSearch = [], museumSearch = [];
 var featureCount = 0;
 var permitCount;
+var featureLayerInfos = [];
 var permitTypes = [{
   name: 'FESOP or LSO Permits',
   interestType: 'PERMIT',
   mediaType: 'Air',
   color: '#C563E6',
   markerIcon: 'img/airPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/1',
-  popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
-  markerTitle: "NAME"
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/1',
+  popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+  markerTitle: "Name"
 },
 {
   name: 'ROSS Permits',
@@ -17,9 +18,9 @@ var permitTypes = [{
   mediaType: 'Air',
   color: '#C563E6',
   markerIcon: 'img/rossPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/2',
-  popupTemplate: "<h5>Air Permit - ROSS<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
-  markerTitle: "NAME"
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/2',
+  popupTemplate: "<h5>Air Permit - ROSS<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+  markerTitle: "Name"
 },
 {
   name: 'CAAPP Permits',
@@ -27,9 +28,9 @@ var permitTypes = [{
   mediaType: 'Air',
   color: '#C563E6',
   markerIcon: 'img/caappPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/3',
-  popupTemplate: "<h5>Air Permit - CAAPP<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
-  markerTitle: "NAME"
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/3',
+  popupTemplate: "<h5>Air Permit - CAAPP<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+  markerTitle: "Name"
 },
 {
   name: 'NPDES Permits',
@@ -37,9 +38,9 @@ var permitTypes = [{
   mediaType: 'Water',
   color: '#88F0D3',
   markerIcon: 'img/npdesPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/AcesPermits/FeatureServer/4',
-  popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.NAME %></h3><p><%= properties.LOCATION_ADDR_3 %><br><%= properties.CITY_NAME %>,  IL</p><p><%= properties.SITE_ID %></p>",
-  markerTitle: "NAME"
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/5',
+  popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+  markerTitle: "Name"
 }
 ];
 
@@ -141,7 +142,6 @@ dispChart('stateChart', stateChartOptions);
 $(document).ready(function() {
   getViewport();
   /* Hack to refresh tabs after append */
-  $("#poi-tabs a[href='#museums']").tab("show");
   $("#poi-tabs a[href='#counties']").tab("show");
 });
 
@@ -236,11 +236,8 @@ var generalPermitLayer = new L.esri.FeatureLayer("http://epa084dgis01.iltest.ill
   onEachFeature: configureCountyFeature
 });
 
-
-var localPermitLayer = new L.LayerGroup();
-
 /* Single marker cluster layer to hold all clusters */
-var permitMarkers = new L.MarkerClusterGroup({
+var localPermitMarkers = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
   showCoverageOnHover: false,
   zoomToBoundsOnClick: true
@@ -268,45 +265,8 @@ function makePermitBindMarker(inPermitType){
   };
 }
 
-function loadFeatureLayerInfos (featureArray){
-  var layerInfos = [];
-  var index;
-  for (index = 0; index < featureArray.length; ++index){
-    var newFeatureLayer = {};
-    newFeatureLayer.name = permitTypes[index].name;
-    newFeatureLayer.testLayer = L.geoJson(null);
-    newFeatureLayer.url = permitTypes[index].url;
-    newFeatureLayer.bindMarker = makePermitBindMarker(permitTypes[index]);
-    newFeatureLayer.createMarker = makePermitMarker(permitTypes[index]);
-    layerInfos.push(newFeatureLayer);
-  }
-  return layerInfos;
-}
-
-var featureLayerInfos = loadFeatureLayerInfos(permitTypes);
-
-function loadFeatureLayer (featureLayerInfo, markerLayer, loadLayer){
-  var curLayer = new L.esri.ClusteredFeatureLayer(featureLayerInfo.url,{
-    cluster: markerLayer,
-    createMarker: featureLayerInfo.createMarker,
-    onEachMarker: featureLayerInfo.bindMarker
-  });
-  loadLayer.addLayer(curLayer);
-}
-
-function addFeatureLayers (inArray, loadLayer){
-  permitMarkers.clearLayers();
-  var index;
-  for(index = 0; index < inArray.length; ++index){
-    loadFeatureLayer(featureLayerInfos[inArray[index]], permitMarkers, loadLayer);
-  }
-}
-
-addFeatureLayers([0, 1, 2, 3], localPermitLayer);
-
-
-map = L.map("map", {
-  maxZoom: 17,
+var map = L.map("map", {
+  maxZoom: 16,
   minZoom:6,
   zoom: 7,
   center: [40, -89.5],
@@ -323,10 +283,10 @@ map.on('viewreset', function(e){
     map.removeLayer(generalPermitLayer);
     $('#heatPatch').css('visibility', 'hidden');
     map.closePopup();
-    map.addLayer(localPermitLayer);
+    map.addLayer(localPermitMarkers);
   }
   else{
-    map.removeLayer(localPermitLayer);
+    map.removeLayer(localPermitMarkers);
     $('#heatPatch').css('visibility', 'visible');
     map.addLayer(generalPermitLayer);
   }
@@ -337,36 +297,44 @@ map.on("overlayadd", function(e){
   var index;
   for (index = 0; index < featureLayerInfos.length; ++index){
     if (e.layer === featureLayerInfos[index].testLayer) {
-      console.log('Add Layer ' + featureLayerInfos[index].name);
+      localPermitMarkers.addLayer(featureLayerInfos[index].clusterLayer);
     }
   }
 });
 
 map.on('overlayremove', function(e){
   var index;
+  var removeLayer;
   for (index = 0; index < featureLayerInfos.length; ++index){
-    if (e.layer === featureLayerInfos[index].testLayer) {
-      console.log('Remove Layer ' + featureLayerInfos[index].name);
+    if (e.layer === featureLayerInfos[index].testLayer){
+      localPermitMarkers.removeLayer(featureLayerInfos[index].clusterLayer);
     }
   }
 });
-// map.on("overlayadd", function(e) {
-//   if (e.layer === featureLayerInfos[0].testLayer) {
-//     markerClusters.addLayer(theaters);
-//   }
-//   if (e.layer === museumLayer) {
-//     markerClusters.addLayer(museums);
-//   }
-// });
 
-// map.on("overlayremove", function(e) {
-//   if (e.layer === featureLayerInfos[0].testLayer) {
-//     markerClusters.removeLayer(theaters);
-//   }
-//   if (e.layer === museumLayer) {
-//     markerClusters.removeLayer(museums);
-//   }
-// });
+function loadFeatureLayerInfos (featureArray){
+  console.log(featureArray);
+  var layerInfos = [];
+  var index;
+  for (index = 0; index < featureArray.length; ++index){
+    var newFeatureLayer = {};
+    newFeatureLayer.index = index;
+    newFeatureLayer.name = featureArray[index].name;
+    newFeatureLayer.testLayer = L.geoJson(null);
+    newFeatureLayer.url = featureArray[index].url;
+    newFeatureLayer.bindMarker = makePermitBindMarker(featureArray[index]);
+    newFeatureLayer.createMarker = makePermitMarker(featureArray[index]);
+    newFeatureLayer.clusterLayer = new L.esri.ClusteredFeatureLayer(newFeatureLayer.url,{
+      cluster: localPermitMarkers,
+      createMarker: newFeatureLayer.createMarker,
+      onEachMarker: newFeatureLayer.bindMarker
+    });
+    layerInfos.push(newFeatureLayer);
+  }
+  return layerInfos;
+}
+
+featureLayerInfos = loadFeatureLayerInfos(permitTypes);
 
 /* Attribution control */
 // function updateAttribution(e) {
@@ -469,8 +437,8 @@ $("#searchbox").click(function () {
 
 /* Typeahead search functionality */
 $(document).one("ajaxStop", function () {
-  /* Fit map to boroughs bounds */
-  map.fitBounds(generalPermitLayer.getBounds());
+  /* Fit map to county bounds */
+  //map.fitBounds(generalPermitLayer.getBounds());
   $("#loading").hide();
 
   var countyBH = new Bloodhound({
