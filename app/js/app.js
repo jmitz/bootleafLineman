@@ -266,7 +266,7 @@ function makePermitBindMarker(inPermitType){
 }
 
 var map = L.map("map", {
-  maxZoom: 16,
+  maxZoom: 17,
   minZoom:6,
   zoom: 7,
   center: [40, -89.5],
@@ -325,7 +325,7 @@ function loadFeatureLayerInfos (featureArray){
     newFeatureLayer.bindMarker = makePermitBindMarker(featureArray[index]);
     newFeatureLayer.createMarker = makePermitMarker(featureArray[index]);
     newFeatureLayer.clusterLayer = new L.esri.ClusteredFeatureLayer(newFeatureLayer.url,{
-      cluster: localPermitMarkers,
+//      cluster: localPermitMarkers,
       createMarker: newFeatureLayer.createMarker,
       onEachMarker: newFeatureLayer.bindMarker
     });

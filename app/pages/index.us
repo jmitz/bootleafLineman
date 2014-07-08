@@ -78,14 +78,14 @@
     <div id='heatPatch'>
       <img src='img/heatPatch.png' alt='blue - 50 or less, green - 50 to 100, yellow - 100 to 300, orange - 300 to 1000, red - over 1000'>
     </div>
-<!--     <div id="loading">
+    <div id="loading">
       <div class="loading-indicator">
         <div class="progress progress-striped active">
           <div class="progress-bar progress-bar-info" style="width: 100%"></div>
         </div>
       </div>
     </div>
- -->    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">

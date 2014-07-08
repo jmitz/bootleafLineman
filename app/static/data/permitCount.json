@@ -55,7 +55,7 @@
   },
   {
     "countyFips": 7,
-    "count": 115,
+    "count": 116,
     "detail": [
       {
         "interestType": "BOW",
@@ -67,7 +67,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 16
+        "count": 17
       }
     ]
   },
@@ -267,7 +267,7 @@
   },
   {
     "countyFips": 31,
-    "count": 6637,
+    "count": 6642,
     "detail": [
       {
         "interestType": "BOW",
@@ -275,11 +275,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 5153
+        "count": 5152
       },
       {
         "interestType": "ROSS",
-        "count": 658
+        "count": 664
       },
       {
         "interestType": "USEPA",
@@ -371,7 +371,7 @@
   },
   {
     "countyFips": 43,
-    "count": 1040,
+    "count": 1042,
     "detail": [
       {
         "interestType": "BOW",
@@ -379,11 +379,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 847
+        "count": 848
       },
       {
         "interestType": "ROSS",
-        "count": 182
+        "count": 183
       },
       {
         "interestType": "USEPA",
@@ -677,7 +677,7 @@
   },
   {
     "countyFips": 77,
-    "count": 138,
+    "count": 139,
     "detail": [
       {
         "interestType": "BOW",
@@ -689,7 +689,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 13
+        "count": 14
       }
     ]
   },
@@ -785,7 +785,7 @@
   },
   {
     "countyFips": 89,
-    "count": 709,
+    "count": 710,
     "detail": [
       {
         "interestType": "BOW",
@@ -793,7 +793,7 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 468
+        "count": 469
       },
       {
         "interestType": "ROSS",
@@ -807,7 +807,7 @@
   },
   {
     "countyFips": 91,
-    "count": 259,
+    "count": 260,
     "detail": [
       {
         "interestType": "BOW",
@@ -819,7 +819,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 36
+        "count": 37
       },
       {
         "interestType": "USEPA",
@@ -865,7 +865,7 @@
   },
   {
     "countyFips": 97,
-    "count": 807,
+    "count": 808,
     "detail": [
       {
         "interestType": "BOW",
@@ -877,7 +877,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 110
+        "count": 111
       },
       {
         "interestType": "USEPA",
@@ -949,7 +949,7 @@
   },
   {
     "countyFips": 105,
-    "count": 203,
+    "count": 204,
     "detail": [
       {
         "interestType": "BOW",
@@ -957,7 +957,7 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 147
+        "count": 148
       },
       {
         "interestType": "ROSS",
@@ -1011,11 +1011,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 315
+        "count": 314
       },
       {
         "interestType": "ROSS",
-        "count": 77
+        "count": 78
       }
     ]
   },
@@ -1083,11 +1083,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 351
+        "count": 350
       },
       {
         "interestType": "ROSS",
-        "count": 74
+        "count": 75
       },
       {
         "interestType": "USEPA",
@@ -1449,7 +1449,7 @@
   },
   {
     "countyFips": 161,
-    "count": 379,
+    "count": 380,
     "detail": [
       {
         "interestType": "BOW",
@@ -1457,7 +1457,7 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 271
+        "count": 272
       },
       {
         "interestType": "ROSS",
@@ -1507,7 +1507,7 @@
   },
   {
     "countyFips": 167,
-    "count": 305,
+    "count": 306,
     "detail": [
       {
         "interestType": "BOW",
@@ -1519,7 +1519,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 31
+        "count": 32
       }
     ]
   },
@@ -1835,7 +1835,7 @@
   },
   {
     "countyFips": 203,
-    "count": 111,
+    "count": 112,
     "detail": [
       {
         "interestType": "BOW",
@@ -1847,7 +1847,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 15
+        "count": 16
       }
     ]
   }
