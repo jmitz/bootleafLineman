@@ -2,6 +2,46 @@ var map, sidebar, countySearch = []; //, theaterSearch = [], museumSearch = [];
 var featureCount = 0;
 var permitCount;
 var featureLayerInfos = [];
+var featureTestLayer = {};
+
+var permits = {
+  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/0',
+  types: {
+    AIR: {
+      PERMIT: {
+        name: 'FESOP or LSO Permits',
+        color: '#C563E6',
+        markerIcon: 'img/airPermit.png',
+        popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name"
+      },
+      ROSS: {
+        name: 'ROSS Permits',
+        color: '#C563B6',
+        markerIcon: 'img/rossPermit.png',
+        popupTemplate: "<h5>Air Permit - ROSS<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name"
+      },
+      USEPA: {
+        name: 'CAAPP Permits',
+        color: '#C56386',
+        markerIcon: 'img/caappPermit.png',
+        popupTemplate: "<h5>Air Permit - CAAPP<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name"
+      }
+    },
+    WATER: {
+      BOW: {
+        name: 'NPDES Permits',
+        color: '#88F0D3',
+        markerIcon: 'img/npdesPermit.png',
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name"
+      }
+    }
+  }
+};
+
 var permitTypes = [{
   name: 'FESOP or LSO Permits',
   interestType: 'PERMIT',
@@ -243,27 +283,70 @@ var localPermitMarkers = new L.MarkerClusterGroup({
   zoomToBoundsOnClick: true
 });
 
-function makePermitMarker(inPermitType){
-  return function(geojson, latlng){
-    return L.marker(latlng, {icon: L.icon({
-      iconUrl: inPermitType.markerIcon,
-      iconRetinaUrl: inPermitType.markerIcon,
+// function makePermitMarker(inPermitType){
+//   return function(geojson, latlng){
+//     return L.marker(latlng, {icon: L.icon({
+//       iconUrl: inPermitType.markerIcon,
+//       iconRetinaUrl: inPermitType.markerIcon,
+//       iconSize: [32, 37],
+//       iconAnchor: [16, 37],
+//       popupAnchor:[0, -27]
+//     }),
+//     title: geojson.properties[inPermitType.markerTitle],
+//     riseOnHover: true
+//   });
+//   };
+// }
+
+function bindPermitMarker(inGeoJson, inMarker){
+  var permitType = permits.types[inGeoJson.properties.MediaCode][inGeoJson.properties.InterestType];
+  featureCount++;
+  inMarker.bindPopup(_.template(permitType.popupTemplate,inGeoJson));
+}
+
+function makePermitMarker(inGeoJson, inLatLng){
+  var permitType = permits.types[inGeoJson.properties.MediaCode][inGeoJson.properties.InterestType];
+  var iconUrl = permitType.markerIcon;
+  var markerTitle = permitType.markerTitle;
+  return L.marker(inLatLng, {
+    icon: L.icon({
+      iconUrl: iconUrl,
+      iconRetinaUrl: iconUrl,
       iconSize: [32, 37],
       iconAnchor: [16, 37],
       popupAnchor:[0, -27]
     }),
-    title: geojson.properties[inPermitType.markerTitle],
+    title: inGeoJson.properties[markerTitle],
     riseOnHover: true
   });
-  };
 }
 
-function makePermitBindMarker(inPermitType){
-  return function(geojson, marker){
-    marker.bindPopup(_.template(inPermitType.popupTemplate,geojson));
-    featureCount++;
-  };
+function buildWhere(){
+  var inArray = [];
+  var returnString = '';
+  var index;
+  for (index = 0; index < inArray.length; ++index){
+    console.log(inArray[index]);
+  }
+  return "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')";
 }
+
+permitCluster = new L.esri.ClusteredFeatureLayer(permits.url,{
+  createMarker: makePermitMarker,
+  onEachMarker: bindPermitMarker,
+  where: buildWhere()
+});
+
+// Build a function that makes the featureTestLayer and adds all the layers to the map
+featureTestLayer.AIR = {
+  PERMIT: L.geoJson(null),
+  ROSS: L.geoJson(null),
+  USEPA: L.geoJson(null)
+};
+
+featureTestLayer.WATER = {
+  BOW: L.geoJson(null)
+};
 
 var map = L.map("map", {
   maxZoom: 17,
@@ -277,16 +360,21 @@ var map = L.map("map", {
 bounceAtZoomLimits: false
 });
 
+map.addLayer(featureTestLayer.AIR.PERMIT).
+  addLayer(featureTestLayer.AIR.ROSS).
+  addLayer(featureTestLayer.AIR.USEPA).
+  addLayer(featureTestLayer.WATER.BOW);
+
 map.on('viewreset', function(e){
   console.log(map.getZoom());
   if (map.getZoom()>10){
     map.removeLayer(generalPermitLayer);
     $('#heatPatch').css('visibility', 'hidden');
     map.closePopup();
-    map.addLayer(localPermitMarkers);
+    map.addLayer(permitCluster);
   }
   else{
-    map.removeLayer(localPermitMarkers);
+    map.removeLayer(permitCluster);
     $('#heatPatch').css('visibility', 'visible');
     map.addLayer(generalPermitLayer);
   }
@@ -297,7 +385,8 @@ map.on("overlayadd", function(e){
   var index;
   for (index = 0; index < featureLayerInfos.length; ++index){
     if (e.layer === featureLayerInfos[index].testLayer) {
-      localPermitMarkers.addLayer(featureLayerInfos[index].clusterLayer);
+      console.log('Adding '+ index);
+      //localPermitMarkers.addLayer(featureLayerInfos[index].clusterLayer);
     }
   }
 });
@@ -307,10 +396,12 @@ map.on('overlayremove', function(e){
   var removeLayer;
   for (index = 0; index < featureLayerInfos.length; ++index){
     if (e.layer === featureLayerInfos[index].testLayer){
-      localPermitMarkers.removeLayer(featureLayerInfos[index].clusterLayer);
+      console.log('Removing ' + index);
+      //localPermitMarkers.removeLayer(featureLayerInfos[index].clusterLayer);
     }
   }
 });
+
 
 function loadFeatureLayerInfos (featureArray){
   console.log(featureArray);
@@ -322,13 +413,13 @@ function loadFeatureLayerInfos (featureArray){
     newFeatureLayer.name = featureArray[index].name;
     newFeatureLayer.testLayer = L.geoJson(null);
     newFeatureLayer.url = featureArray[index].url;
-    newFeatureLayer.bindMarker = makePermitBindMarker(featureArray[index]);
-    newFeatureLayer.createMarker = makePermitMarker(featureArray[index]);
-    newFeatureLayer.clusterLayer = new L.esri.ClusteredFeatureLayer(newFeatureLayer.url,{
-//      cluster: localPermitMarkers,
-      createMarker: newFeatureLayer.createMarker,
-      onEachMarker: newFeatureLayer.bindMarker
-    });
+//    newFeatureLayer.bindMarker = makePermitBindMarker(featureArray[index]);
+//    newFeatureLayer.createMarker = makePermitMarker(featureArray[index]);
+//     newFeatureLayer.clusterLayer = new L.esri.ClusteredFeatureLayer(newFeatureLayer.url,{
+// //      cluster: localPermitMarkers,
+//       createMarker: newFeatureLayer.createMarker,
+//       onEachMarker: newFeatureLayer.bindMarker
+//     });
     layerInfos.push(newFeatureLayer);
   }
   return layerInfos;
@@ -400,12 +491,12 @@ var baseLayers = {
 
 var groupedOverlays = {
   "BOA Permits": {
-    "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": featureLayerInfos[0].testLayer,
-    "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": featureLayerInfos[1].testLayer,
-    "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": featureLayerInfos[2].testLayer
+    "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": featureTestLayer.AIR.PERMIT,
+    "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": featureTestLayer.AIR.ROSS,
+    "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": featureTestLayer.AIR.USEPA
   },
   "BOW Permits": {
-    "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": featureLayerInfos[3].testLayer
+    "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": featureTestLayer.WATER.BOW
   }
 };
 
