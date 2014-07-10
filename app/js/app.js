@@ -1,8 +1,7 @@
 var map, sidebar, countySearch = []; //, theaterSearch = [], museumSearch = [];
 var featureCount = 0;
 var permitCount;
-var featureLayerInfos = [];
-var featureTestLayer = {};
+var displayPermitTypes = [];
 
 var permits = {
   url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/0',
@@ -10,6 +9,8 @@ var permits = {
     AIR: {
       PERMIT: {
         name: 'FESOP or LSO Permits',
+        mediaType: 'AIR',
+        interestType: 'PERMIT',
         color: '#C563E6',
         markerIcon: 'img/airPermit.png',
         popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
@@ -17,6 +18,8 @@ var permits = {
       },
       ROSS: {
         name: 'ROSS Permits',
+        mediaType: 'AIR',
+        interestType: 'ROSS',
         color: '#C563B6',
         markerIcon: 'img/rossPermit.png',
         popupTemplate: "<h5>Air Permit - ROSS<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
@@ -24,6 +27,8 @@ var permits = {
       },
       USEPA: {
         name: 'CAAPP Permits',
+        mediaType: 'AIR',
+        interestType: 'USEPA',
         color: '#C56386',
         markerIcon: 'img/caappPermit.png',
         popupTemplate: "<h5>Air Permit - CAAPP<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
@@ -33,6 +38,8 @@ var permits = {
     WATER: {
       BOW: {
         name: 'NPDES Permits',
+        mediaType: 'WATER',
+        interestType: 'BOW',
         color: '#88F0D3',
         markerIcon: 'img/npdesPermit.png',
         popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
@@ -41,48 +48,6 @@ var permits = {
     }
   }
 };
-
-var permitTypes = [{
-  name: 'FESOP or LSO Permits',
-  interestType: 'PERMIT',
-  mediaType: 'Air',
-  color: '#C563E6',
-  markerIcon: 'img/airPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/1',
-  popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
-  markerTitle: "Name"
-},
-{
-  name: 'ROSS Permits',
-  interestType: 'ROSS',
-  mediaType: 'Air',
-  color: '#C563E6',
-  markerIcon: 'img/rossPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/2',
-  popupTemplate: "<h5>Air Permit - ROSS<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
-  markerTitle: "Name"
-},
-{
-  name: 'CAAPP Permits',
-  interestType: 'USEPA',
-  mediaType: 'Air',
-  color: '#C563E6',
-  markerIcon: 'img/caappPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/3',
-  popupTemplate: "<h5>Air Permit - CAAPP<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
-  markerTitle: "Name"
-},
-{
-  name: 'NPDES Permits',
-  interestType: 'BOW',
-  mediaType: 'Water',
-  color: '#88F0D3',
-  markerIcon: 'img/npdesPermit.png',
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewService/FeatureServer/5',
-  popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
-  markerTitle: "Name"
-}
-];
 
 $.getJSON('data/permitCount.json', function(data){
   permitCount = data;
@@ -173,9 +138,8 @@ var stateChartOptions = {
   //   label: 'BOL',
   //   labelColor: '#000',
   //   labelFontSize: '.8em'
-}
-]
-};
+  }
+]};
 
 dispChart('stateChart', stateChartOptions);
 
@@ -321,32 +285,40 @@ function makePermitMarker(inGeoJson, inLatLng){
   });
 }
 
-function buildWhere(){
-  var inArray = [];
+function testFunction(inVal){
+  console.log(inVal);
+}
+
+function getPermitTypes (inPermitTypes, inFunction){
+  for (var key in inPermitTypes){
+    if (typeof(inPermitTypes[key]) === "object"){
+      if (inPermitTypes[key].hasOwnProperty('name')){
+        inFunction(inPermitTypes[key]);
+      }
+      getPermitTypes(inPermitTypes[key], inFunction);
+    }
+  }
+}
+
+function buildWhere(inArray){
   var returnString = '';
+  var buildArray = [];
+  var template = "(MediaCode = '<%= mediaType %>' and InterestType = '<%= interestType %>')";
   var index;
   for (index = 0; index < inArray.length; ++index){
-    console.log(inArray[index]);
+    if (inArray[index].active) {
+      buildArray.push(_.template(template,inArray[index]));
+    }
   }
-  return "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')";
+//  return "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')";
+  return (buildArray.length > 0)? buildArray.join(' or ') : "MediaCode = 'NONSENSE'";
 }
 
 permitCluster = new L.esri.ClusteredFeatureLayer(permits.url,{
   createMarker: makePermitMarker,
   onEachMarker: bindPermitMarker,
-  where: buildWhere()
+  where: "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')"
 });
-
-// Build a function that makes the featureTestLayer and adds all the layers to the map
-featureTestLayer.AIR = {
-  PERMIT: L.geoJson(null),
-  ROSS: L.geoJson(null),
-  USEPA: L.geoJson(null)
-};
-
-featureTestLayer.WATER = {
-  BOW: L.geoJson(null)
-};
 
 var map = L.map("map", {
   maxZoom: 17,
@@ -360,13 +332,7 @@ var map = L.map("map", {
 bounceAtZoomLimits: false
 });
 
-map.addLayer(featureTestLayer.AIR.PERMIT).
-  addLayer(featureTestLayer.AIR.ROSS).
-  addLayer(featureTestLayer.AIR.USEPA).
-  addLayer(featureTestLayer.WATER.BOW);
-
 map.on('viewreset', function(e){
-  console.log(map.getZoom());
   if (map.getZoom()>10){
     map.removeLayer(generalPermitLayer);
     $('#heatPatch').css('visibility', 'hidden');
@@ -383,10 +349,11 @@ map.on('viewreset', function(e){
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e){
   var index;
-  for (index = 0; index < featureLayerInfos.length; ++index){
-    if (e.layer === featureLayerInfos[index].testLayer) {
-      console.log('Adding '+ index);
-      //localPermitMarkers.addLayer(featureLayerInfos[index].clusterLayer);
+  for (index = 0; index < displayPermitTypes.length; ++index){
+    if (e.layer === displayPermitTypes[index].testLayer) {
+      displayPermitTypes[index].active = true;
+      permitCluster.setWhere(buildWhere(displayPermitTypes));
+      //localPermitMarkers.addLayer(displayPermitTypes[index].clusterLayer);
     }
   }
 });
@@ -394,38 +361,29 @@ map.on("overlayadd", function(e){
 map.on('overlayremove', function(e){
   var index;
   var removeLayer;
-  for (index = 0; index < featureLayerInfos.length; ++index){
-    if (e.layer === featureLayerInfos[index].testLayer){
-      console.log('Removing ' + index);
-      //localPermitMarkers.removeLayer(featureLayerInfos[index].clusterLayer);
+  for (index = 0; index < displayPermitTypes.length; ++index){
+    if (e.layer === displayPermitTypes[index].testLayer){
+      displayPermitTypes[index].active = false;
+      permitCluster.setWhere(buildWhere(displayPermitTypes));
+      //localPermitMarkers.removeLayer(displayPermitTypes[index].clusterLayer);
     }
   }
 });
 
 
-function loadFeatureLayerInfos (featureArray){
-  console.log(featureArray);
-  var layerInfos = [];
-  var index;
-  for (index = 0; index < featureArray.length; ++index){
-    var newFeatureLayer = {};
-    newFeatureLayer.index = index;
-    newFeatureLayer.name = featureArray[index].name;
-    newFeatureLayer.testLayer = L.geoJson(null);
-    newFeatureLayer.url = featureArray[index].url;
-//    newFeatureLayer.bindMarker = makePermitBindMarker(featureArray[index]);
-//    newFeatureLayer.createMarker = makePermitMarker(featureArray[index]);
-//     newFeatureLayer.clusterLayer = new L.esri.ClusteredFeatureLayer(newFeatureLayer.url,{
-// //      cluster: localPermitMarkers,
-//       createMarker: newFeatureLayer.createMarker,
-//       onEachMarker: newFeatureLayer.bindMarker
-//     });
-    layerInfos.push(newFeatureLayer);
-  }
-  return layerInfos;
+function buildPermitInfo(inPermitType){
+  var newPermitLayer = {};
+  newPermitLayer.name = inPermitType.name;
+  newPermitLayer.testLayer = L.geoJson(null);
+  newPermitLayer.mediaType = inPermitType.mediaType;
+  newPermitLayer.interestType = inPermitType.interestType;
+  newPermitLayer.active = true;
+  map.addLayer(newPermitLayer.testLayer);
+  displayPermitTypes.push(newPermitLayer);  
 }
 
-featureLayerInfos = loadFeatureLayerInfos(permitTypes);
+getPermitTypes(permits.types, buildPermitInfo);
+
 
 /* Attribution control */
 // function updateAttribution(e) {
@@ -489,14 +447,16 @@ var baseLayers = {
   "Imagery with Streets": baseSatteliteWithTransportMap
 };
 
+
+//Build with Function
 var groupedOverlays = {
   "BOA Permits": {
-    "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": featureTestLayer.AIR.PERMIT,
-    "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": featureTestLayer.AIR.ROSS,
-    "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": featureTestLayer.AIR.USEPA
+    "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": displayPermitTypes[0].testLayer,
+    "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": displayPermitTypes[1].testLayer,
+    "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": displayPermitTypes[2].testLayer
   },
   "BOW Permits": {
-    "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": featureTestLayer.WATER.BOW
+    "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": displayPermitTypes[3].testLayer
   }
 };
 
