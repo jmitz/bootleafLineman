@@ -1,0 +1,887 @@
+[
+  {
+    "district": 1,
+    "name": "Antonio \"Tony\" Munoz",
+    "type": "Senate"
+  },
+  {
+    "district": 2,
+    "name": "William \"Willie\" Delgado",
+    "type": "Senate"
+  },
+  {
+    "district": 3,
+    "name": "Mattie Hunter",
+    "type": "Senate"
+  },
+  {
+    "district": 4,
+    "name": "Kimberly A. Lightford",
+    "type": "Senate"
+  },
+  {
+    "district": 5,
+    "name": "Patricia Van Pelt Watkins",
+    "type": "Senate"
+  },
+  {
+    "district": 6,
+    "name": "John J. Cullerton",
+    "type": "Senate"
+  },
+  {
+    "district": 7,
+    "name": "Heather A. Steans",
+    "type": "Senate"
+  },
+  {
+    "district": 8,
+    "name": "Ira I. Silverstein",
+    "type": "Senate"
+  },
+  {
+    "district": 9,
+    "name": "Daniel Biss",
+    "type": "Senate"
+  },
+  {
+    "district": 10,
+    "name": "John G. Mulroe",
+    "type": "Senate"
+  },
+  {
+    "district": 11,
+    "name": "Martin A. Sandoval",
+    "type": "Senate"
+  },
+  {
+    "district": 12,
+    "name": "Steven Landek",
+    "type": "Senate"
+  },
+  {
+    "district": 13,
+    "name": "Kwame Raoul",
+    "type": "Senate"
+  },
+  {
+    "district": 14,
+    "name": "Emil Jones III",
+    "type": "Senate"
+  },
+  {
+    "district": 15,
+    "name": "Napoleon Harris",
+    "type": "Senate"
+  },
+  {
+    "district": 16,
+    "name": "Jacqueline \"Jacqui\" Collins",
+    "type": "Senate"
+  },
+  {
+    "district": 17,
+    "name": "Donne E. Trotter",
+    "type": "Senate"
+  },
+  {
+    "district": 18,
+    "name": "Bill Cunningham",
+    "type": "Senate"
+  },
+  {
+    "district": 19,
+    "name": "Michael E. Hastings",
+    "type": "Senate"
+  },
+  {
+    "district": 20,
+    "name": "Iris Y. Martinez",
+    "type": "Senate"
+  },
+  {
+    "district": 21,
+    "name": "Michael G. Connelly",
+    "type": "Senate"
+  },
+  {
+    "district": 22,
+    "name": "Michael Noland",
+    "type": "Senate"
+  },
+  {
+    "district": 23,
+    "name": "Thomas E. Cullerton",
+    "type": "Senate"
+  },
+  {
+    "district": 24,
+    "name": "Kirk W. Dillard",
+    "type": "Senate"
+  },
+  {
+    "district": 25,
+    "name": "Jim Oberweis",
+    "type": "Senate"
+  },
+  {
+    "district": 26,
+    "name": "Dan Duffy",
+    "type": "Senate"
+  },
+  {
+    "district": 27,
+    "name": "Matt Murphy",
+    "type": "Senate"
+  },
+  {
+    "district": 28,
+    "name": "Daniel W. Kotowski",
+    "type": "Senate"
+  },
+  {
+    "district": 29,
+    "name": "Julie A. Morrison",
+    "type": "Senate"
+  },
+  {
+    "district": 30,
+    "name": "Terry Link",
+    "type": "Senate"
+  },
+  {
+    "district": 31,
+    "name": "Melinda (Willen) Bush",
+    "type": "Senate"
+  },
+  {
+    "district": 32,
+    "name": "Pamela Althoff",
+    "type": "Senate"
+  },
+  {
+    "district": 33,
+    "name": "Karen McConnaughay",
+    "type": "Senate"
+  },
+  {
+    "district": 34,
+    "name": "Steven \"Steve\" Stadelman",
+    "type": "Senate"
+  },
+  {
+    "district": 35,
+    "name": "Dave Syverson",
+    "type": "Senate"
+  },
+  {
+    "district": 36,
+    "name": "Mike Jacobs",
+    "type": "Senate"
+  },
+  {
+    "district": 37,
+    "name": "Darin LaHood",
+    "type": "Senate"
+  },
+  {
+    "district": 38,
+    "name": "Sue Rezin",
+    "type": "Senate"
+  },
+  {
+    "district": 39,
+    "name": "Don Harmon",
+    "type": "Senate"
+  },
+  {
+    "district": 40,
+    "name": "Toi W. Hutchinson",
+    "type": "Senate"
+  },
+  {
+    "district": 41,
+    "name": "Christine Radogno",
+    "type": "Senate"
+  },
+  {
+    "district": 42,
+    "name": "Linda Holmes",
+    "type": "Senate"
+  },
+  {
+    "district": 43,
+    "name": "Pat McGuire",
+    "type": "Senate"
+  },
+  {
+    "district": 44,
+    "name": "Bill Brady",
+    "type": "Senate"
+  },
+  {
+    "district": 45,
+    "name": "Tim Bivins",
+    "type": "Senate"
+  },
+  {
+    "district": 46,
+    "name": "Dave Koehler",
+    "type": "Senate"
+  },
+  {
+    "district": 47,
+    "name": "John M. Sullivan",
+    "type": "Senate"
+  },
+  {
+    "district": 48,
+    "name": "Andy Manar",
+    "type": "Senate"
+  },
+  {
+    "district": 49,
+    "name": "Jennifer Bertino-Tarrant",
+    "type": "Senate"
+  },
+  {
+    "district": 50,
+    "name": "William \"Sam\" McCann",
+    "type": "Senate"
+  },
+  {
+    "district": 51,
+    "name": "Chapin Rose",
+    "type": "Senate"
+  },
+  {
+    "district": 52,
+    "name": "Michael W. Frerichs",
+    "type": "Senate"
+  },
+  {
+    "district": 53,
+    "name": "Jason Barickman",
+    "type": "Senate"
+  },
+  {
+    "district": 54,
+    "name": "Kyle McCarter",
+    "type": "Senate"
+  },
+  {
+    "district": 55,
+    "name": "Dale A. Righter",
+    "type": "Senate"
+  },
+  {
+    "district": 56,
+    "name": "William \"Bill\" Haine",
+    "type": "Senate"
+  },
+  {
+    "district": 57,
+    "name": "James F. Clayborne, Jr., II",
+    "type": "Senate"
+  },
+  {
+    "district": 58,
+    "name": "David Luechtefeld",
+    "type": "Senate"
+  },
+  {
+    "district": 59,
+    "name": "Gary F. Forby",
+    "type": "Senate"
+  },
+  {
+    "district": 1,
+    "name": "Daniel J. Burke",
+    "type": "House"
+  },
+  {
+    "district": 2,
+    "name": "Edward J. Acevedo",
+    "type": "House"
+  },
+  {
+    "district": 3,
+    "name": "Luis Arroyo",
+    "type": "House"
+  },
+  {
+    "district": 4,
+    "name": "Cynthia Soto",
+    "type": "House"
+  },
+  {
+    "district": 5,
+    "name": "Kenneth \"Ken\" Dunkin",
+    "type": "House"
+  },
+  {
+    "district": 6,
+    "name": "Esther Golar",
+    "type": "House"
+  },
+  {
+    "district": 7,
+    "name": "Emanuel \"Chris\" Welch",
+    "type": "House"
+  },
+  {
+    "district": 8,
+    "name": "La Shawn K. Ford",
+    "type": "House"
+  },
+  {
+    "district": 9,
+    "name": "Arthur Turner",
+    "type": "House"
+  },
+  {
+    "district": 10,
+    "name": "Derrick Smith",
+    "type": "House"
+  },
+  {
+    "district": 11,
+    "name": "Ann M. Williams",
+    "type": "House"
+  },
+  {
+    "district": 12,
+    "name": "Sara Feigenholtz",
+    "type": "House"
+  },
+  {
+    "district": 13,
+    "name": "Gregory Harris",
+    "type": "House"
+  },
+  {
+    "district": 14,
+    "name": "Kelly M. Cassidy",
+    "type": "House"
+  },
+  {
+    "district": 15,
+    "name": "John C. D'Amico",
+    "type": "House"
+  },
+  {
+    "district": 16,
+    "name": "Lou Lang",
+    "type": "House"
+  },
+  {
+    "district": 17,
+    "name": "Laura Fine",
+    "type": "House"
+  },
+  {
+    "district": 18,
+    "name": "Robyn Gabel",
+    "type": "House"
+  },
+  {
+    "district": 19,
+    "name": "Robert F. Martwick, Jr.",
+    "type": "House"
+  },
+  {
+    "district": 20,
+    "name": "Michael P. McAuliffe",
+    "type": "House"
+  },
+  {
+    "district": 21,
+    "name": "Silvana Tabares",
+    "type": "House"
+  },
+  {
+    "district": 22,
+    "name": "Michael J. Madigan",
+    "type": "House"
+  },
+  {
+    "district": 23,
+    "name": "Michael J. Zalewski",
+    "type": "House"
+  },
+  {
+    "district": 24,
+    "name": "Elizabeth \"Lisa\" Hernandez",
+    "type": "House"
+  },
+  {
+    "district": 25,
+    "name": "Barbara Flynn Currie",
+    "type": "House"
+  },
+  {
+    "district": 26,
+    "name": "Christian L. Mitchell",
+    "type": "House"
+  },
+  {
+    "district": 27,
+    "name": "Monique D. Davis",
+    "type": "House"
+  },
+  {
+    "district": 28,
+    "name": "Robert \"Bob\" Rita",
+    "type": "House"
+  },
+  {
+    "district": 29,
+    "name": "Thaddeus Jones",
+    "type": "House"
+  },
+  {
+    "district": 30,
+    "name": "William \"Will\" Davis",
+    "type": "House"
+  },
+  {
+    "district": 31,
+    "name": "Mary E. Flowers",
+    "type": "House"
+  },
+  {
+    "district": 32,
+    "name": "Andr? Thapedi",
+    "type": "House"
+  },
+  {
+    "district": 33,
+    "name": "Marcus C. Evans, Jr.",
+    "type": "House"
+  },
+  {
+    "district": 34,
+    "name": "Elgie R. Sims, Jr.",
+    "type": "House"
+  },
+  {
+    "district": 35,
+    "name": "Frances Ann Hurley",
+    "type": "House"
+  },
+  {
+    "district": 36,
+    "name": "Kelly M. Burke",
+    "type": "House"
+  },
+  {
+    "district": 37,
+    "name": "Ren?e Kosel",
+    "type": "House"
+  },
+  {
+    "district": 38,
+    "name": "Al Riley",
+    "type": "House"
+  },
+  {
+    "district": 39,
+    "name": "Maria Antonia \"Toni\" Berrios",
+    "type": "House"
+  },
+  {
+    "district": 40,
+    "name": "Deborah L. Mell",
+    "type": "House"
+  },
+  {
+    "district": 41,
+    "name": "Darlene Senger",
+    "type": "House"
+  },
+  {
+    "district": 42,
+    "name": "Jeanne M. Ives",
+    "type": "House"
+  },
+  {
+    "district": 43,
+    "name": "Keith Farnham",
+    "type": "House"
+  },
+  {
+    "district": 44,
+    "name": "Fred Crespo",
+    "type": "House"
+  },
+  {
+    "district": 45,
+    "name": "Dennis M. Reboletti",
+    "type": "House"
+  },
+  {
+    "district": 46,
+    "name": "Deborah O'Keefe Conroy",
+    "type": "House"
+  },
+  {
+    "district": 47,
+    "name": "Patricia R. \"Patti\" Bellock",
+    "type": "House"
+  },
+  {
+    "district": 48,
+    "name": "Sandra M. Pihos",
+    "type": "House"
+  },
+  {
+    "district": 49,
+    "name": "Mike Fortner",
+    "type": "House"
+  },
+  {
+    "district": 50,
+    "name": "Kay Hatcher",
+    "type": "House"
+  },
+  {
+    "district": 51,
+    "name": "Ed Sullivan, Jr.",
+    "type": "House"
+  },
+  {
+    "district": 52,
+    "name": "David McSweeney",
+    "type": "House"
+  },
+  {
+    "district": 53,
+    "name": "David Harris",
+    "type": "House"
+  },
+  {
+    "district": 54,
+    "name": "Tom Morrison",
+    "type": "House"
+  },
+  {
+    "district": 55,
+    "name": "Martin J. Moylan",
+    "type": "House"
+  },
+  {
+    "district": 56,
+    "name": "Michelle Mussman",
+    "type": "House"
+  },
+  {
+    "district": 57,
+    "name": "Elaine Nekritz",
+    "type": "House"
+  },
+  {
+    "district": 58,
+    "name": "Scott Drury",
+    "type": "House"
+  },
+  {
+    "district": 59,
+    "name": "Carol Sente",
+    "type": "House"
+  },
+  {
+    "district": 60,
+    "name": "Rita Mayfield",
+    "type": "House"
+  },
+  {
+    "district": 61,
+    "name": "JoAnn D. Osmond",
+    "type": "House"
+  },
+  {
+    "district": 62,
+    "name": "Sam Yingling",
+    "type": "House"
+  },
+  {
+    "district": 63,
+    "name": "Jack D. Franks",
+    "type": "House"
+  },
+  {
+    "district": 64,
+    "name": "Barbara Wheeler",
+    "type": "House"
+  },
+  {
+    "district": 65,
+    "name": "Timothy L. Schmitz",
+    "type": "House"
+  },
+  {
+    "district": 66,
+    "name": "Michael W. Tryon",
+    "type": "House"
+  },
+  {
+    "district": 67,
+    "name": "Charles E. \"Chuck\" Jefferson",
+    "type": "House"
+  },
+  {
+    "district": 68,
+    "name": "John M. Cabello",
+    "type": "House"
+  },
+  {
+    "district": 69,
+    "name": "Joe Sosnowski",
+    "type": "House"
+  },
+  {
+    "district": 70,
+    "name": "Robert W. Pritchard",
+    "type": "House"
+  },
+  {
+    "district": 71,
+    "name": "Mike Smiddy",
+    "type": "House"
+  },
+  {
+    "district": 72,
+    "name": "Patrick Verschoore",
+    "type": "House"
+  },
+  {
+    "district": 73,
+    "name": "David R. Leitch",
+    "type": "House"
+  },
+  {
+    "district": 74,
+    "name": "Donald L. Moffitt",
+    "type": "House"
+  },
+  {
+    "district": 75,
+    "name": "Pam Roth",
+    "type": "House"
+  },
+  {
+    "district": 76,
+    "name": "Frank J. Mautino",
+    "type": "House"
+  },
+  {
+    "district": 77,
+    "name": "Kathleen Willis",
+    "type": "House"
+  },
+  {
+    "district": 78,
+    "name": "Camille Y. Lilly",
+    "type": "House"
+  },
+  {
+    "district": 79,
+    "name": "Katherine \"Kate\" Cloonen",
+    "type": "House"
+  },
+  {
+    "district": 80,
+    "name": "Anthony DeLuca",
+    "type": "House"
+  },
+  {
+    "district": 81,
+    "name": "Ron Sandack",
+    "type": "House"
+  },
+  {
+    "district": 82,
+    "name": "Jim Durkin",
+    "type": "House"
+  },
+  {
+    "district": 83,
+    "name": "Linda Chapa LaVia",
+    "type": "House"
+  },
+  {
+    "district": 84,
+    "name": "Stephanie A. Kifowit",
+    "type": "House"
+  },
+  {
+    "district": 85,
+    "name": "Emily McAsey",
+    "type": "House"
+  },
+  {
+    "district": 86,
+    "name": "Lawrence \"Larry\" Walsh, Jr.",
+    "type": "House"
+  },
+  {
+    "district": 87,
+    "name": "Rich Brauer",
+    "type": "House"
+  },
+  {
+    "district": 88,
+    "name": "Keith P. Sommer",
+    "type": "House"
+  },
+  {
+    "district": 89,
+    "name": "Jim Sacia",
+    "type": "House"
+  },
+  {
+    "district": 90,
+    "name": "Tom Demmer",
+    "type": "House"
+  },
+  {
+    "district": 91,
+    "name": "Michael D. Unes",
+    "type": "House"
+  },
+  {
+    "district": 92,
+    "name": "Jehan Gordon",
+    "type": "House"
+  },
+  {
+    "district": 93,
+    "name": "Norine K. Hammond",
+    "type": "House"
+  },
+  {
+    "district": 94,
+    "name": "Jil Tracy",
+    "type": "House"
+  },
+  {
+    "district": 95,
+    "name": "Wayne Arthur Rosenthal",
+    "type": "House"
+  },
+  {
+    "district": 96,
+    "name": "Sue Scherer",
+    "type": "House"
+  },
+  {
+    "district": 97,
+    "name": "Tom Cross",
+    "type": "House"
+  },
+  {
+    "district": 98,
+    "name": "Natalie A. Manley",
+    "type": "House"
+  },
+  {
+    "district": 99,
+    "name": "Raymond Poe",
+    "type": "House"
+  },
+  {
+    "district": 100,
+    "name": "Christopher Davidsmeyer",
+    "type": "House"
+  },
+  {
+    "district": 101,
+    "name": "Bill Mitchell",
+    "type": "House"
+  },
+  {
+    "district": 102,
+    "name": "Adam Brown",
+    "type": "House"
+  },
+  {
+    "district": 103,
+    "name": "Naomi D. Jakobsson",
+    "type": "House"
+  },
+  {
+    "district": 104,
+    "name": "Chad D. Hays",
+    "type": "House"
+  },
+  {
+    "district": 105,
+    "name": "Dan Brady",
+    "type": "House"
+  },
+  {
+    "district": 106,
+    "name": "Josh Harms",
+    "type": "House"
+  },
+  {
+    "district": 107,
+    "name": "John Cavaletto",
+    "type": "House"
+  },
+  {
+    "district": 108,
+    "name": "Charles E. Meier",
+    "type": "House"
+  },
+  {
+    "district": 109,
+    "name": "David B. Reis",
+    "type": "House"
+  },
+  {
+    "district": 110,
+    "name": "Brad Halbrook",
+    "type": "House"
+  },
+  {
+    "district": 111,
+    "name": "Daniel V. Beiser",
+    "type": "House"
+  },
+  {
+    "district": 112,
+    "name": "Dwight D. Kay",
+    "type": "House"
+  },
+  {
+    "district": 113,
+    "name": "Jay Hoffman",
+    "type": "House"
+  },
+  {
+    "district": 114,
+    "name": "Eddie Lee Jackson",
+    "type": "House"
+  },
+  {
+    "district": 115,
+    "name": "Mike Bost",
+    "type": "House"
+  },
+  {
+    "district": 116,
+    "name": "Jerry Costello II",
+    "type": "House"
+  },
+  {
+    "district": 117,
+    "name": "John Bradley",
+    "type": "House"
+  },
+  {
+    "district": 118,
+    "name": "Brandon W. Phelps",
+    "type": "House"
+  }
+]

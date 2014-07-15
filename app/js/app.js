@@ -2,6 +2,10 @@ var map, sidebar, countySearch = []; //, theaterSearch = [], museumSearch = [];
 var featureCount = 0;
 var permitCount;
 var displayPermitTypes = [];
+var politicalDistricts;
+var referenceLayers = {
+  url :''
+};
 
 var permits = {
   url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/0',
@@ -51,6 +55,10 @@ var permits = {
 
 $.getJSON('data/permitCount.json', function(data){
   permitCount = data;
+});
+
+$.getJSON('data/district.json', function(data){
+  politicalDistricts = data;
 });
 
 var maxMapBounds = L.latLngBounds(L.latLng(36.9, -91.6),L.latLng(42.6, -87.4));
@@ -237,7 +245,18 @@ function configureCountyFeature(feature, layer) {
 
 var generalPermitLayer = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/TPservices/PermitTotalsCounty_WM/FeatureServer/0", {
   style: colorCountyFeature,
+  precision: 5,
   onEachFeature: configureCountyFeature
+});
+
+generalPermitLayer.on("loading", function(evt){
+  console.log('Counties Loading');
+  $("#loading").show();
+});
+
+generalPermitLayer.on("load", function(evt){
+  console.log('Counties Loaded');
+  $("#loading").hide();
 });
 
 /* Single marker cluster layer to hold all clusters */
@@ -246,6 +265,17 @@ var localPermitMarkers = new L.MarkerClusterGroup({
   showCoverageOnHover: false,
   zoomToBoundsOnClick: true
 });
+
+localPermitMarkers.on("loading", function(evt){
+  console.log('Permits Loading');
+  $("#loading").show();
+});
+
+localPermitMarkers.on("load", function(evt){
+  console.log('Permits Loaded');
+  $("#loading").hide();
+});
+
 
 // function makePermitMarker(inPermitType){
 //   return function(geojson, latlng){
@@ -300,6 +330,8 @@ function getPermitTypes (inPermitTypes, inFunction){
   }
 }
 
+var standardWhere = "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')";
+
 function buildWhere(inArray){
   var returnString = '';
   var buildArray = [];
@@ -311,13 +343,15 @@ function buildWhere(inArray){
     }
   }
 //  return "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')";
-  return (buildArray.length > 0)? buildArray.join(' or ') : "MediaCode = 'NONSENSE'";
+  standardWhere = (buildArray.length > 0)? buildArray.join(' or ') : "MediaCode = 'NONSENSE'";
+  return standardWhere;
 }
 
 permitCluster = new L.esri.ClusteredFeatureLayer(permits.url,{
+  precision: 5,
   createMarker: makePermitMarker,
   onEachMarker: bindPermitMarker,
-  where: "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')"
+  where: standardWhere
 });
 
 var map = L.map("map", {
@@ -483,40 +517,39 @@ sidebar = L.control.sidebar("sidebar", {
 
 /* Highlight search box text on click */
 $("#searchbox").click(function () {
+  console.log("SearchBox Clicked");
   $(this).select();
 });
 
 /* Typeahead search functionality */
 $(document).one("ajaxStop", function () {
-  /* Fit map to county bounds */
-  //map.fitBounds(generalPermitLayer.getBounds());
-  $("#loading").hide();
+  console.log("ajaxStop Cooking");
 
-  var countyBH = new Bloodhound({
-    name: "Counties",
+  var politicalBH = new Bloodhound({
+    name: "politicalDistricts",
     datumTokenizer: function (d) {
       return Bloodhound.tokenizers.whitespace(d.name);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: countySearch,
+    local: politicalDistricts,
     limit: 10
   });
 
-  countyBH.initialize();
+  politicalBH.initialize();
 
   /* instantiate the typeahead UI */
   $("#searchbox").typeahead({
-    minLength: 3,
+    minLength: 2,
     highlight: true,
     hint: false
   }, {
-    name: "Counties",
+    name: "politicalDisticts",
     displayKey: "name",
-    source: countyBH.ttAdapter(),
+    source: politicalBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'>Counties</h4>"
+      header: "<h4 class='typeahead-header'>Political Disticts</h4>"
     }}).on("typeahead:selected", function (obj, datum) {
-      if (datum.source === "Counties") {
+      if (datum.source === "politicalDistricts") {
         map.fitBounds(datum.bounds);
       }
       if ($(".navbar-collapse").height() > 50) {
