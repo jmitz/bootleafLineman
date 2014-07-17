@@ -2,886 +2,1063 @@
   {
     "district": 1,
     "name": "Antonio \"Tony\" Munoz",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 2,
     "name": "William \"Willie\" Delgado",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 3,
     "name": "Mattie Hunter",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 4,
     "name": "Kimberly A. Lightford",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 5,
     "name": "Patricia Van Pelt Watkins",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 6,
     "name": "John J. Cullerton",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 7,
     "name": "Heather A. Steans",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 8,
     "name": "Ira I. Silverstein",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 9,
     "name": "Daniel Biss",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 10,
     "name": "John G. Mulroe",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 11,
     "name": "Martin A. Sandoval",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 12,
     "name": "Steven Landek",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 13,
     "name": "Kwame Raoul",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 14,
     "name": "Emil Jones III",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 15,
     "name": "Napoleon Harris",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 16,
     "name": "Jacqueline \"Jacqui\" Collins",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 17,
     "name": "Donne E. Trotter",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 18,
     "name": "Bill Cunningham",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 19,
     "name": "Michael E. Hastings",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 20,
     "name": "Iris Y. Martinez",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 21,
     "name": "Michael G. Connelly",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 22,
     "name": "Michael Noland",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 23,
     "name": "Thomas E. Cullerton",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 24,
     "name": "Kirk W. Dillard",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 25,
     "name": "Jim Oberweis",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 26,
     "name": "Dan Duffy",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 27,
     "name": "Matt Murphy",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 28,
     "name": "Daniel W. Kotowski",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 29,
     "name": "Julie A. Morrison",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 30,
     "name": "Terry Link",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 31,
     "name": "Melinda (Willen) Bush",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 32,
     "name": "Pamela Althoff",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 33,
     "name": "Karen McConnaughay",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 34,
     "name": "Steven \"Steve\" Stadelman",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 35,
     "name": "Dave Syverson",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 36,
     "name": "Mike Jacobs",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 37,
     "name": "Darin LaHood",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 38,
     "name": "Sue Rezin",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 39,
     "name": "Don Harmon",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 40,
     "name": "Toi W. Hutchinson",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 41,
     "name": "Christine Radogno",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 42,
     "name": "Linda Holmes",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 43,
     "name": "Pat McGuire",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 44,
     "name": "Bill Brady",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 45,
     "name": "Tim Bivins",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 46,
     "name": "Dave Koehler",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 47,
     "name": "John M. Sullivan",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 48,
     "name": "Andy Manar",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 49,
     "name": "Jennifer Bertino-Tarrant",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 50,
     "name": "William \"Sam\" McCann",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 51,
     "name": "Chapin Rose",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 52,
     "name": "Michael W. Frerichs",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 53,
     "name": "Jason Barickman",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 54,
     "name": "Kyle McCarter",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 55,
     "name": "Dale A. Righter",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 56,
     "name": "William \"Bill\" Haine",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 57,
     "name": "James F. Clayborne, Jr., II",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 58,
     "name": "David Luechtefeld",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 59,
     "name": "Gary F. Forby",
-    "type": "Senate"
+    "type": "Senate",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 1,
     "name": "Daniel J. Burke",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 2,
     "name": "Edward J. Acevedo",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 3,
     "name": "Luis Arroyo",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 4,
     "name": "Cynthia Soto",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 5,
     "name": "Kenneth \"Ken\" Dunkin",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 6,
     "name": "Esther Golar",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 7,
     "name": "Emanuel \"Chris\" Welch",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 8,
     "name": "La Shawn K. Ford",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 9,
     "name": "Arthur Turner",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 10,
     "name": "Derrick Smith",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 11,
     "name": "Ann M. Williams",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 12,
     "name": "Sara Feigenholtz",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 13,
     "name": "Gregory Harris",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 14,
     "name": "Kelly M. Cassidy",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 15,
     "name": "John C. D'Amico",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 16,
     "name": "Lou Lang",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 17,
     "name": "Laura Fine",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 18,
     "name": "Robyn Gabel",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 19,
     "name": "Robert F. Martwick, Jr.",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 20,
     "name": "Michael P. McAuliffe",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 21,
     "name": "Silvana Tabares",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 22,
     "name": "Michael J. Madigan",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 23,
     "name": "Michael J. Zalewski",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 24,
     "name": "Elizabeth \"Lisa\" Hernandez",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 25,
     "name": "Barbara Flynn Currie",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 26,
     "name": "Christian L. Mitchell",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 27,
     "name": "Monique D. Davis",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 28,
     "name": "Robert \"Bob\" Rita",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 29,
     "name": "Thaddeus Jones",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 30,
     "name": "William \"Will\" Davis",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 31,
     "name": "Mary E. Flowers",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 32,
     "name": "Andr? Thapedi",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 33,
     "name": "Marcus C. Evans, Jr.",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 34,
     "name": "Elgie R. Sims, Jr.",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 35,
     "name": "Frances Ann Hurley",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 36,
     "name": "Kelly M. Burke",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 37,
     "name": "Ren?e Kosel",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 38,
     "name": "Al Riley",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 39,
     "name": "Maria Antonia \"Toni\" Berrios",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 40,
     "name": "Deborah L. Mell",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 41,
     "name": "Darlene Senger",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 42,
     "name": "Jeanne M. Ives",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 43,
     "name": "Keith Farnham",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 44,
     "name": "Fred Crespo",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 45,
     "name": "Dennis M. Reboletti",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 46,
     "name": "Deborah O'Keefe Conroy",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 47,
     "name": "Patricia R. \"Patti\" Bellock",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 48,
     "name": "Sandra M. Pihos",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 49,
     "name": "Mike Fortner",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 50,
     "name": "Kay Hatcher",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 51,
     "name": "Ed Sullivan, Jr.",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 52,
     "name": "David McSweeney",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 53,
     "name": "David Harris",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 54,
     "name": "Tom Morrison",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 55,
     "name": "Martin J. Moylan",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 56,
     "name": "Michelle Mussman",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 57,
     "name": "Elaine Nekritz",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 58,
     "name": "Scott Drury",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 59,
     "name": "Carol Sente",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 60,
     "name": "Rita Mayfield",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 61,
     "name": "JoAnn D. Osmond",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 62,
     "name": "Sam Yingling",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 63,
     "name": "Jack D. Franks",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 64,
     "name": "Barbara Wheeler",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 65,
     "name": "Timothy L. Schmitz",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 66,
     "name": "Michael W. Tryon",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 67,
     "name": "Charles E. \"Chuck\" Jefferson",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 68,
     "name": "John M. Cabello",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 69,
     "name": "Joe Sosnowski",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 70,
     "name": "Robert W. Pritchard",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 71,
     "name": "Mike Smiddy",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 72,
     "name": "Patrick Verschoore",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 73,
     "name": "David R. Leitch",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 74,
     "name": "Donald L. Moffitt",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 75,
     "name": "Pam Roth",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 76,
     "name": "Frank J. Mautino",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 77,
     "name": "Kathleen Willis",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 78,
     "name": "Camille Y. Lilly",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 79,
     "name": "Katherine \"Kate\" Cloonen",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 80,
     "name": "Anthony DeLuca",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 81,
     "name": "Ron Sandack",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 82,
     "name": "Jim Durkin",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 83,
     "name": "Linda Chapa LaVia",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 84,
     "name": "Stephanie A. Kifowit",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 85,
     "name": "Emily McAsey",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 86,
     "name": "Lawrence \"Larry\" Walsh, Jr.",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 87,
     "name": "Rich Brauer",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 88,
     "name": "Keith P. Sommer",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 89,
     "name": "Jim Sacia",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 90,
     "name": "Tom Demmer",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 91,
     "name": "Michael D. Unes",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 92,
     "name": "Jehan Gordon",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 93,
     "name": "Norine K. Hammond",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 94,
     "name": "Jil Tracy",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 95,
     "name": "Wayne Arthur Rosenthal",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 96,
     "name": "Sue Scherer",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 97,
     "name": "Tom Cross",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 98,
     "name": "Natalie A. Manley",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 99,
     "name": "Raymond Poe",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 100,
     "name": "Christopher Davidsmeyer",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 101,
     "name": "Bill Mitchell",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 102,
     "name": "Adam Brown",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 103,
     "name": "Naomi D. Jakobsson",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 104,
     "name": "Chad D. Hays",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 105,
     "name": "Dan Brady",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 106,
     "name": "Josh Harms",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 107,
     "name": "John Cavaletto",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 108,
     "name": "Charles E. Meier",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 109,
     "name": "David B. Reis",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 110,
     "name": "Brad Halbrook",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 111,
     "name": "Daniel V. Beiser",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 112,
     "name": "Dwight D. Kay",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 113,
     "name": "Jay Hoffman",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 114,
     "name": "Eddie Lee Jackson",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 115,
     "name": "Mike Bost",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 116,
     "name": "Jerry Costello II",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 117,
     "name": "John Bradley",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   },
   {
     "district": 118,
     "name": "Brandon W. Phelps",
-    "type": "House"
+    "type": "House",
+    "source" : "PoliticalDistricts"
   }
 ]

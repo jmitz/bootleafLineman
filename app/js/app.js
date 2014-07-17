@@ -3,6 +3,7 @@ var featureCount = 0;
 var permitCount;
 var displayPermitTypes = [];
 var politicalDistricts;
+var politicalDistrict;
 var referenceLayers = {
   url :''
 };
@@ -146,7 +147,7 @@ var stateChartOptions = {
   //   label: 'BOL',
   //   labelColor: '#000',
   //   labelFontSize: '.8em'
-  }
+}
 ]};
 
 dispChart('stateChart', stateChartOptions);
@@ -172,19 +173,12 @@ function sidebarClick(lat, lng, id, layer) {
 
 /* Basemap Layers */
 var baseStreetMap = L.esri.basemapLayer("Topographic");
-var baseSatteliteMap = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
-  maxZoom: 18,
-  subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
-  attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-});
-var baseSatteliteWithTransportMap = L.layerGroup([L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
-  maxZoom: 18,
-  subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"]
-}), L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  subdomains: ["oatile1", "oatile2", "oatile3", "oatile4"],
-  attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-})]);
+var baseSatteliteMap = L.esri.basemapLayer("Imagery");
+var baseSatteliteWithTransportMap = new L.LayerGroup([
+  L.esri.basemapLayer("Imagery"),
+  L.esri.basemapLayer('ImageryTransportation')
+]);
+
 
 /* Overlay Layers */
 function colorCountyFeature(feature){
@@ -333,7 +327,7 @@ function getPermitTypes (inPermitTypes, inFunction){
 var standardWhere = "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')";
 
 function buildWhere(inArray){
-  var returnString = '';
+  var returnWhere = '';
   var buildArray = [];
   var template = "(MediaCode = '<%= mediaType %>' and InterestType = '<%= interestType %>')";
   var index;
@@ -343,8 +337,15 @@ function buildWhere(inArray){
     }
   }
 //  return "(MediaCode = 'AIR' and InterestType = 'PERMIT') or (MediaCode = 'AIR' and InterestType = 'ROSS') or (MediaCode = 'AIR' and InterestType = 'USEPA') or (MediaCode = 'WATER' and InterestType = 'BOW')";
-  standardWhere = (buildArray.length > 0)? buildArray.join(' or ') : "MediaCode = 'NONSENSE'";
-  return standardWhere;
+returnWhere = (buildArray.length > 0)? buildArray.join(' or ') : "MediaCode = 'NONSENSE'";
+
+if (politicalDistrict){
+  var testString = queryDistrict.filterFields[politicalDistrict.type] + ' = ' + politicalDistrict.district;
+  console.log(testString);
+  returnWhere = testString + ' and (' + returnWhere + ')';
+}
+
+return returnWhere;
 }
 
 permitCluster = new L.esri.ClusteredFeatureLayer(permits.url,{
@@ -517,13 +518,11 @@ sidebar = L.control.sidebar("sidebar", {
 
 /* Highlight search box text on click */
 $("#searchbox").click(function () {
-  console.log("SearchBox Clicked");
   $(this).select();
 });
 
 /* Typeahead search functionality */
 $(document).one("ajaxStop", function () {
-  console.log("ajaxStop Cooking");
 
   var politicalBH = new Bloodhound({
     name: "politicalDistricts",
@@ -549,8 +548,12 @@ $(document).one("ajaxStop", function () {
     templates: {
       header: "<h4 class='typeahead-header'>Political Disticts</h4>"
     }}).on("typeahead:selected", function (obj, datum) {
-      if (datum.source === "politicalDistricts") {
-        map.fitBounds(datum.bounds);
+      console.log(datum);
+      console.log(datum.source);
+      if (datum.source === "PoliticalDistricts") {
+        datum.bounds = queryDistrict.findDistrict(datum, map);
+        politicalDistrict = datum;
+        console.log(politicalDistrict);
       }
       if ($(".navbar-collapse").height() > 50) {
         $(".navbar-collapse").collapse("hide");
