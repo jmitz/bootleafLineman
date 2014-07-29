@@ -91,7 +91,7 @@
   },
   {
     "countyFips": 11,
-    "count": 145,
+    "count": 146,
     "detail": [
       {
         "interestType": "BOW",
@@ -99,7 +99,7 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 105
+        "count": 106
       },
       {
         "interestType": "ROSS",
@@ -267,7 +267,7 @@
   },
   {
     "countyFips": 31,
-    "count": 6642,
+    "count": 6643,
     "detail": [
       {
         "interestType": "BOW",
@@ -275,11 +275,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 5152
+        "count": 5150
       },
       {
         "interestType": "ROSS",
-        "count": 664
+        "count": 667
       },
       {
         "interestType": "USEPA",
@@ -419,11 +419,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 26
+        "count": 25
       },
       {
         "interestType": "ROSS",
-        "count": 4
+        "count": 5
       }
     ]
   },
@@ -527,11 +527,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 20
+        "count": 19
       },
       {
         "interestType": "ROSS",
-        "count": 2
+        "count": 3
       }
     ]
   },
@@ -865,7 +865,7 @@
   },
   {
     "countyFips": 97,
-    "count": 808,
+    "count": 809,
     "detail": [
       {
         "interestType": "BOW",
@@ -877,7 +877,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 111
+        "count": 112
       },
       {
         "interestType": "USEPA",
@@ -887,15 +887,15 @@
   },
   {
     "countyFips": 99,
-    "count": 346,
+    "count": 348,
     "detail": [
       {
         "interestType": "BOW",
-        "count": 5
+        "count": 6
       },
       {
         "interestType": "PERMIT",
-        "count": 273
+        "count": 274
       },
       {
         "interestType": "ROSS",
@@ -1003,7 +1003,7 @@
   },
   {
     "countyFips": 111,
-    "count": 487,
+    "count": 490,
     "detail": [
       {
         "interestType": "BOW",
@@ -1015,7 +1015,7 @@
       },
       {
         "interestType": "ROSS",
-        "count": 78
+        "count": 81
       }
     ]
   },
@@ -1083,11 +1083,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 350
+        "count": 349
       },
       {
         "interestType": "ROSS",
-        "count": 75
+        "count": 76
       },
       {
         "interestType": "USEPA",
@@ -1449,7 +1449,7 @@
   },
   {
     "countyFips": 161,
-    "count": 380,
+    "count": 382,
     "detail": [
       {
         "interestType": "BOW",
@@ -1457,11 +1457,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 272
+        "count": 273
       },
       {
         "interestType": "ROSS",
-        "count": 36
+        "count": 37
       },
       {
         "interestType": "USEPA",
@@ -1497,11 +1497,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 40
+        "count": 38
       },
       {
         "interestType": "ROSS",
-        "count": 7
+        "count": 9
       }
     ]
   },
@@ -1749,11 +1749,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 48
+        "count": 47
       },
       {
         "interestType": "ROSS",
-        "count": 6
+        "count": 7
       }
     ]
   },
@@ -1807,11 +1807,11 @@
       },
       {
         "interestType": "PERMIT",
-        "count": 92
+        "count": 90
       },
       {
         "interestType": "ROSS",
-        "count": 12
+        "count": 14
       }
     ]
   },

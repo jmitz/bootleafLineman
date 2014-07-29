@@ -1,14 +1,14 @@
 // esriMap.js
 
 var queryDistrict = {
-  queryUrl: "http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/1",
+  queryUrl: "http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/LegislativeDistricts/FeatureServer/2",
   outFields: [
-   'DistNumber',
+   'DistrictNum',
     'SenateNum'
   ],
   searchFields: {
     Senate: 'SenateNum',
-    House: 'DistNumber'
+    House: 'DistrictNum'
   },
   filterFields: {
     Senate: 'SenateDist',
