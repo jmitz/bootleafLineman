@@ -305,6 +305,18 @@ var legislativeDistricts = new L.esri.FeatureLayer("http://epa084dgis01.iltest.i
   precision: 5
 });
 
+// legislativeDistricts.on("load", function(evt){
+//   try {
+//     if (!zoomedPolitical){
+//         map.fitBounds(legislativeDistricts.getBounds());
+//         zoomedPolitical = true;
+//       }
+//   }
+//   catch(err){
+//     console.log(err.message);
+//   }
+// });
+
 /* Single marker cluster layer to hold all clusters */
 var localPermitMarkers = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
@@ -321,22 +333,6 @@ localPermitMarkers.on("load", function(evt){
   console.log('Permits Loaded');
   $("#loading").hide();
 });
-
-
-// function makePermitMarker(inPermitType){
-//   return function(geojson, latlng){
-//     return L.marker(latlng, {icon: L.icon({
-//       iconUrl: inPermitType.markerIcon,
-//       iconRetinaUrl: inPermitType.markerIcon,
-//       iconSize: [32, 37],
-//       iconAnchor: [16, 37],
-//       popupAnchor:[0, -27]
-//     }),
-//     title: geojson.properties[inPermitType.markerTitle],
-//     riseOnHover: true
-//   });
-//   };
-// }
 
 function bindPermitMarker(inGeoJson, inMarker){
   var permitType = permits.types[inGeoJson.properties.MediaCode][inGeoJson.properties.InterestType];
@@ -645,15 +641,12 @@ $(document).one("ajaxStop", function () {
     templates: {
       header: "<h4 class='typeahead-header'>Political Disticts</h4>"
     }}).on("typeahead:selected", function (obj, datum) {
-      console.log(datum);
       if (datum.source === "PoliticalDistricts") {
-        //datum.bounds = queryDistrict.findDistrict(datum, map);
-        console.log(datum);
+        datum.bounds = queryDistrict.findDistrict(datum, map);
         politicalDistrict = datum;
+        legislativeDistricts.setWhere(getLegislativeWhere('Search'));
         permitCluster.setWhere(buildWhere(displayPermitTypes));
-        //legislativeDistricts.setWhere(getLegislativeWhere('Search'));
         //map.fitBounds(legislativeDistricts.getBounds());
-        console.log(politicalDistrict);
       }
       if ($(".navbar-collapse").height() > 50) {
         $(".navbar-collapse").collapse("hide");
