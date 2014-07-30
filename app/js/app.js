@@ -1,4 +1,5 @@
-var map, sidebar, countySearch = []; //, theaterSearch = [], museumSearch = [];
+var map, sidebar, countySearch = [];
+var generalPermitLayer, legislativeDistricts;
 var featureCount = 0;
 var permitCount;
 var displayPermitTypes = [];
@@ -102,6 +103,29 @@ function getViewport() {
       height: $("#map").css("height")
     });
   }
+}
+
+function activeDisplayTypes(){
+  var outTypes = {};
+  for (var tmpType in displayPermitTypes){
+    if (displayPermitTypes[tmpType].active){
+      outTypes[displayPermitTypes[tmpType].interestType] = {
+        mediaType: displayPermitTypes[tmpType].mediaType,
+        name: displayPermitTypes[tmpType].name
+      };
+    }
+  }
+  return outTypes;
+}
+
+function activeDisplayTypesArray(){
+  var outArray = [];
+  for (var tmpType in displayPermitTypes){
+    if (displayPermitTypes[tmpType].active){
+      outArray.push(displayPermitTypes[tmpType].interestType);
+    }
+  }
+  return outArray;
 }
 
 function getCountyChartValues(inFips){
@@ -286,7 +310,7 @@ function configureCountyFeature(feature, layer) {
   });
 }
 
-var generalPermitLayer = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/Counties/FeatureServer/0", {
+generalPermitLayer = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/Counties/FeatureServer/0", {
   style: colorCountyFeature,
   precision: 5,
   onEachFeature: configureCountyFeature
@@ -300,7 +324,7 @@ generalPermitLayer.on("load", function(evt){
   $("#loading").hide();
 });
 
-var legislativeDistricts = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/LegislativeDistricts/FeatureServer/2", {
+legislativeDistricts = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/LegislativeDistricts/FeatureServer/2", {
   where: "DistrictNum = 0",
   precision: 5
 });
@@ -355,29 +379,6 @@ function makePermitMarker(inGeoJson, inLatLng){
     title: inGeoJson.properties[markerTitle],
     riseOnHover: true
   });
-}
-
-function activeDisplayTypes(){
-  var outTypes = {};
-  for (var tmpType in displayPermitTypes){
-    if (displayPermitTypes[tmpType].active){
-      outTypes[displayPermitTypes[tmpType].interestType] = {
-        mediaType: displayPermitTypes[tmpType].mediaType,
-        name: displayPermitTypes[tmpType].name
-      };
-    }
-  }
-  return outTypes;
-}
-
-function activeDisplayTypesArray(){
-  var outArray = [];
-  for (var tmpType in displayPermitTypes){
-    if (displayPermitTypes[tmpType].active){
-      outArray.push(displayPermitTypes[tmpType].interestType);
-    }
-  }
-  return outArray;
 }
 
 function testFunction(inVal){
@@ -437,6 +438,21 @@ permitCluster = new L.esri.ClusteredFeatureLayer(permits.url,{
   where: standardWhere
 });
 
+function updatePermitDisplay(){
+  try{
+    permitCluster.setWhere(buildWhere(displayPermitTypes));
+  }
+  catch(err){
+    console.log(err.message);
+  } //swallow error when where is set while layer is not displayed
+  try{
+    generalPermitLayer.setStyle(colorCountyFeature);
+  }
+  catch(err){
+    console.log(err.message);
+  } //swallow error when where is set while layer is not displayed
+}
+
 var map = L.map("map", {
   maxZoom: 17,
   minZoom:6,
@@ -460,18 +476,8 @@ map.on('viewreset', function(e){
     map.removeLayer(permitCluster);
     $('#heatPatch').css('visibility', 'visible');
     map.addLayer(generalPermitLayer);
-    updatePermitDisplay();
   }
 });
-
-function updatePermitDisplay(){
-  if (map.getZoom()>10){
-    permitCluster.setWhere(buildWhere(displayPermitTypes));
-  }
-  else{
-    generalPermitLayer.setStyle(colorCountyFeature);
-  }
-}
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e){
