@@ -310,7 +310,7 @@ function configureCountyFeature(feature, layer) {
   });
 }
 
-generalPermitLayer = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/Counties/FeatureServer/0", {
+generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
   style: colorCountyFeature,
   precision: 5,
   onEachFeature: configureCountyFeature
@@ -324,7 +324,7 @@ generalPermitLayer.on("load", function(evt){
   $("#loading").hide();
 });
 
-legislativeDistricts = new L.esri.FeatureLayer("http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/LegislativeDistricts/FeatureServer/2", {
+legislativeDistricts = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/LegislativeDistricts/FeatureServer/2", {
   where: "DistrictNum = 0",
   precision: 5
 });
@@ -464,6 +464,8 @@ var map = L.map("map", {
 //      maxBounds: maxMapBounds,
 bounceAtZoomLimits: false
 });
+
+L.control.measure().addTo(map);
 
 map.on('viewreset', function(e){
   if (map.getZoom()>10){
