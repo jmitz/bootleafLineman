@@ -1,0 +1,920 @@
+{
+  "1": {
+    "name": "Adams",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "3": {
+    "name": "Alexander",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "5": {
+    "name": "Bond",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "7": {
+    "name": "Boone",
+    "offices": {
+      "boa": 9,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "9": {
+    "name": "Brown",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "11": {
+    "name": "Bureau",
+    "offices": {
+      "boa": 8,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "13": {
+    "name": "Calhoun",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 2
+    }
+  },
+  "15": {
+    "name": "Carroll",
+    "offices": {
+      "boa": 8,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "17": {
+    "name": "Cass",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "19": {
+    "name": "Champaign",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "21": {
+    "name": "Christian",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "23": {
+    "name": "Clark",
+    "offices": {
+      "boa": 5,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "25": {
+    "name": "Clay",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "27": {
+    "name": "Clinton",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "29": {
+    "name": "Coles",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "31": {
+    "name": "Cook",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "33": {
+    "name": "Crawford",
+    "offices": {
+      "boa": 5,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "35": {
+    "name": "Cumberland",
+    "offices": {
+      "boa": 5,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "37": {
+    "name": "DeKalb",
+    "offices": {
+      "boa": 9,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "39": {
+    "name": "DeWitt",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "41": {
+    "name": "Douglas",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "43": {
+    "name": "DuPage",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "45": {
+    "name": "Edgar",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "47": {
+    "name": "Edwards",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "49": {
+    "name": "Effingham",
+    "offices": {
+      "boa": 2,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "51": {
+    "name": "Fayette",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "53": {
+    "name": "Ford",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "55": {
+    "name": "Franklin",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "57": {
+    "name": "Fulton",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "59": {
+    "name": "Gallatin",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "61": {
+    "name": "Greene",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 2
+    }
+  },
+  "63": {
+    "name": "Grundy",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "65": {
+    "name": "Hamilton",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "67": {
+    "name": "Hancock",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "69": {
+    "name": "Hardin",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "71": {
+    "name": "Henderson",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "73": {
+    "name": "Henry",
+    "offices": {
+      "boa": 8,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 9
+    }
+  },
+  "75": {
+    "name": "Iroquois",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "77": {
+    "name": "Jackson",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "79": {
+    "name": "Jasper",
+    "offices": {
+      "boa": 5,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "81": {
+    "name": "Jefferson",
+    "offices": {
+      "boa": 2,
+      "bol": 1,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "83": {
+    "name": "Jersey",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 2
+    }
+  },
+  "85": {
+    "name": "Jo Daviess",
+    "offices": {
+      "boa": 8,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "87": {
+    "name": "Johnson",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "89": {
+    "name": "Kane",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "91": {
+    "name": "Kankakee",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "93": {
+    "name": "Kendall",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "95": {
+    "name": "Knox",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "97": {
+    "name": "Lake",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "99": {
+    "name": "LaSalle",
+    "offices": {
+      "boa": 9,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "101": {
+    "name": "Lawrence",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "103": {
+    "name": "Lee",
+    "offices": {
+      "boa": 8,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "105": {
+    "name": "Livingston",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "107": {
+    "name": "Logan",
+    "offices": {
+      "boa": 7,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "109": {
+    "name": "McDonough",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "111": {
+    "name": "McHenry",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "113": {
+    "name": "McLean",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "115": {
+    "name": "Macon",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "117": {
+    "name": "Macoupin",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "119": {
+    "name": "Madison",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "121": {
+    "name": "Marion",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "123": {
+    "name": "Marshall",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 9
+    }
+  },
+  "125": {
+    "name": "Mason",
+    "offices": {
+      "boa": 7,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "127": {
+    "name": "Massac",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "129": {
+    "name": "Menard",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "131": {
+    "name": "Mercer",
+    "offices": {
+      "boa": 8,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 9
+    }
+  },
+  "133": {
+    "name": "Monroe",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "135": {
+    "name": "Montgomery",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "137": {
+    "name": "Morgan",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "139": {
+    "name": "Moultrie",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "141": {
+    "name": "Ogle",
+    "offices": {
+      "boa": 8,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "143": {
+    "name": "Peoria",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "145": {
+    "name": "Perry",
+    "offices": {
+      "boa": 2,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "147": {
+    "name": "Piatt",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "149": {
+    "name": "Pike",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "151": {
+    "name": "Pope",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "153": {
+    "name": "Pulaski",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "155": {
+    "name": "Putnam",
+    "offices": {
+      "boa": 9,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "157": {
+    "name": "Randolph",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "159": {
+    "name": "Richland",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "161": {
+    "name": "Rock Island",
+    "offices": {
+      "boa": 8,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 9
+    }
+  },
+  "163": {
+    "name": "Saint Clair",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "165": {
+    "name": "Saline",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "167": {
+    "name": "Sangamon",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "169": {
+    "name": "Schuyler",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "171": {
+    "name": "Scott",
+    "offices": {
+      "boa": 10,
+      "bol": 10,
+      "dwpc": 10,
+      "dpws": 10
+    }
+  },
+  "173": {
+    "name": "Shelby",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "175": {
+    "name": "Stark",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 9
+    }
+  },
+  "177": {
+    "name": "Stephenson",
+    "offices": {
+      "boa": 9,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "179": {
+    "name": "Tazewell",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "181": {
+    "name": "Union",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "183": {
+    "name": "Vermilion",
+    "offices": {
+      "boa": 1,
+      "bol": 1,
+      "dwpc": 1,
+      "dpws": 1
+    }
+  },
+  "185": {
+    "name": "Wabash",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "187": {
+    "name": "Warren",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 10
+    }
+  },
+  "189": {
+    "name": "Washington",
+    "offices": {
+      "boa": 2,
+      "bol": 2,
+      "dwpc": 2,
+      "dpws": 2
+    }
+  },
+  "191": {
+    "name": "Wayne",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "193": {
+    "name": "White",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "195": {
+    "name": "Whiteside",
+    "offices": {
+      "boa": 8,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "197": {
+    "name": "Will",
+    "offices": {
+      "boa": 3,
+      "bol": 3,
+      "dwpc": 3,
+      "dpws": 4
+    }
+  },
+  "199": {
+    "name": "Williamson",
+    "offices": {
+      "boa": 5,
+      "bol": 5,
+      "dwpc": 5,
+      "dpws": 5
+    }
+  },
+  "201": {
+    "name": "Winnebago",
+    "offices": {
+      "boa": 9,
+      "bol": 9,
+      "dwpc": 9,
+      "dpws": 9
+    }
+  },
+  "203": {
+    "name": "Woodford",
+    "offices": {
+      "boa": 7,
+      "bol": 7,
+      "dwpc": 7,
+      "dpws": 9
+    }
+  }
+}

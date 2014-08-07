@@ -2,7 +2,9 @@ var map, sidebar, countySearch = [];
 var generalPermitLayer, legislativeDistricts;
 var featureCount = 0;
 var permitCount;
+var countyList;
 var displayPermitTypes = [];
+var officeList;
 var politicalDistricts;
 var politicalDistrict;
 var referenceLayers = {
@@ -61,7 +63,16 @@ var permits = {
   }
 };
 
-$.getJSON('data/permitCount.json', function(data){
+$.getJSON('data/countyList.json', function (data){
+  countyList = data;
+});
+
+$.getJSON('data/officeList.json', function (data){
+  officeList = data;
+  console.log(data);
+});
+
+$.getJSON('data/permitCount.json', function (data){
   var tmpPermits = {};
   for (var tmpCounty in data){
     tmpPermits[data[tmpCounty].countyFips] = {
@@ -465,7 +476,7 @@ var map = L.map("map", {
 bounceAtZoomLimits: false
 });
 
-L.control.measure().addTo(map);
+L.control.measure({positon: 'bottomright'}).addTo(map);
 
 map.on('viewreset', function(e){
   if (map.getZoom()>10){
