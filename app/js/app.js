@@ -76,6 +76,7 @@ $.getJSON('data/permitCount.json', function (data){
   var tmpPermits = {};
   for (var tmpCounty in data){
     tmpPermits[data[tmpCounty].countyFips] = {
+      info: countyList[data[tmpCounty].countyFips],
       total: data[tmpCounty].count
     };
     for (var tmpPermit in data[tmpCounty].detail){
@@ -476,8 +477,6 @@ var map = L.map("map", {
 bounceAtZoomLimits: false
 });
 
-L.control.measure({positon: 'bottomright'}).addTo(map);
-
 map.on('viewreset', function(e){
   if (map.getZoom()>10){
     map.removeLayer(generalPermitLayer);
@@ -551,39 +550,10 @@ getPermitTypes(permits.types, buildPermitInfo);
 //map.addControl(attributionControl);
 
 var zoomControl = L.control.zoom({
-  position: "bottomright"
+  position: "topleft"
 }).addTo(map);
 
-var locateControl = L.control.locate({
-  position: "bottomright",
-  drawCircle: true,
-  follow: true,
-  setView: true,
-  keepCurrentZoomLevel: true,
-  markerStyle: {
-    weight: 1,
-    opacity: 0.8,
-    fillOpacity: 0.8
-  },
-  circleStyle: {
-    weight: 1,
-    clickable: false
-  },
-  icon: "icon-direction",
-  metric: false,
-  strings: {
-    title: "My location",
-    popup: "You are within {distance} {unit} from this point",
-    outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
-  },
-  locateOptions: {
-    maxZoom: 17,
-    watch: true,
-    enableHighAccuracy: true,
-    maximumAge: 10000,
-    timeout: 10000
-  }
-}).addTo(map);
+var measureControl = L.control.measure({position: 'topleft'}).addTo(map);
 
 var baseLayers = {
   "Street Map": baseStreetMap,

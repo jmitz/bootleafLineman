@@ -11,10 +11,10 @@
   "3": {
     "name": "Alexander",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "5": {
@@ -47,7 +47,7 @@
   "11": {
     "name": "Bureau",
     "offices": {
-      "boa": 8,
+      "boa": 7,
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
@@ -65,7 +65,7 @@
   "15": {
     "name": "Carroll",
     "offices": {
-      "boa": 8,
+      "boa": 7,
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
@@ -101,7 +101,7 @@
   "23": {
     "name": "Clark",
     "offices": {
-      "boa": 5,
+      "boa": 6,
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
@@ -110,10 +110,10 @@
   "25": {
     "name": "Clay",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "27": {
@@ -146,7 +146,7 @@
   "33": {
     "name": "Crawford",
     "offices": {
-      "boa": 5,
+      "boa": 6,
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
@@ -155,7 +155,7 @@
   "35": {
     "name": "Cumberland",
     "offices": {
-      "boa": 5,
+      "boa": 6,
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
@@ -209,10 +209,10 @@
   "47": {
     "name": "Edwards",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "49": {
@@ -245,28 +245,28 @@
   "55": {
     "name": "Franklin",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "57": {
     "name": "Fulton",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
   "59": {
     "name": "Gallatin",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "61": {
@@ -290,45 +290,45 @@
   "65": {
     "name": "Hamilton",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "67": {
     "name": "Hancock",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
   "69": {
     "name": "Hardin",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "71": {
     "name": "Henderson",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
   "73": {
     "name": "Henry",
     "offices": {
-      "boa": 8,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 7,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 9
     }
   },
@@ -344,16 +344,16 @@
   "77": {
     "name": "Jackson",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "79": {
     "name": "Jasper",
     "offices": {
-      "boa": 5,
+      "boa": 6,
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
@@ -364,8 +364,8 @@
     "offices": {
       "boa": 2,
       "bol": 1,
-      "dwpc": 5,
-      "dpws": 5
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "83": {
@@ -380,7 +380,7 @@
   "85": {
     "name": "Jo Daviess",
     "offices": {
-      "boa": 8,
+      "boa": 7,
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
@@ -389,10 +389,10 @@
   "87": {
     "name": "Johnson",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "89": {
@@ -425,9 +425,9 @@
   "95": {
     "name": "Knox",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
@@ -452,16 +452,16 @@
   "101": {
     "name": "Lawrence",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "103": {
     "name": "Lee",
     "offices": {
-      "boa": 8,
+      "boa": 7,
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
@@ -479,7 +479,7 @@
   "107": {
     "name": "Logan",
     "offices": {
-      "boa": 7,
+      "boa": 8,
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
@@ -488,9 +488,9 @@
   "109": {
     "name": "McDonough",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
@@ -551,16 +551,16 @@
   "123": {
     "name": "Marshall",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 9
     }
   },
   "125": {
     "name": "Mason",
     "offices": {
-      "boa": 7,
+      "boa": 8,
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
@@ -569,10 +569,10 @@
   "127": {
     "name": "Massac",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "129": {
@@ -587,9 +587,9 @@
   "131": {
     "name": "Mercer",
     "offices": {
-      "boa": 8,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 7,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 9
     }
   },
@@ -632,7 +632,7 @@
   "141": {
     "name": "Ogle",
     "offices": {
-      "boa": 8,
+      "boa": 7,
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
@@ -641,9 +641,9 @@
   "143": {
     "name": "Peoria",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
@@ -651,9 +651,9 @@
     "name": "Perry",
     "offices": {
       "boa": 2,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "147": {
@@ -677,19 +677,19 @@
   "151": {
     "name": "Pope",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "153": {
     "name": "Pulaski",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "155": {
@@ -713,18 +713,18 @@
   "159": {
     "name": "Richland",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "161": {
     "name": "Rock Island",
     "offices": {
-      "boa": 8,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 7,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 9
     }
   },
@@ -740,10 +740,10 @@
   "165": {
     "name": "Saline",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "167": {
@@ -785,9 +785,9 @@
   "175": {
     "name": "Stark",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 9
     }
   },
@@ -803,19 +803,19 @@
   "179": {
     "name": "Tazewell",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
   "181": {
     "name": "Union",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "183": {
@@ -830,18 +830,18 @@
   "185": {
     "name": "Wabash",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "187": {
     "name": "Warren",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 10
     }
   },
@@ -857,25 +857,25 @@
   "191": {
     "name": "Wayne",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "193": {
     "name": "White",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "195": {
     "name": "Whiteside",
     "offices": {
-      "boa": 8,
+      "boa": 7,
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
@@ -893,10 +893,10 @@
   "199": {
     "name": "Williamson",
     "offices": {
-      "boa": 5,
-      "bol": 5,
-      "dwpc": 5,
-      "dpws": 5
+      "boa": 6,
+      "bol": 6,
+      "dwpc": 6,
+      "dpws": 6
     }
   },
   "201": {
@@ -911,9 +911,9 @@
   "203": {
     "name": "Woodford",
     "offices": {
-      "boa": 7,
-      "bol": 7,
-      "dwpc": 7,
+      "boa": 8,
+      "bol": 8,
+      "dwpc": 8,
       "dpws": 9
     }
   }

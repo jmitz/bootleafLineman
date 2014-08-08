@@ -1,47 +1,119 @@
 {
   "1": {
     "name": "Champaign",
-    "address": {"street": "2125 South First St.", "city": "Champaign", "zip": "61820",}
+    "address": {
+      "street": "2125 South First St.",
+      "city": "Champaign",
+      "zip": "61820"
+    },
+    "location": {
+      "lat": 40.09007,
+      "lon": -88.23926
+    },
     "telephone": "217-278-5800"
   },
   "2": {
     "name": "Collinsville",
-    "address": {"street": "2009 Mall Street", "city": "Collinsville", "zip": "62234"},
+    "address": {
+      "street": "2009 Mall Street",
+      "city": "Collinsville",
+      "zip": "62234"
+    },
+    "location": {
+      "lat": 38.67304,
+      "lon": -90.01405
+    },
     "telephone": "618-346-5120"
   },
   "3": {
     "name": "Des Plaines",
-    "address": {"street": "9511 West Harrison", "city": "Des Plaines", "zip": "60016"},
+    "address": {
+      "street": "9511 West Harrison",
+      "city": "Des Plaines",
+      "zip": "60016"
+    },
+    "location": {
+      "lat": 42.05994,
+      "lon": -87.86285
+    },
     "telephone": "847-294-4000"
   },
   "4": {
     "name": "Elgin",
-    "address": {"street": "595 South State", "city": "Elgin", "zip": "60123"},
+    "address": {
+      "street": "595 South State",
+      "city": "Elgin",
+      "zip": "60123"
+    },
+    "location": {
+      "lat": 42.02091,
+      "lon": -88.28291
+    },
     "telephone": "847-608-3131"
   },
-  "5": {
+  "6": {
     "name": "Marion",
-    "address": {"street": "2309 West Main Street", "city": "Marion", "zip": "62959"},
+    "address": {
+      "street": "2309 West Main Street",
+      "city": "Marion",
+      "zip": "62959"
+    },
+    "location": {
+      "lat": 37.7282,
+      "lon": -88.95452
+    },
     "telephone": "618-993-7200"
   },
   "7": {
-    "name": "Peoria",
-    "address": {"street": "412 SW Washington St – Ste D", "city": "Peoria", "zip": "61602"},
-    "telephone": "309-671-3022"
+    "name": "Rock Island",
+    "address": {
+      "street": "500-42nd St., Ste 1",
+      "city": "Rock Island",
+      "zip": "61201"
+    },
+    "location": {
+      "lat": 41.50688,
+      "lon": -90.54346
+    },
+    "telephone": "309-794-3598"
   },
   "8": {
-    "name": "Rock Island",
-    "address": {"street": "500-42nd St., Ste 1", "city": "Rock Island", "zip": "61201"},
-    "telephone": "309-794-3598"
+    "name": "Peoria",
+    "address": {
+      "street": "412 SW Washington St – Ste D",
+      "city": "Peoria",
+      "zip": "61602"
+    },
+    "location": {
+      "lat": 40.68781,
+      "lon": -89.59260
+    },
+    "telephone": "309-671-3022"
   },
   "9": {
     "name": "Rockford",
-    "address": {"street": "4302 North Main Street", "city": "Rockford", "zip": "61103"},
+    "address": {
+      "street": "4302 North Main Street",
+      "city": "Rockford",
+      "zip": "61103"
+    },
+    "location": {
+      "lat": 42.32245,
+      "lon": -89.07856
+    },
     "telephone": "815-987-7760"
   },
   "10": {
     "name": "Springfield",
-    "address": {"street": "1021 North Grand Ave E", "city": "Springfield", "zip": "62702"},
+    "address": {
+      "street": "1021 North Grand Ave E",
+      "city": "Springfield",
+      "zip": "62702"
+    },
+    "location": {
+      "lat": 39.81711,
+      "lon": -89.64177
+    },
     "telephone": "217-557-8761"
   }
 }
