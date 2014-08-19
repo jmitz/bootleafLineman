@@ -1,6 +1,6 @@
 {
   "name": "bootleaf-lineman",
-  "description": "An HTML/JS/CSS app",
+  "description": "Illinois EPA Permit Review Dashboard",
   "version": "0.0.1",
   "private": true,
   "author": "Jeff Mitzelfelt",

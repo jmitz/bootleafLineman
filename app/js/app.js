@@ -5,7 +5,7 @@ var permitCount;
 var countyList;
 var displayPermitTypes = [];
 var officeList;
-var politicalDistricts;
+var politicalDistricts = {};
 var politicalDistrict;
 var referenceLayers = {
   url :''
@@ -87,7 +87,12 @@ $.getJSON('data/permitCount.json', function (data){
 });
 
 $.getJSON('data/district.json', function(data){
-  politicalDistricts = data;
+  politicalDistricts.Senate = [];
+  politicalDistricts.House = [];
+  for (var tmpDistrict in data){
+    politicalDistricts[data[tmpDistrict].type].push(data[tmpDistrict]);
+  }
+
 });
 
 var maxMapBounds = L.latLngBounds(L.latLng(36.9, -91.6),L.latLng(42.6, -87.4));
@@ -606,31 +611,54 @@ $("#searchbox").click(function () {
 /* Typeahead search functionality */
 $(document).one("ajaxStop", function () {
 
-  var politicalBH = new Bloodhound({
-    name: "politicalDistricts",
+
+  var senateBH = new Bloodhound({
+    name: "senateDistricts",
     datumTokenizer: function (d) {
       return Bloodhound.tokenizers.whitespace(d.name);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: politicalDistricts,
+    local: politicalDistricts.Senate,
     limit: 10
   });
 
-  politicalBH.initialize();
+  senateBH.initialize();
+
+  var houseBH = new Bloodhound({
+    name: "houseDistricts",
+    datumTokenizer: function (d) {
+      return Bloodhound.tokenizers.whitespace(d.name);
+    },
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: politicalDistricts.House,
+    limit: 10
+  });
+
+  houseBH.initialize();
 
   /* instantiate the typeahead UI */
   $("#searchbox").typeahead({
     minLength: 1,
     highlight: true,
     hint: false
-  }, {
-    name: "politicalDisticts",
+  },
+  {
+    name: "Senators",
     displayKey: "name",
-    source: politicalBH.ttAdapter(),
+    source: senateBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'>Political Disticts</h4>"
-    }}).on("typeahead:selected", function (obj, datum) {
-      if (datum.source === "PoliticalDistricts") {
+      header: "<h4 class='typeahead-header'>Senators</h4>"
+    }
+  },
+  {
+    name: "Representatives",
+    displayKey: "name",
+    source: houseBH.ttAdapter(),
+    templates: {
+      header: "<h4 class='typeahead-header'>Representatives</h4>"
+    }
+  }).on("typeahead:selected", function (obj, datum) {
+    if (datum.source === "PoliticalDistricts") {
         datum.bounds = queryDistrict.findDistrict(datum, map);
         politicalDistrict = datum;
         legislativeDistricts.setWhere(getLegislativeWhere('Search'));

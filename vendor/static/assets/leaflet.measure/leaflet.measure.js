@@ -218,7 +218,9 @@ L.Control.Measure = L.Control.extend({
 	},
 
 	_round: function(val) {
-		return Math.round((val / 1609.34) * 100) / 100;
+
+		// Calculation for miles with 1 decimal place
+		return Math.round((val / 1609.34) * 10) / 10;
 	},
 
 	_onKeyDown: function (e) {

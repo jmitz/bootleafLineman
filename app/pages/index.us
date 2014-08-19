@@ -39,7 +39,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Permit Review</a>
+        <a class="navbar-brand" href="#">Illinois EPA Permit Review Dashboard</a>
       </div>
       <div class="navbar-collapse collapse">
         <form class="navbar-form navbar-right" role="search">
@@ -113,7 +113,7 @@
                     <li class="list-group-item">Double click on a county to zoom to the county and update the county’s permit chart</li>
                     <li class="list-group-item">Zoom in to see permit locations
                       <ul>
-                        <li>Click or tap the "+" or "-" in the lower right side of the map.</li>
+                        <li>Click or tap the "+" or "-" in the upper left corner of the map.</li>
                         <li>Mouse scroll wheel zooms in and out</li>
                         <li>Shift-click drag a box will zoom to the box</li>
                       </ul>
