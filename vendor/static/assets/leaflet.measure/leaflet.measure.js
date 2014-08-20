@@ -12,6 +12,35 @@ L.Control.Measure = L.Control.extend({
 		return container;
 	},
 
+	_findImagesPath: function () {
+		var scripts = document.getElementsByTagName('script'),
+		    leafletMeasureRe = /[\/^]leaflet\.measure[\-\._]?([\w\-\._]*)\.js\??/;
+		var i, len, src, matches, path;
+		for (i = 0, len = scripts.length; i < len; i++){
+			src = scripts[i].src;			
+			matches = src.match(leafletMeasureRe);
+			if (matches){
+				path = src.split(leafletMeasureRe)[0];
+				return (path ? path + '/' : '') + 'images';
+			}
+		}
+	},
+
+	_coverImageOverlay: function () {
+		if(!this._overlayImageUrl){
+				this._overlayImageUrl = this._findImagesPath() + '/blank.gif';
+		}
+		var imageUrl = this._overlayImageUrl;
+		var imageBounds = this._map.getBounds();
+		return L.imageOverlay(imageUrl, imageBounds, {opacity: 0});
+	},
+
+	_updateImageOverlay: function () {
+		this._map.removeLayer(this._overlayImage);
+		this._overlayImage = this._coverImageOverlay();
+		this._overlayImage.addTo(this._map);
+	},
+
 	_createButton: function (html, title, className, container, fn, context) {
 		var link = L.DomUtil.create('a', className, container);
 		link.innerHTML = html;
@@ -59,6 +88,12 @@ L.Control.Measure = L.Control.extend({
 		if(!this._points) {
 			this._points = [];
 		}
+
+		// Set up image overlay to hide features from click events
+		this._overlayImage = this._coverImageOverlay();
+		this._overlayImage.addTo(this._map);
+		this._map.on('move', this._updateImageOverlay, this);
+
 	},
 
 	_stopMeasuring: function() {
@@ -78,6 +113,9 @@ L.Control.Measure = L.Control.extend({
 			this._layerPaint.clearLayers();
 		}
 		
+		this._map.removeLayer(this._overlayImage);
+		this._map.off('move', this._updateImageOverlay, this);
+
 		this._restartPath();
 	},
 
@@ -218,9 +256,7 @@ L.Control.Measure = L.Control.extend({
 	},
 
 	_round: function(val) {
-
-		// Calculation for miles with 1 decimal place
-		return Math.round((val / 1609.34) * 10) / 10;
+		return Math.round((val / 1609.34) * 100) / 100;
 	},
 
 	_onKeyDown: function (e) {
