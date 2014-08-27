@@ -24,6 +24,10 @@
   };
 
   function formatLocationInfo (inLatLng, inLocationInfo){
+    var outVals={
+      inLocation: inLatLng,
+      inResults: inLocationInfo
+    };
     var precision = Math.round((this.map.getZoom()-4.5)*0.333);
     var templateData = {
       lat: inLatLng.lat.toPrecision(2+precision),
@@ -63,7 +67,6 @@
       }
     };
     var locationInfo = inLocationInfo.results;
-    console.log(inLocationInfo);
     for (var record in locationInfo){
       var layerName = locationInfo[record].layerName;
       var fieldName = locationInfo[record].displayFieldName;
@@ -73,15 +76,18 @@
         ejStatusCalc.checkEj(locationInfo[record].attributes.EJstatus, ejStatusCalc[1]);
         break;
       case 3: // State House
-        fieldValue="<span id='stateHouse'>" + fieldValue + "</span>";
+        fieldValue="<span id='stateHouse'>" + politicalDistricts.House[fieldValue].name + "</span>";
+        outVals.house = locationInfo[record].attributes;
         break;
-      case 4: // Environmental Justice
-        fieldValue="<span id='stateSenate'>" + fieldValue + "</span>";
+      case 4: // Senate Districts
+        fieldValue="<span id='stateSenate'>" + politicalDistricts.Senate[fieldValue].name + "</span>";
+        outVals.senate = locationInfo[record].attributes;
         break;
-      case 5: // Environmental Justice
+      case 5: // Congressional Districts
         fieldValue="<span id='congress'>" + fieldValue + "</span>";
         break;
       case 10: // Counties
+        outVals.county = locationInfo[record].attributes;
         var fipsStr = ""+locationInfo[record].attributes.CO_FIPS;
         var pad = "000";
         fieldValue = locationInfo[record].attributes.COUNTY_NAM + "<br>FIPS - <span id='fips'>" +  
@@ -102,8 +108,19 @@
     templateData.ejHtml = ejStatusCalc.htmlOut();
     templateData.recordHtml = recordHtmls.join("");
     console.log(templateData);
-    var outString = _.template(template,templateData);
-    return outString;
+    outVals.htmlString = _.template(template,templateData);
+    return outVals;
+  }
+
+  function prepareGeometry(inLocation){
+    var geometry = {
+      x: inLocation.lng,
+      y: inLocation.lat,
+      spatialReference: {
+        wkid: this.spatialReference
+      }
+    };
+    return JSON.stringify(geometry);
   }
 
   function onClick(evt){
@@ -116,10 +133,10 @@
     };
     var popup = L.popup();
     var map = this.map;
-    this.parameters.geometry = JSON.stringify(geometry);
+    this.parameters.geometry = prepareGeometry(evt.latlng);
     $.getJSON(this.serviceUrl, this.parameters, function(data){
       popup.setLatLng(evt.latlng)
-      .setContent(formatLocationInfo(evt.latlng, data))
+      .setContent(formatLocationInfo(evt.latlng, data).htmlString)
       .openOn(map);
     });
   }
@@ -128,6 +145,16 @@
     addTo: function(inMap){
       this.map = inMap;
       L.DomEvent.on(inMap, 'click', onClick, this);
+    },
+    getLocationInfo: function(inLocation, inReturnFunction){
+      this.parameters.geometry = prepareGeometry(inLocation);
+      $.getJSON(this.serviceUrl, this.parameters, function(data){
+        var returnObject = {
+          location: inLocation,
+          results: data.results
+        };
+        inReturnFunction(formatLocationInfo(inLocation, data));
+      });
     }
   };
 })();

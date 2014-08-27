@@ -70,7 +70,6 @@ $.getJSON('data/countyList.json', function (data){
 
 $.getJSON('data/officeList.json', function (data){
   officeList = data;
-  console.log(data);
 });
 
 $.getJSON('data/permitCount.json', function (data){
@@ -294,6 +293,21 @@ function buildLocalInfo(inName, inFips){
     }
 
 
+function updateLocalInfo(inLocationInfo){
+    var popup = L.popup({
+      keepInView: true,
+      closeOnClick: false,
+      className: ''
+    });
+    popup.setLatLng(inLocationInfo.inLocation)
+      .setContent(inLocationInfo.htmlString)
+      .openOn(map);
+    buildLocalInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
+  }
+
+
+var locator = new Locator();
+
 function configureCountyFeature(feature, layer) {
   countySearch.push({
     name: layer.feature.properties.COUNTY_NAM,
@@ -315,17 +329,17 @@ function configureCountyFeature(feature, layer) {
   layer.on('mouseout', function(e){
     map.closePopup();
   });
-  // layer.on('click', function(e){
-  //   if (!sidebar.isVisible()){
-  //     sidebar.show();
-  //   }
-  //   buildLocalInfo(feature.properties.COUNTY_NAM, feature.properties.CO_FIPS);
-  // });
-  // layer.on('dblclick', function(e){
-  //   console.log('doubleclick');
-  //   map.fitBounds(e.target.getBounds());
+  layer.on('click', function(e){
+   if (!sidebar.isVisible()){
+     sidebar.show();
+   }
+   locator.getLocationInfo(e.latlng, updateLocalInfo);
+ });
+  layer.on('dblclick', function(e){
+    console.log('doubleclick');
+    map.fitBounds(e.target.getBounds());
 
-  // });
+  });
 }
 
 generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
@@ -482,6 +496,10 @@ var map = L.map("map", {
 bounceAtZoomLimits: false
 });
 
+map.on('click', function (e) {
+     locator.getLocationInfo(e.latlng, updateLocalInfo);
+});
+
 map.on('viewreset', function(e){
   if (map.getZoom()>10){
     map.removeLayer(generalPermitLayer);
@@ -518,11 +536,11 @@ map.on('overlayremove', function(e){
   }
 });
 
-clearCover = new ClearCover();
-clearCover.addTo(map);
+//clearCover = new ClearCover();
+//clearCover.addTo(map);
 
-locator = new Locator();
-locator.addTo(map);
+//locator = new Locator();
+//locator.addTo(map);
 
 
 function buildPermitInfo(inPermitType){
