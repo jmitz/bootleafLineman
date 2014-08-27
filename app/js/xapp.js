@@ -1,6 +1,7 @@
+
+
 var map, sidebar, countySearch = [];
 var generalPermitLayer, legislativeDistricts;
-var featureCount = 0;
 var permitCount;
 var countyList;
 var displayPermitTypes = [];
@@ -314,17 +315,17 @@ function configureCountyFeature(feature, layer) {
   layer.on('mouseout', function(e){
     map.closePopup();
   });
-  layer.on('click', function(e){
-    if (!sidebar.isVisible()){
-      sidebar.show();
-    }
-    buildLocalInfo(feature.properties.COUNTY_NAM, feature.properties.CO_FIPS);
-  });
-  layer.on('dblclick', function(e){
-    console.log('doubleclick');
-    map.fitBounds(e.target.getBounds());
+  // layer.on('click', function(e){
+  //   if (!sidebar.isVisible()){
+  //     sidebar.show();
+  //   }
+  //   buildLocalInfo(feature.properties.COUNTY_NAM, feature.properties.CO_FIPS);
+  // });
+  // layer.on('dblclick', function(e){
+  //   console.log('doubleclick');
+  //   map.fitBounds(e.target.getBounds());
 
-  });
+  // });
 }
 
 generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
@@ -377,7 +378,6 @@ localPermitMarkers.on("load", function(evt){
 
 function bindPermitMarker(inGeoJson, inMarker){
   var permitType = permits.types[inGeoJson.properties.MediaCode][inGeoJson.properties.InterestType];
-  featureCount++;
   inMarker.bindPopup(_.template(permitType.popupTemplate,inGeoJson));
 }
 
@@ -518,6 +518,12 @@ map.on('overlayremove', function(e){
   }
 });
 
+clearCover = new ClearCover();
+clearCover.addTo(map);
+
+locator = new Locator();
+locator.addTo(map);
+
 
 function buildPermitInfo(inPermitType){
   var newPermitLayer = {};
@@ -602,6 +608,7 @@ sidebar = L.control.sidebar("sidebar", {
 }).on("hidden", function () {
   getViewport();
 }).addTo(map);
+
 
 /* Highlight search box text on click */
 $("#searchbox").click(function () {

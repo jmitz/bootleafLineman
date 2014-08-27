@@ -15,6 +15,5 @@ module.exports = function(lineman) {
         "vendor/js/**/*.js"
       ]
     }
-
   };
 };

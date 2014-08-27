@@ -51,6 +51,19 @@
     },
     "telephone": "847-608-3131"
   },
+  "5": {
+    "name": "Ottawa",
+    "address": {
+      "street": "1574 – 1st Ave",
+      "city": "Ottawa",
+      "zip": "61350"
+    },
+    "location": {
+      "lat": 41.32333,
+      "lon": -88.83686
+    },
+    "telephone": "815-433-7125"
+  },
   "6": {
     "name": "Marion",
     "address": {
@@ -115,5 +128,19 @@
       "lon": -89.64177
     },
     "telephone": "217-557-8761"
+  }
+  ,
+  "11": {
+    "name": "Elk Grove",
+    "address": {
+      "street": "P.O. Box 767",
+      "city": "Elk Grove Village",
+      "zip": "60009-0767"
+    },
+    "location": {
+      "lat": 42.0152,
+      "lon": -87.9791
+    },
+    "telephone": "847/758-3400"
   }
 }

@@ -1,7 +1,7 @@
 // esriMap.js
 
 var queryDistrict = {
-  queryUrl: "http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/LegislativeDistricts/FeatureServer/2",
+  queryUrl: "http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/LegislativeDistricts/FeatureServer/2",
   outFields: [
    'DistrictNum',
     'SenateNum'
