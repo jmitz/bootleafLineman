@@ -12,6 +12,12 @@ L.Control.Measure = L.Control.extend({
 		return container;
 	},
 
+	isActive: function(){
+		return this._activated
+	},
+
+	_activated: false,
+
 	_findImagesPath: function () {
 		var scripts = document.getElementsByTagName('script'),
 		    leafletMeasureRe = /[\/^]leaflet\.measure[\-\._]?([\w\-\._]*)\.js\??/;
@@ -93,7 +99,7 @@ L.Control.Measure = L.Control.extend({
 		this._overlayImage = this._coverImageOverlay();
 		this._overlayImage.addTo(this._map);
 		this._map.on('move', this._updateImageOverlay, this);
-
+		this._activated = true;
 	},
 
 	_stopMeasuring: function() {
@@ -117,6 +123,7 @@ L.Control.Measure = L.Control.extend({
 		this._map.off('move', this._updateImageOverlay, this);
 
 		this._restartPath();
+		this._activated = false;
 	},
 
 	_mouseMove: function(e) {

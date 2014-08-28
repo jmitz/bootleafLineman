@@ -11,6 +11,17 @@ var politicalDistrict;
 var referenceLayers = {
   url :''
 };
+var controlPopupClose = true;
+var infoPopupFlag = false; // true if infoPopup is open
+var infoPopup = L.popup({
+  keepInView: true,
+  closeOnClick: false,
+  autoPanPaddingTopLeft: 50,
+  autoPanPaddingBottomRight: 100,
+  className: ''
+});
+
+var measureControl = L.control.measure({position: 'topleft'});
 
 var permits = {
   url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/0',
@@ -294,16 +305,14 @@ function buildLocalInfo(inName, inFips){
 
 
 function updateLocalInfo(inLocationInfo){
-    var popup = L.popup({
-      keepInView: true,
-      closeOnClick: false,
-      className: ''
-    });
-    popup.setLatLng(inLocationInfo.inLocation)
+  if (!measureControl.isActive()){
+    infoPopup.setLatLng(inLocationInfo.inLocation)
       .setContent(inLocationInfo.htmlString)
       .openOn(map);
     buildLocalInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
+    infoPopupFlag = true;
   }
+}
 
 
 var locator = new Locator();
@@ -318,16 +327,20 @@ function configureCountyFeature(feature, layer) {
   feature.properties.PermitTotal = permitCount[feature.properties.CO_FIPS].total;
   generalPermitLayer.setStyle(colorCountyFeature);
   layer.on('mouseover mousemove', function(e){
-    var hover_bubble = new L.Rrose({
-      offset: new L.Point(0,-10),
-      closeButton: false,
-      autoPan: false}
-      ).setContent('<p>'+feature.properties.COUNTY_NAM+'<br>'+ getCountyPermitCount(feature.properties.CO_FIPS) + ' Permits</p>')
-    .setLatLng(e.latlng)
-    .openOn(map);
+    if (!infoPopupFlag){
+      var hover_bubble = new L.Rrose({
+        offset: new L.Point(0,-10),
+        closeButton: false,
+        autoPan: false})
+        .setContent('<p>'+feature.properties.COUNTY_NAM+'<br>'+ getCountyPermitCount(feature.properties.CO_FIPS) + ' Permits</p>')
+        .setLatLng(e.latlng)
+        .openOn(map);
+    }
   });
   layer.on('mouseout', function(e){
-    map.closePopup();
+    if(!infoPopupFlag){
+      map.closePopup();
+    }
   });
   layer.on('click', function(e){
    if (!sidebar.isVisible()){
@@ -525,6 +538,10 @@ map.on("overlayadd", function(e){
   }
 });
 
+map.on('popupclose', function(e){
+  infoPopupFlag = false;
+});
+
 map.on('overlayremove', function(e){
   var index;
   var removeLayer;
@@ -536,12 +553,7 @@ map.on('overlayremove', function(e){
   }
 });
 
-//clearCover = new ClearCover();
-//clearCover.addTo(map);
-
-//locator = new Locator();
-//locator.addTo(map);
-
+measureControl.addTo(map);
 
 function buildPermitInfo(inPermitType){
   var newPermitLayer = {};
@@ -581,8 +593,6 @@ getPermitTypes(permits.types, buildPermitInfo);
 var zoomControl = L.control.zoom({
   position: "topleft"
 }).addTo(map);
-
-var measureControl = L.control.measure({position: 'topleft'}).addTo(map);
 
 var baseLayers = {
   "Street Map": baseStreetMap,
