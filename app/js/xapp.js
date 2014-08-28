@@ -81,6 +81,9 @@ $.getJSON('data/countyList.json', function (data){
 
 $.getJSON('data/officeList.json', function (data){
   officeList = data;
+  for (var office in officeList){
+    officeList[office].location = new L.LatLng(officeList[office].location.lat, officeList[office].location.lon);
+  }
 });
 
 $.getJSON('data/permitCount.json', function (data){
@@ -311,12 +314,40 @@ function buildLocalInfo(inName, inFips){
       $('#localTable').html(infoHtml);
     }
 
+function milesApart(inLocation1, inLocation2){
+  return Math.round((inLocation1.distanceTo(inLocation2) / 1609.34) * 10) / 10;
+}
+
+function milesToFieldOffice(inLocationInfo){
+  var offices = countyList[inLocationInfo.county.CO_FIPS].offices;
+  var outOfficeList = {};
+  for (var office in offices){
+    var testOffice = officeList[offices[office]];
+    if (!outOfficeList[offices[office]]){
+      outOfficeList[offices[office]]={
+        name: testOffice.name,
+        distance: milesApart(testOffice.location, inLocationInfo.inLocation),
+        types: []
+      };
+    }
+    outOfficeList[offices[office]].types.push(office);
+  }
+  var template = "<tr><td><%=name%> Field Office<br><%=types.join()%></td><td><%=distance%> miles</td></tr>";
+  var outHtmls = [];
+  for (var outOffice in outOfficeList){
+    outHtmls.push(_.template(template, outOfficeList[outOffice]));
+  }
+  outHtml = outHtmls.join('');
+  return outHtml;
+}
+
 
 function updateLocalInfo(inLocationInfo){
   if (!measureControl.isActive()){
-    console.log(inLocationInfo.htmlString);
+    var reTable = /<\/table>/;
+
     infoPopup.setLatLng(inLocationInfo.inLocation)
-      .setContent(inLocationInfo.htmlString)
+      .setContent(inLocationInfo.htmlString.replace(reTable,milesToFieldOffice(inLocationInfo)))
       .openOn(map);
     buildLocalInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
     infoPopupFlag = true;
