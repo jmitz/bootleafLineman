@@ -16,8 +16,8 @@ var infoPopupFlag = false; // true if infoPopup is open
 var infoPopup = L.popup({
   keepInView: true,
   closeOnClick: false,
-  autoPanPaddingTopLeft: 50,
-  autoPanPaddingBottomRight: 100,
+  autoPanPaddingTopLeft: L.point(50, 10),
+  autoPanPaddingBottomRight: L.point(220,10),
   className: ''
 });
 
@@ -101,12 +101,17 @@ $.getJSON('data/district.json', function(data){
   politicalDistricts.Senate = [];
   politicalDistricts.House = [];
   for (var tmpDistrict in data){
+    data[tmpDistrict].title = data[tmpDistrict].district + ' - ' + data[tmpDistrict].name;
     politicalDistricts[data[tmpDistrict].type].push(data[tmpDistrict]);
   }
 
 });
 
 var maxMapBounds = L.latLngBounds(L.latLng(36.9, -91.6),L.latLng(42.6, -87.4));
+
+function getSidebarWidth(){
+  return $(".leaflet-sidebar").css("width");
+}
 
 function isCanvasSupported(){
   var elem = document.createElement('canvas');
@@ -115,6 +120,9 @@ function isCanvasSupported(){
 
 function getViewport() {
   if (sidebar.isVisible()) {
+    if (infoPopupFlag){
+      map.panTo(infoPopup.getLatLng());
+    }
     map.setActiveArea({
       position: "absolute",
       top: "0px",
@@ -306,11 +314,13 @@ function buildLocalInfo(inName, inFips){
 
 function updateLocalInfo(inLocationInfo){
   if (!measureControl.isActive()){
+    console.log(inLocationInfo.htmlString);
     infoPopup.setLatLng(inLocationInfo.inLocation)
       .setContent(inLocationInfo.htmlString)
       .openOn(map);
     buildLocalInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
     infoPopupFlag = true;
+    getViewport();
   }
 }
 
@@ -650,7 +660,7 @@ $(document).one("ajaxStop", function () {
   var senateBH = new Bloodhound({
     name: "senateDistricts",
     datumTokenizer: function (d) {
-      return Bloodhound.tokenizers.whitespace(d.name);
+      return Bloodhound.tokenizers.whitespace(d.title);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     local: politicalDistricts.Senate,
@@ -662,7 +672,7 @@ $(document).one("ajaxStop", function () {
   var houseBH = new Bloodhound({
     name: "houseDistricts",
     datumTokenizer: function (d) {
-      return Bloodhound.tokenizers.whitespace(d.name);
+      return Bloodhound.tokenizers.whitespace(d.title);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     local: politicalDistricts.House,
@@ -679,7 +689,7 @@ $(document).one("ajaxStop", function () {
   },
   {
     name: "Senators",
-    displayKey: "name",
+    displayKey: "title",
     source: senateBH.ttAdapter(),
     templates: {
       header: "<h4 class='typeahead-header'>Senators</h4>"
@@ -687,7 +697,7 @@ $(document).one("ajaxStop", function () {
   },
   {
     name: "Representatives",
-    displayKey: "name",
+    displayKey: "title",
     source: houseBH.ttAdapter(),
     templates: {
       header: "<h4 class='typeahead-header'>Representatives</h4>"

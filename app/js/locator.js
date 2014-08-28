@@ -76,11 +76,11 @@
         ejStatusCalc.checkEj(locationInfo[record].attributes.EJstatus, ejStatusCalc[1]);
         break;
       case 3: // State House
-        fieldValue="<span id='stateHouse'>" + politicalDistricts.House[fieldValue].name + "</span>";
+        fieldValue="<span id='stateHouse'>" + fieldValue + "</span>";
         outVals.house = locationInfo[record].attributes;
         break;
       case 4: // Senate Districts
-        fieldValue="<span id='stateSenate'>" + politicalDistricts.Senate[fieldValue].name + "</span>";
+        fieldValue="<span id='stateSenate'>" + fieldValue + "</span>";
         outVals.senate = locationInfo[record].attributes;
         break;
       case 5: // Congressional Districts
@@ -107,7 +107,6 @@
     }
     templateData.ejHtml = ejStatusCalc.htmlOut();
     templateData.recordHtml = recordHtmls.join("");
-    console.log(templateData);
     outVals.htmlString = _.template(template,templateData);
     return outVals;
   }
