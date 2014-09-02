@@ -21,13 +21,20 @@ var infoPopup = L.popup({
   className: ''
 });
 
-var measureControl = L.control.measure({position: 'topleft'});
+var zoomControl = L.control.zoom({
+  position: "topleft"
+});
+
+var measureControl = L.control.measure({
+  position: 'topleft'
+});
 
 var permits = {
   url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/0',
   types: {
     AIR: {
       typeName: 'Bureau of Air',
+      abbr: 'BOA',
       PERMIT: {
         name: 'FESOP or LSO Permits',
         mediaType: 'AIR',
@@ -61,6 +68,7 @@ var permits = {
     },
     WATER: {
       typeName: 'Bureau of Water',
+      abbr: 'BOW',
       BOW: {
         name: 'NPDES Permits',
         mediaType: 'WATER',
@@ -70,8 +78,49 @@ var permits = {
         popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
         markerTitle: "Name",
         abbr: 'NPDES'
+      },
+      PWS: {
+        name: 'PWS Permits',
+        mediaType: 'WATER',
+        interestType: 'PWS',
+        color: '#88F0D3',
+        markerIcon: 'img/pwsPermit.png',
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name",
+        abbr: 'PWS'
+      },
+      CAFO: {
+        name: 'CAFO Permits',
+        mediaType: 'WATER',
+        interestType: 'CAFO',
+        color: '#88F0D3',
+        markerIcon: 'img/cafoPermit.png',
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name",
+        abbr: 'CAFO'
+      },
+      WQ401: {
+        name: 'WQ 401 Certification',
+        mediaType: 'WATER',
+        interestType: '401',
+        color: '#88F0D3',
+        markerIcon: 'img/wq401.png',
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name",
+        abbr: 'WQ401'
+      },
+      AGCHM: {
+        name: 'Ag Chemical Certification',
+        mediaType: 'WATER',
+        interestType: 'AGCHM',
+        color: '#88F0D3',
+        markerIcon: 'img/agChem.png',
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        markerTitle: "Name",
+        abbr: 'AGCHM'
       }
     }
+
   }
 };
 
@@ -142,6 +191,10 @@ function getViewport() {
       height: $("#map").css("height")
     });
   }
+}
+
+function milesApart(inLocation1, inLocation2){
+  return Math.round((inLocation1.distanceTo(inLocation2) / 1609.34) * 10) / 10;
 }
 
 function activeDisplayTypes(){
@@ -313,10 +366,6 @@ function buildLocalInfo(inName, inFips){
       infoHtml += '</ul>';
       $('#localTable').html(infoHtml);
     }
-
-function milesApart(inLocation1, inLocation2){
-  return Math.round((inLocation1.distanceTo(inLocation2) / 1609.34) * 10) / 10;
-}
 
 function milesToFieldOffice(inLocationInfo){
   var offices = countyList[inLocationInfo.county.CO_FIPS].offices;
@@ -594,8 +643,6 @@ map.on('overlayremove', function(e){
   }
 });
 
-measureControl.addTo(map);
-
 function buildPermitInfo(inPermitType){
   var newPermitLayer = {};
   newPermitLayer.name = inPermitType.name;
@@ -631,9 +678,10 @@ getPermitTypes(permits.types, buildPermitInfo);
 // };
 //map.addControl(attributionControl);
 
-var zoomControl = L.control.zoom({
-  position: "topleft"
-}).addTo(map);
+zoomControl.addTo(map);
+
+measureControl.addTo(map);
+
 
 var baseLayers = {
   "Street Map": baseStreetMap,
@@ -645,17 +693,48 @@ var referenceLayers = {
   "State House Districts": "TEST"
 };
 
-//Build with Function
-var groupedOverlays = {
-  "BOA Permits": {
-    "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": displayPermitTypes[0].testLayer,
-    "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": displayPermitTypes[1].testLayer,
-    "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": displayPermitTypes[2].testLayer
-  },
-  "BOW Permits": {
-    "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": displayPermitTypes[3].testLayer
+
+function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
+  var outGroupedOverlay = {};
+  var types = inPermitArray.types;
+  var layerNameTemplate = "<img src='<%=markerIcon%>' width='24' height='28'>&nbsp;<%=name%>";
+  for (var type in types){
+    if (types[type].hasOwnProperty('abbr')){
+      var group = types[type];
+      var groupName = types[type].abbr + ' Permits';
+      outGroupedOverlay[groupName] = {};
+      for (var layer in group){
+        if (group[layer].hasOwnProperty('abbr')){
+          var layerName = _.template(layerNameTemplate,group[layer]);
+          var testName = group[layer].name;
+          for (var j in inDisplayPermitTypes){
+            if (inDisplayPermitTypes[j].name === testName){
+              outGroupedOverlay[groupName][layerName] = inDisplayPermitTypes[j].testLayer;
+            }
+          }
+        }
+      }
+    }
   }
-};
+  return outGroupedOverlay;
+}
+
+var groupedOverlays = buildGroupedOverlays(permits, displayPermitTypes);
+//Build with Function
+// var groupedOverlays = {
+//   "BOA Permits": {
+//     "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": displayPermitTypes[0].testLayer,
+//     "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": displayPermitTypes[1].testLayer,
+//     "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": displayPermitTypes[2].testLayer
+//   },
+//   "BOW Permits": {
+//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": displayPermitTypes[3].testLayer,
+//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;PWS Permits": displayPermitTypes[4].testLayer,
+//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;CAFO Permits": displayPermitTypes[5].testLayer,
+//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;WQ 401 Certifications": displayPermitTypes[6].testLayer,
+//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;Ag Chemical Certifications": displayPermitTypes[7].testLayer
+//   }
+// };
 
 /* Larger screens get expanded layer control */
 if (document.body.clientWidth <= 767) {
@@ -666,7 +745,8 @@ if (document.body.clientWidth <= 767) {
 
 var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
   collapsed: isCollapsed,
-  closeButton: true
+  closeButton: true,
+  position: 'topleft'
 }).addTo(map);
 
 sidebar = L.control.sidebar("sidebar", {
