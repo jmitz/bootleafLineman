@@ -390,13 +390,25 @@ function milesToFieldOffice(inLocationInfo){
   return outHtml;
 }
 
+function getOfficer(inArray, inType){
+  var outString = '$1$2 - ' + politicalDistricts[inType][inArray[2]-1].name;
+  return outString;
+}
 
 function updateLocalInfo(inLocationInfo){
   if (!measureControl.isActive()){
+    console.log(inLocationInfo);
     var reTable = /<\/table>/;
-
+    var reHouse = /(id='stateHouse'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Representative Name")
+    var reSenate = /(id='stateSenate'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Senator Name")
+    var reCounty = / /; // replace(reCounty,)
+    console.log(inLocationInfo.htmlString.match(reHouse));
+    var popupHtml = inLocationInfo.htmlString
+      .replace(reTable,milesToFieldOffice(inLocationInfo))
+      .replace(reHouse, getOfficer(inLocationInfo.htmlString.match(reHouse),'House'))
+      .replace(reSenate, getOfficer(inLocationInfo.htmlString.match(reSenate), 'Senate'));
     infoPopup.setLatLng(inLocationInfo.inLocation)
-      .setContent(inLocationInfo.htmlString.replace(reTable,milesToFieldOffice(inLocationInfo)))
+      .setContent(popupHtml)
       .openOn(map);
     buildLocalInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
     infoPopupFlag = true;
@@ -720,21 +732,6 @@ function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
 }
 
 var groupedOverlays = buildGroupedOverlays(permits, displayPermitTypes);
-//Build with Function
-// var groupedOverlays = {
-//   "BOA Permits": {
-//     "<img src='img/airPermit.png' width='24' height='28'>&nbsp;FESOP or LSO  Permits": displayPermitTypes[0].testLayer,
-//     "<img src='img/rossPermit.png' width='24' height='28'>&nbsp;ROSS Permits": displayPermitTypes[1].testLayer,
-//     "<img src='img/caappPermit.png' width='24' height='28'>&nbsp;CAAPP Permits": displayPermitTypes[2].testLayer
-//   },
-//   "BOW Permits": {
-//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;NPDES Permits": displayPermitTypes[3].testLayer,
-//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;PWS Permits": displayPermitTypes[4].testLayer,
-//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;CAFO Permits": displayPermitTypes[5].testLayer,
-//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;WQ 401 Certifications": displayPermitTypes[6].testLayer,
-//     "<img src='img/npdesPermit.png' width='24' height='28'>&nbsp;Ag Chemical Certifications": displayPermitTypes[7].testLayer
-//   }
-// };
 
 /* Larger screens get expanded layer control */
 if (document.body.clientWidth <= 767) {
