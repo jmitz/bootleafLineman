@@ -401,12 +401,14 @@ function updateLocalInfo(inLocationInfo){
     var reTable = /<\/table>/;
     var reHouse = /(id='stateHouse'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Representative Name")
     var reSenate = /(id='stateSenate'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Senator Name")
-    var reCounty = / /; // replace(reCounty,)
-    console.log(inLocationInfo.htmlString.match(reHouse));
+    var reCongress = /<tr><td>US Congress.+Section.+\d<\/td><\/tr>/; // replace(reCongress, '$1')
+    var reFips = /<br>FIPS.+\d{3}<\/span>/; // replace(reFips,'')
     var popupHtml = inLocationInfo.htmlString
       .replace(reTable,milesToFieldOffice(inLocationInfo))
       .replace(reHouse, getOfficer(inLocationInfo.htmlString.match(reHouse),'House'))
-      .replace(reSenate, getOfficer(inLocationInfo.htmlString.match(reSenate), 'Senate'));
+      .replace(reSenate, getOfficer(inLocationInfo.htmlString.match(reSenate), 'Senate'))
+      .replace(reCongress, '')
+      .replace(reFips, '');
     infoPopup.setLatLng(inLocationInfo.inLocation)
       .setContent(popupHtml)
       .openOn(map);
