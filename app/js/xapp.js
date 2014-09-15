@@ -29,6 +29,11 @@ var measureControl = L.control.measure({
   position: 'topleft'
 });
 
+var templates = {
+  fieldOffice: "<tr><td><%=name%> Field Office<br><%=types.join()%></td><td><%=distance%> miles</td></tr>",
+  permitFieldOffice: "Field Office - <%=name%> - <%=distance%> miles"
+};
+
 var permits = {
   url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/0',
   types: {
@@ -41,7 +46,7 @@ var permits = {
         interestType: 'PERMIT',
         color: '#C563E6',
         markerIcon: 'img/airPermit.png',
-        popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'boa')%></p>",
         markerTitle: "Name",
         abbr: 'FESOP'
       },
@@ -51,7 +56,7 @@ var permits = {
         interestType: 'ROSS',
         color: '#C563B6',
         markerIcon: 'img/rossPermit.png',
-        popupTemplate: "<h5>Air Permit - ROSS<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Air Permit - ROSS<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'boa')%></p>",
         markerTitle: "Name",
         abbr: 'ROSS'
       },
@@ -61,7 +66,7 @@ var permits = {
         interestType: 'USEPA',
         color: '#C56386',
         markerIcon: 'img/caappPermit.png',
-        popupTemplate: "<h5>Air Permit - CAAPP<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Air Permit - CAAPP<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'boa')%></p>",
         markerTitle: "Name",
         abbr: 'CAAPP'
       }
@@ -75,7 +80,7 @@ var permits = {
         interestType: 'BOW',
         color: '#88F0D3',
         markerIcon: 'img/npdesPermit.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dwpc')%></p>",
         markerTitle: "Name",
         abbr: 'NPDES'
       },
@@ -85,7 +90,7 @@ var permits = {
         interestType: 'PWS',
         color: '#88F0D3',
         markerIcon: 'img/pwsPermit.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dpws')%></p>",
         markerTitle: "Name",
         abbr: 'PWS'
       },
@@ -95,7 +100,7 @@ var permits = {
         interestType: 'CAFO',
         color: '#88F0D3',
         markerIcon: 'img/cafoPermit.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dwpc')%></p>",
         markerTitle: "Name",
         abbr: 'CAFO'
       },
@@ -105,7 +110,7 @@ var permits = {
         interestType: '401',
         color: '#88F0D3',
         markerIcon: 'img/wq401.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dwpc')%></p>",
         markerTitle: "Name",
         abbr: 'WQ401'
       },
@@ -115,7 +120,7 @@ var permits = {
         interestType: 'AGCHM',
         color: '#88F0D3',
         markerIcon: 'img/agChem.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h3><%= properties.Name %></h3><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
+        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
         markerTitle: "Name",
         abbr: 'AGCHM'
       }
@@ -350,41 +355,43 @@ function buildLocalInfo(inName, inFips){
   var html = '<h4>{{CountyName}} County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>';
   $('#divFeatureInfo').html('<h4>'+inName+' County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>');
   dispChart("localChart",buildCountyChartOptions(inFips));
-      // Put together an UL with the Total Permits for the County and the Total for each of the bureaus.
+  // Put together an UL with the Total Permits for the County and the Total for each of the bureaus.
 
-      var infoHtml = '<h5 class="text-center">' + permitCount[inFips].total + ' Total Permits' + '</h5><ul>';
-      for (var tmpBureau in permits.types){
-        infoHtml += '<li>' + permits.types[tmpBureau].typeName + '<table class="table">';
-        for (var tmpType in permits.types[tmpBureau]){
-          if(permits.types[tmpBureau][tmpType].hasOwnProperty('name')){
-            infoHtml += '<tr><td class="text-right">' + ((permitCount[inFips].hasOwnProperty(tmpType))?permitCount[inFips][tmpType]:0) +  '</td>';
-            infoHtml += '<td>' + permits.types[tmpBureau][tmpType].name + '</td></tr>';
-          }
-        }
-        infoHtml += '</table></li>';
+  var infoHtml = '<h5 class="text-center">' + permitCount[inFips].total + ' Total Permits' + '</h5><ul>';
+  for (var tmpBureau in permits.types){
+    infoHtml += '<li>' + permits.types[tmpBureau].typeName + '<table class="table">';
+    for (var tmpType in permits.types[tmpBureau]){
+      if(permits.types[tmpBureau][tmpType].hasOwnProperty('name')){
+        infoHtml += '<tr><td class="text-right">' + ((permitCount[inFips].hasOwnProperty(tmpType))?permitCount[inFips][tmpType]:0) +  '</td>';
+        infoHtml += '<td>' + permits.types[tmpBureau][tmpType].name + '</td></tr>';
       }
-      infoHtml += '</ul>';
-      $('#localTable').html(infoHtml);
     }
+    infoHtml += '</table></li>';
+  }
+  infoHtml += '</ul>';
+  $('#localTable').html(infoHtml);
+}
 
-function milesToFieldOffice(inLocationInfo){
-  var offices = countyList[inLocationInfo.county.CO_FIPS].offices;
+function milesToFieldOffice(inFips, inLocation, inTemplate, inType){
+  var officeType = (typeof(inType) === 'string')?inType:null;
+  var offices = countyList[inFips].offices;
   var outOfficeList = {};
   for (var office in offices){
     var testOffice = officeList[offices[office]];
-    if (!outOfficeList[offices[office]]){
-      outOfficeList[offices[office]]={
-        name: testOffice.name,
-        distance: milesApart(testOffice.location, inLocationInfo.inLocation),
-        types: []
-      };
+    if (officeType === null || officeType === office){
+      if (!outOfficeList[offices[office]]){
+        outOfficeList[offices[office]]={
+          name: testOffice.name,
+          distance: milesApart(testOffice.location, inLocation),
+          types: []
+        };
+      }
+      outOfficeList[offices[office]].types.push(office);
     }
-    outOfficeList[offices[office]].types.push(office);
   }
-  var template = "<tr><td><%=name%> Field Office<br><%=types.join()%></td><td><%=distance%> miles</td></tr>";
   var outHtmls = [];
   for (var outOffice in outOfficeList){
-    outHtmls.push(_.template(template, outOfficeList[outOffice]));
+    outHtmls.push(_.template(inTemplate, outOfficeList[outOffice]));
   }
   outHtml = outHtmls.join('');
   return outHtml;
@@ -397,14 +404,13 @@ function getOfficer(inArray, inType){
 
 function updateLocalInfo(inLocationInfo){
   if (!measureControl.isActive()){
-    console.log(inLocationInfo);
     var reTable = /<\/table>/;
     var reHouse = /(id='stateHouse'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Representative Name")
     var reSenate = /(id='stateSenate'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Senator Name")
     var reCongress = /<tr><td>US Congress.+Section.+\d<\/td><\/tr>/; // replace(reCongress, '$1')
     var reFips = /<br>FIPS.+\d{3}<\/span>/; // replace(reFips,'')
     var popupHtml = inLocationInfo.htmlString
-      .replace(reTable,milesToFieldOffice(inLocationInfo))
+      .replace(reTable,milesToFieldOffice(inLocationInfo.county.CO_FIPS, inLocationInfo.inLocation, templates.fieldOffice))
       .replace(reHouse, getOfficer(inLocationInfo.htmlString.match(reHouse),'House'))
       .replace(reSenate, getOfficer(inLocationInfo.htmlString.match(reSenate), 'Senate'))
       .replace(reCongress, '')
@@ -530,7 +536,9 @@ function makePermitMarker(inGeoJson, inLatLng){
 }
 
 function testFunction(inVal){
+  //<p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.fieldOffice%></p>
   console.log(inVal);
+  return inVal;
 }
 
 function getPermitTypes (inPermitTypes, inFunction){
