@@ -1,7 +1,7 @@
 
-
 var map, sidebar, countySearch = [];
 var generalPermitLayer, legislativeDistricts;
+var permitLayers = {};
 var permitCount;
 var countyList;
 var displayPermitTypes = [];
@@ -18,8 +18,10 @@ var infoPopup = L.popup({
   closeOnClick: false,
   autoPanPaddingTopLeft: L.point(50, 10),
   autoPanPaddingBottomRight: L.point(220,10),
-  className: ''
+  className: 'infoPopup'
 });
+
+var routing = new L.Routing.OSRM(); // used to calculate driving distance
 
 var zoomControl = L.control.zoom({
   position: "topleft"
@@ -30,102 +32,112 @@ var measureControl = L.control.measure({
 });
 
 var templates = {
-  fieldOffice: "<tr><td><%=name%> Field Office<br><%=types.join()%></td><td><%=distance%> miles</td></tr>",
-  permitFieldOffice: "Field Office - <%=name%> - <%=distance%> miles"
+  fieldOffice: "<tr><td><%=name%> Field Office<br><%=types.join()%></td><td><span id='distance'><%=distance%></span> mi</td></tr>",
+  permitFieldOffice: "Field Office - <%=name%> - <span id='distance'><%=distance%></span> mi"
 };
 
-var permits = {
-  url: 'http://epa084dgis01.iltest.illinois.gov:6080/arcgis/rest/services/Mitzelfelt/PermitReviewViewSingleService/FeatureServer/0',
-  types: {
-    AIR: {
-      typeName: 'Bureau of Air',
-      abbr: 'BOA',
-      PERMIT: {
-        name: 'FESOP or LSO Permits',
-        mediaType: 'AIR',
-        interestType: 'PERMIT',
-        color: '#C563E6',
-        markerIcon: 'img/airPermit.png',
-        popupTemplate: "<h5>Air Permit - FESOP or LSO<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'boa')%></p>",
-        markerTitle: "Name",
-        abbr: 'FESOP'
-      },
-      ROSS: {
-        name: 'ROSS Permits',
-        mediaType: 'AIR',
-        interestType: 'ROSS',
-        color: '#C563B6',
-        markerIcon: 'img/rossPermit.png',
-        popupTemplate: "<h5>Air Permit - ROSS<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'boa')%></p>",
-        markerTitle: "Name",
-        abbr: 'ROSS'
-      },
-      USEPA: {
-        name: 'CAAPP Permits',
-        mediaType: 'AIR',
-        interestType: 'USEPA',
-        color: '#C56386',
-        markerIcon: 'img/caappPermit.png',
-        popupTemplate: "<h5>Air Permit - CAAPP<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'boa')%></p>",
-        markerTitle: "Name",
-        abbr: 'CAAPP'
-      }
-    },
-    WATER: {
-      typeName: 'Bureau of Water',
-      abbr: 'BOW',
-      BOW: {
-        name: 'NPDES Permits',
-        mediaType: 'WATER',
-        interestType: 'BOW',
-        color: '#88F0D3',
-        markerIcon: 'img/npdesPermit.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dwpc')%></p>",
-        markerTitle: "Name",
-        abbr: 'NPDES'
-      },
-      PWS: {
-        name: 'PWS Permits',
-        mediaType: 'WATER',
-        interestType: 'PWS',
-        color: '#88F0D3',
-        markerIcon: 'img/pwsPermit.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dpws')%></p>",
-        markerTitle: "Name",
-        abbr: 'PWS'
-      },
-      CAFO: {
-        name: 'CAFO Permits',
-        mediaType: 'WATER',
-        interestType: 'CAFO',
-        color: '#88F0D3',
-        markerIcon: 'img/cafoPermit.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dwpc')%></p>",
-        markerTitle: "Name",
-        abbr: 'CAFO'
-      },
-      WQ401: {
-        name: 'WQ 401 Certification',
-        mediaType: 'WATER',
-        interestType: '401',
-        color: '#88F0D3',
-        markerIcon: 'img/wq401.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p><p><%=milesToFieldOffice(properties.CountyFips, L.latLng(geometry.coordinates[1],geometry.coordinates[0]), templates.permitFieldOffice,'dwpc')%></p>",
-        markerTitle: "Name",
-        abbr: 'WQ401'
-      },
-      AGCHM: {
-        name: 'Ag Chemical Certification',
-        mediaType: 'WATER',
-        interestType: 'AGCHM',
-        color: '#88F0D3',
-        markerIcon: 'img/agChem.png',
-        popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.Name %></h4><p><%= properties.Address %><br><%= properties.City %>,  IL</p><p><%= properties.SiteId %></p>",
-        markerTitle: "Name",
-        abbr: 'AGCHM'
-      }
-    }
 
+var permits = {
+  types: {
+    "Npdes": {
+      type: 'Npdes',
+      name: 'NPDES Permits',
+      mediaType: 'WATER',
+      mediaAbbr: 'BOW',
+      color: '#88F0D3',
+      markerIcon: 'img/npdesPermit.png',
+      popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
+      markerTitle: "name",
+      abbr: 'NPDES'
+    },
+    "WPC State Construction/Operating Permit": {
+      type: 'WPC State Construction/Operating Permit',
+      name: 'WPC State Construction/Operating Permit',
+      mediaType: 'WATER',
+      mediaAbbr: 'BOW',
+      color: '#C563E6',
+      markerIcon: 'img/stateConPermit.png',
+      popupTemplate: "<h5>Water Permit - WPC State Construction/Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID<%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p>",
+      markerTitle: "name",
+      abbr: 'WPC State Con'
+    },
+    "LIFETIME": {
+      type: 'LIFETIME',
+      name: 'Lifetime Permits',
+      mediaType: 'AIR',
+      mediaAbbr: 'BOA',
+      color: '#C563E6',
+      markerIcon: 'img/lifetimePermit.png',
+      popupTemplate: "<h5>Air Permit - Lifetime<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      markerTitle: "name",
+      abbr: 'Lifetime'
+    },
+    "CONSTRUCTION": {
+      type: 'CONSTRUCTION',
+      name: 'Construction',
+      mediaType: 'AIR',
+      mediaAbbr: 'BOA',
+      color: '#C563E6',
+      markerIcon: 'img/constrPermit.png',
+      popupTemplate: "<h5>Air Permit - Construction<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      markerTitle: "name",
+      abbr: 'BOA Con'
+    },
+    "ROSS": {
+      type: 'ROSS',
+      name: 'ROSS Permits',
+      mediaType: 'AIR',
+      mediaAbbr: 'BOA',
+      color: '#C563B6',
+      markerIcon: 'img/rossPermit.png',
+      popupTemplate: "<h5>Air Permit - ROSS<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      markerTitle: "name",
+      abbr: 'ROSS'
+    },
+    "TITLE V": {
+      type: 'TITLE V',
+      name: 'Title V Permits',
+      mediaType: 'AIR',
+      mediaAbbr: 'BOA',
+      color: '#C563E6',
+      markerIcon: 'img/titleVPermit.png',
+      popupTemplate: "<h5>Air Permit - Title V<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      markerTitle: "name",
+      abbr: 'TitleV'
+    },
+    "FESOP": {
+      type: 'FESOP',
+      name: 'FESOP Permits',
+      mediaType: 'AIR',
+      mediaAbbr: 'BOA',
+      color: '#C563E6',
+      markerIcon: 'img/airPermit.png',
+      popupTemplate: "<h5>Air Permit - FESOP<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      markerTitle: "name",
+      abbr: 'FESOP'
+    },
+    "JOINT": {
+      type: 'JOINT',
+      name: 'Joint Permits',
+      mediaType: 'AIR',
+      mediaAbbr: 'BOA',
+      color: '#C563E6',
+      markerIcon: 'img/jointPermit.png',
+      popupTemplate: "<h5>Air Permit - Joint Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      markerTitle: "name",
+      abbr: 'Joint'
+    },
+    "OPERATING": {
+      type: 'OPERATING',
+      name: 'Operating Permits',
+      mediaType: 'AIR',
+      mediaAbbr: 'BOA',
+      color: '#C563E6',
+      markerIcon: 'img/operatingPermit.png',
+      popupTemplate: "<h5>Air Permit - Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      markerTitle: "name",
+      abbr: 'BOA Oper'
+    }
   }
 };
 
@@ -198,8 +210,21 @@ function getViewport() {
   }
 }
 
-function milesApart(inLocation1, inLocation2){
+function computeMilesApart(inLocation1, inLocation2){
   return Math.round((inLocation1.distanceTo(inLocation2) / 1609.34) * 10) / 10;
+}
+
+function computeRoadMiles(inLocation1, inLocation2, inDiv){
+  var waypoints = [{
+    latLng: inLocation1,
+    name: 'origin'
+  },{
+    latLng: inLocation2,
+    name: 'destination'
+  }];
+  routing.route(waypoints, function(err, routes){
+    $(inDiv).Html(Math.round(routes[0].summary.totalDistance * 0.00621371)/10);
+  });
 }
 
 function activeDisplayTypes(){
@@ -382,7 +407,7 @@ function milesToFieldOffice(inFips, inLocation, inTemplate, inType){
       if (!outOfficeList[offices[office]]){
         outOfficeList[offices[office]]={
           name: testOffice.name,
-          distance: milesApart(testOffice.location, inLocation),
+          distance: computeMilesApart(testOffice.location, inLocation),
           types: []
         };
       }
@@ -465,19 +490,19 @@ function configureCountyFeature(feature, layer) {
   });
 }
 
-generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
-  style: colorCountyFeature,
-  precision: 5,
-  onEachFeature: configureCountyFeature
-});
+// generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
+//   style: colorCountyFeature,
+//   precision: 5,
+//   onEachFeature: configureCountyFeature
+// });
 
-generalPermitLayer.on("loading", function(evt){
-  $("#loading").show();
-});
+// generalPermitLayer.on("loading", function(evt){
+//   $("#loading").show();
+// });
 
-generalPermitLayer.on("load", function(evt){
-  $("#loading").hide();
-});
+// generalPermitLayer.on("load", function(evt){
+//   $("#loading").hide();
+// });
 
 legislativeDistricts = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/LegislativeDistricts/FeatureServer/2", {
   where: "DistrictNum = 0",
@@ -514,12 +539,13 @@ localPermitMarkers.on("load", function(evt){
 });
 
 function bindPermitMarker(inGeoJson, inMarker){
-  var permitType = permits.types[inGeoJson.properties.MediaCode][inGeoJson.properties.InterestType];
+  var permitType = permits.types[inGeoJson.properties.type];
   inMarker.bindPopup(_.template(permitType.popupTemplate,inGeoJson));
+  //inMarker.bindPopup( L.popup({className: 'permitPopup'}).setContent(_.template(permitType.popupTemplate,inGeoJson)));
 }
 
 function makePermitMarker(inGeoJson, inLatLng){
-  var permitType = permits.types[inGeoJson.properties.MediaCode][inGeoJson.properties.InterestType];
+  var permitType = permits.types[inGeoJson.properties.type];
   var iconUrl = permitType.markerIcon;
   var markerTitle = permitType.markerTitle;
   return L.marker(inLatLng, {
@@ -587,12 +613,62 @@ if (politicalDistrict){
 return returnWhere;
 }
 
-permitCluster = new L.esri.ClusteredFeatureLayer(permits.url,{
-  precision: 5,
-  createMarker: makePermitMarker,
-  onEachMarker: bindPermitMarker,
-  where: standardWhere
+function createPermitLayer(){
+  return new L.geoJson(
+    null,{
+    pointToLayer: makePermitMarker,
+    onEachFeature: bindPermitMarker
+  });
+}
+
+function createDataCollection(){
+  return {
+    type: 'FeatureCollection',
+    features: [],
+    totalRecords: 0
+  };
+}
+
+
+// This may result in a race conditions since it is loading data into the displayPermitTypes array
+$.getJSON('data/permits.json', function(data){
+  var dataCollections = {};
+  for (var i = data.length - 1; i >= 0; i--) {
+    var mediaType = permits.types[data[i].type].mediaType;
+    if (typeof(dataCollections[mediaType]) === 'undefined'){
+      dataCollections[mediaType] = {
+        abbr: permits.types[data[i].type].mediaAbbr
+      };
+    }
+    if (typeof (dataCollections[mediaType][data[i].type]) === 'undefined'){
+      dataCollections[mediaType][data[i].type] = createDataCollection();
+    }
+    ++dataCollections[mediaType][data[i].type].totalRecords;
+    if(data[i].lon!=null && data[i].lat!=null){
+
+      var feature = {
+        type: 'Feature',
+        id: i,
+        properties: data[i],
+        geometry: {
+          type: 'Point',
+          coordinates: [
+            data[i].lon,
+            data[i].lat
+          ]
+        }
+      };
+      dataCollections[mediaType][data[i].type].features.push(feature);
+    }
+  }
+  for (var permitType in displayPermitTypes){
+    var currPermitType = displayPermitTypes[permitType];
+    console.log(currPermitType);
+    currPermitType.actionLayer.addData(dataCollections[currPermitType.mediaType][currPermitType.permitType]);
+    currPermitType.totalRecords = dataCollections[currPermitType.mediaType][currPermitType.permitType].totalRecords;
+  }
 });
+
 
 function updatePermitDisplay(){
   try{
@@ -614,7 +690,7 @@ var map = L.map("map", {
   minZoom:6,
   zoom: 7,
   center: [40, -89.5],
-  layers: [baseStreetMap, legislativeDistricts, generalPermitLayer],
+  layers: [baseStreetMap, legislativeDistricts, localPermitMarkers],
   zoomControl: false,
   attributionControl: true,
 //      maxBounds: maxMapBounds,
@@ -627,26 +703,31 @@ map.on('click', function (e) {
 
 map.on('viewreset', function(e){
   if (map.getZoom()>10){
-    map.removeLayer(generalPermitLayer);
-    $('#heatPatch').css('visibility', 'hidden');
-    map.closePopup();
-    map.addLayer(permitCluster);
+//    map.removeLayer(generalPermitLayer);
+//    $('#heatPatch').css('visibility', 'hidden');
+//    map.closePopup();
+//    map.addLayer(permitCluster);
   }
   else{
-    map.removeLayer(permitCluster);
-    $('#heatPatch').css('visibility', 'visible');
-    map.addLayer(generalPermitLayer);
+//    map.removeLayer(permitCluster);
+//   $('#heatPatch').css('visibility', 'visible');
+//    map.addLayer(generalPermitLayer);
   }
 });
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e){
-  var index;
-  for (index = 0; index < displayPermitTypes.length; ++index){
+  for (var index = 0; index < displayPermitTypes.length; ++index){
     if (e.layer === displayPermitTypes[index].testLayer) {
       displayPermitTypes[index].active = true;
-      updatePermitDisplay();
+      localPermitMarkers.addLayer(displayPermitTypes[index].actionLayer);
     }
+  }
+});
+
+map.on('popupopen', function(e){
+  if (e.popup.options.className === 'infoPopup'){
+    console.log(e.popup.options.className);
   }
 });
 
@@ -655,23 +736,23 @@ map.on('popupclose', function(e){
 });
 
 map.on('overlayremove', function(e){
-  var index;
-  var removeLayer;
-  for (index = 0; index < displayPermitTypes.length; ++index){
+  for (var index = 0; index < displayPermitTypes.length; ++index){
     if (e.layer === displayPermitTypes[index].testLayer){
       displayPermitTypes[index].active = false;
-      updatePermitDisplay();
+      localPermitMarkers.removeLayer(displayPermitTypes[index].actionLayer);
     }
   }
 });
 
 function buildPermitInfo(inPermitType){
+  console.log('Building displayPermitTypes');
   var newPermitLayer = {};
   newPermitLayer.name = inPermitType.name;
+  newPermitLayer.actionLayer = createPermitLayer();
   newPermitLayer.testLayer = L.geoJson(null);
   newPermitLayer.mediaType = inPermitType.mediaType;
-  newPermitLayer.interestType = inPermitType.interestType;
-  newPermitLayer.active = true;
+  newPermitLayer.permitType = inPermitType.type;
+  newPermitLayer.active = false;
   map.addLayer(newPermitLayer.testLayer);
   displayPermitTypes.push(newPermitLayer);  
 }
@@ -718,23 +799,23 @@ var referenceLayers = {
 
 function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
   var outGroupedOverlay = {};
+  console.log(outGroupedOverlay);
   var types = inPermitArray.types;
   var layerNameTemplate = "<img src='<%=markerIcon%>' width='24' height='28'>&nbsp;<%=name%>";
   for (var type in types){
-    if (types[type].hasOwnProperty('abbr')){
-      var group = types[type];
-      var groupName = types[type].abbr + ' Permits';
+    var groupName = types[type].mediaAbbr + ' Permits';
+    if (typeof(outGroupedOverlay[groupName]) === 'undefined'){
       outGroupedOverlay[groupName] = {};
-      for (var layer in group){
-        if (group[layer].hasOwnProperty('abbr')){
-          var layerName = _.template(layerNameTemplate,group[layer]);
-          var testName = group[layer].name;
-          for (var j in inDisplayPermitTypes){
-            if (inDisplayPermitTypes[j].name === testName){
-              outGroupedOverlay[groupName][layerName] = inDisplayPermitTypes[j].testLayer;
-            }
-          }
-        }
+    }
+    
+    var layerName = _.template(layerNameTemplate,types[type]);
+    var testName = types[type].name;
+    console.log(testName);
+    for (var j in inDisplayPermitTypes){
+      if (inDisplayPermitTypes[j].name === testName){
+        outGroupedOverlay[groupName][layerName] = inDisplayPermitTypes[j].testLayer;
+        console.log(outGroupedOverlay[groupName][layerName]);
+        console.log(layerName);
       }
     }
   }
