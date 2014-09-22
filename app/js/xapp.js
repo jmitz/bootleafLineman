@@ -490,19 +490,21 @@ function configureCountyFeature(feature, layer) {
   });
 }
 
-// generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
-//   style: colorCountyFeature,
-//   precision: 5,
-//   onEachFeature: configureCountyFeature
-// });
+generalPermitTestLayer = new L.geoJson(null);
 
-// generalPermitLayer.on("loading", function(evt){
-//   $("#loading").show();
-// });
+generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
+  style: colorCountyFeature,
+  precision: 5,
+  onEachFeature: configureCountyFeature
+});
 
-// generalPermitLayer.on("load", function(evt){
-//   $("#loading").hide();
-// });
+generalPermitLayer.on("loading", function(evt){
+  $("#loading").show();
+});
+
+generalPermitLayer.on("load", function(evt){
+  $("#loading").hide();
+});
 
 legislativeDistricts = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/LegislativeDistricts/FeatureServer/2", {
   where: "DistrictNum = 0",
@@ -528,15 +530,15 @@ var localPermitMarkers = new L.MarkerClusterGroup({
   zoomToBoundsOnClick: true
 });
 
-localPermitMarkers.on("loading", function(evt){
-  console.log('Permits Loading');
-  $("#loading").show();
-});
+// localPermitMarkers.on("loading", function(evt){
+//   console.log('Permits Loading');
+//   $("#loading").show();
+// });
 
-localPermitMarkers.on("load", function(evt){
-  console.log('Permits Loaded');
-  $("#loading").hide();
-});
+// localPermitMarkers.on("load", function(evt){
+//   console.log('Permits Loaded');
+//   $("#loading").hide();
+// });
 
 function bindPermitMarker(inGeoJson, inMarker){
   var permitType = permits.types[inGeoJson.properties.type];
@@ -629,10 +631,10 @@ function createDataCollection(){
   };
 }
 
-
 // This may result in a race conditions since it is loading data into the displayPermitTypes array
 $.getJSON('data/permits.json', function(data){
   var dataCollections = {};
+  var reDate = /\/Date\(\d+\)\//;
   for (var i = data.length - 1; i >= 0; i--) {
     var mediaType = permits.types[data[i].type].mediaType;
     if (typeof(dataCollections[mediaType]) === 'undefined'){
@@ -644,6 +646,11 @@ $.getJSON('data/permits.json', function(data){
       dataCollections[mediaType][data[i].type] = createDataCollection();
     }
     ++dataCollections[mediaType][data[i].type].totalRecords;
+    for (var attribute in data[i]){
+      if (reDate.test(data[i][attribute])){
+        data[i][attribute] = new Date(parseInt(data[i][attribute].substr(6), 10));
+      }
+    }
     if(data[i].lon!=null && data[i].lat!=null){
 
       var feature = {
@@ -717,6 +724,7 @@ map.on('viewreset', function(e){
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e){
+  console.log(e);
   for (var index = 0; index < displayPermitTypes.length; ++index){
     if (e.layer === displayPermitTypes[index].testLayer) {
       displayPermitTypes[index].active = true;
@@ -753,7 +761,7 @@ function buildPermitInfo(inPermitType){
   newPermitLayer.mediaType = inPermitType.mediaType;
   newPermitLayer.permitType = inPermitType.type;
   newPermitLayer.active = false;
-  map.addLayer(newPermitLayer.testLayer);
+  //map.addLayer(newPermitLayer.testLayer);
   displayPermitTypes.push(newPermitLayer);  
 }
 
@@ -793,7 +801,7 @@ var baseLayers = {
 };
 
 var referenceLayers = {
-  "State House Districts": "TEST"
+  "County Permit Counts": generalPermitTestLayer
 };
 
 
@@ -824,6 +832,8 @@ function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
 
 var groupedOverlays = buildGroupedOverlays(permits, displayPermitTypes);
 
+groupedOverlays.Reference = referenceLayers;
+
 /* Larger screens get expanded layer control */
 if (document.body.clientWidth <= 767) {
   var isCollapsed = true;
@@ -835,7 +845,9 @@ var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
   collapsed: isCollapsed,
   closeButton: true,
   position: 'topleft'
-}).addTo(map);
+});
+
+layerControl.addTo(map);
 
 sidebar = L.control.sidebar("sidebar", {
   closeButton: true,
