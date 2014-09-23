@@ -1,6 +1,24 @@
 
 var map, sidebar, countySearch = [];
 var generalPermitLayer, legislativeDistricts;
+var stateSummary = {
+  locationCount: 0,
+  totalCount: 0,
+  permits: {},
+  politicalDistricts:{
+    House: {
+      '0': {
+        permits: {}
+      }
+    },
+    Senate: {
+      '0': {
+        permits: {}
+      }
+    }
+  },
+  counties:{}
+};
 var permitLayers = {};
 var permitCount;
 var countyList;
@@ -39,6 +57,17 @@ var templates = {
 
 var permits = {
   types: {
+    "Solid Waste Permitting": {
+      type: 'Solid Waste Permitting',
+      name: 'Solid Waste Permits',
+      mediaType: 'LAND',
+      mediaAbbr: 'BOL',
+      color: '#08F0D3',
+      markerIcon: 'img/solidWaste.png',
+      popupTemplate: "<h5>Land Permit - Solid Waste<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
+      markerTitle: "name",
+      abbr: 'NPDES'
+    },
     "Npdes": {
       type: 'Npdes',
       name: 'NPDES Permits',
@@ -142,7 +171,11 @@ var permits = {
 };
 
 $.getJSON('data/countyList.json', function (data){
-  countyList = data;
+  stateSummary.counties = data;
+  stateSummary.counties['0'] = {
+    permits: {}
+  };
+  countyList = data; //To Be Removed
 });
 
 $.getJSON('data/officeList.json', function (data){
@@ -164,6 +197,14 @@ $.getJSON('data/permitCount.json', function (data){
     }
   }
   permitCount = tmpPermits;
+});
+
+$.getJSON('data/district.json', function(data){
+  for (var tmpDistrict in data){
+    data[tmpDistrict].title = data[tmpDistrict].district + ' - ' + data[tmpDistrict].name;
+    data[tmpDistrict].permits = {};
+    stateSummary.politicalDistricts[data[tmpDistrict].type][data[tmpDistrict].district] = data[tmpDistrict];
+  }
 });
 
 $.getJSON('data/district.json', function(data){
@@ -460,8 +501,8 @@ function configureCountyFeature(feature, layer) {
     bounds: layer.getBounds()
   });
   feature.properties.PermitTotal = permitCount[feature.properties.CO_FIPS].total;
-  generalPermitLayer.setStyle(colorCountyFeature);
-  layer.on('mouseover mousemove', function(e){
+  //generalPermitLayer.setStyle(colorCountyFeature);
+/*  layer.on('mouseover mousemove', function(e){
     if (!infoPopupFlag){
       var hover_bubble = new L.Rrose({
         offset: new L.Point(0,-10),
@@ -488,7 +529,7 @@ function configureCountyFeature(feature, layer) {
     map.fitBounds(e.target.getBounds());
 
   });
-}
+*/}
 
 generalPermitTestLayer = new L.geoJson(null);
 
@@ -631,12 +672,45 @@ function createDataCollection(){
   };
 }
 
+function summatePermitLocations(inPermit){
+  if (typeof(stateSummary.permits[inPermit.type]) === 'undefined'){
+    stateSummary.permits[inPermit.type] = {
+      locatedPermits: 0
+    };
+  }
+  ++stateSummary.locationCount;
+  ++stateSummary.permits[inPermit.type].locatedPermits;
+  if(inPermit.countyFips !== null && typeof(stateSummary.counties[inPermit.countyFips].permits[inPermit.type]) === 'undefined'){
+    stateSummary.counties[inPermit.countyFips.toString()].permits[inPermit.type] = {
+      locatedPermits: 0
+    };
+  }
+  ++stateSummary.counties[inPermit.countyFips].permits[inPermit.type].locatedPermits;
+
+  if (typeof(stateSummary.politicalDistricts.House[inPermit.stateHouseDist].permits[inPermit.type]) === 'undefined'){
+    stateSummary.politicalDistricts.House[inPermit.stateHouseDist].permits[inPermit.type] = {
+      locatedPermits: 0
+    };
+  }
+  ++stateSummary.politicalDistricts.House[inPermit.stateHouseDist].permits[inPermit.type].locatedPermits;
+
+  if (typeof(inPermit.senateDist !== null && 
+    stateSummary.politicalDistricts.Senate[inPermit.senateDist].permits[inPermit.type]) === 'undefined'){
+    stateSummary.politicalDistricts.Senate[inPermit.senateDist].permits[inPermit.type] = {
+      locatedPermits: 0
+    };
+  }
+  ++stateSummary.politicalDistricts.Senate[inPermit.senateDist].permits[inPermit.type].locatedPermits;
+}
+
 // This may result in a race conditions since it is loading data into the displayPermitTypes array
 $.getJSON('data/permits.json', function(data){
   var dataCollections = {};
   var reDate = /\/Date\(\d+\)\//;
   for (var i = data.length - 1; i >= 0; i--) {
     var mediaType = permits.types[data[i].type].mediaType;
+    stateSummary.totalCount++;
+    console.log(mediaType);
     if (typeof(dataCollections[mediaType]) === 'undefined'){
       dataCollections[mediaType] = {
         abbr: permits.types[data[i].type].mediaAbbr
@@ -652,7 +726,7 @@ $.getJSON('data/permits.json', function(data){
       }
     }
     if(data[i].lon!=null && data[i].lat!=null){
-
+      summatePermitLocations(data[i]);
       var feature = {
         type: 'Feature',
         id: i,
@@ -670,7 +744,6 @@ $.getJSON('data/permits.json', function(data){
   }
   for (var permitType in displayPermitTypes){
     var currPermitType = displayPermitTypes[permitType];
-    console.log(currPermitType);
     currPermitType.actionLayer.addData(dataCollections[currPermitType.mediaType][currPermitType.permitType]);
     currPermitType.totalRecords = dataCollections[currPermitType.mediaType][currPermitType.permitType].totalRecords;
   }
@@ -697,12 +770,14 @@ var map = L.map("map", {
   minZoom:6,
   zoom: 7,
   center: [40, -89.5],
-  layers: [baseStreetMap, legislativeDistricts, localPermitMarkers],
+  layers: [baseStreetMap, generalPermitLayer, legislativeDistricts, localPermitMarkers],
   zoomControl: false,
   attributionControl: true,
 //      maxBounds: maxMapBounds,
 bounceAtZoomLimits: false
 });
+
+map.removeLayer(generalPermitLayer);
 
 map.on('click', function (e) {
      locator.getLocationInfo(e.latlng, updateLocalInfo);
@@ -807,7 +882,6 @@ var referenceLayers = {
 
 function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
   var outGroupedOverlay = {};
-  console.log(outGroupedOverlay);
   var types = inPermitArray.types;
   var layerNameTemplate = "<img src='<%=markerIcon%>' width='24' height='28'>&nbsp;<%=name%>";
   for (var type in types){
@@ -818,12 +892,9 @@ function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
     
     var layerName = _.template(layerNameTemplate,types[type]);
     var testName = types[type].name;
-    console.log(testName);
     for (var j in inDisplayPermitTypes){
       if (inDisplayPermitTypes[j].name === testName){
         outGroupedOverlay[groupName][layerName] = inDisplayPermitTypes[j].testLayer;
-        console.log(outGroupedOverlay[groupName][layerName]);
-        console.log(layerName);
       }
     }
   }

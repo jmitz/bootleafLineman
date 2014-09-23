@@ -6,7 +6,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "3": {
     "name": "Alexander",
@@ -15,7 +16,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "5": {
     "name": "Bond",
@@ -24,7 +26,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "7": {
     "name": "Boone",
@@ -33,7 +36,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "9": {
     "name": "Brown",
@@ -42,7 +46,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "11": {
     "name": "Bureau",
@@ -51,7 +56,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "13": {
     "name": "Calhoun",
@@ -60,7 +66,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "15": {
     "name": "Carroll",
@@ -69,7 +76,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "17": {
     "name": "Cass",
@@ -78,7 +86,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "19": {
     "name": "Champaign",
@@ -87,7 +96,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "21": {
     "name": "Christian",
@@ -96,7 +106,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "23": {
     "name": "Clark",
@@ -105,7 +116,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "25": {
     "name": "Clay",
@@ -114,7 +126,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "27": {
     "name": "Clinton",
@@ -123,7 +136,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "29": {
     "name": "Coles",
@@ -132,7 +146,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "31": {
     "name": "Cook",
@@ -141,7 +156,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "33": {
     "name": "Crawford",
@@ -150,7 +166,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "35": {
     "name": "Cumberland",
@@ -159,7 +176,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "37": {
     "name": "DeKalb",
@@ -168,7 +186,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "39": {
     "name": "DeWitt",
@@ -177,7 +196,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "41": {
     "name": "Douglas",
@@ -186,7 +206,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "43": {
     "name": "DuPage",
@@ -195,7 +216,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "45": {
     "name": "Edgar",
@@ -204,7 +226,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "47": {
     "name": "Edwards",
@@ -213,7 +236,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "49": {
     "name": "Effingham",
@@ -222,7 +246,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "51": {
     "name": "Fayette",
@@ -231,7 +256,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "53": {
     "name": "Ford",
@@ -240,7 +266,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "55": {
     "name": "Franklin",
@@ -249,7 +276,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "57": {
     "name": "Fulton",
@@ -258,7 +286,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "59": {
     "name": "Gallatin",
@@ -267,7 +296,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "61": {
     "name": "Greene",
@@ -276,7 +306,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "63": {
     "name": "Grundy",
@@ -285,7 +316,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "65": {
     "name": "Hamilton",
@@ -294,7 +326,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "67": {
     "name": "Hancock",
@@ -303,7 +336,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "69": {
     "name": "Hardin",
@@ -312,7 +346,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "71": {
     "name": "Henderson",
@@ -321,7 +356,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "73": {
     "name": "Henry",
@@ -330,7 +366,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "75": {
     "name": "Iroquois",
@@ -339,7 +376,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "77": {
     "name": "Jackson",
@@ -348,7 +386,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "79": {
     "name": "Jasper",
@@ -357,7 +396,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "81": {
     "name": "Jefferson",
@@ -366,7 +406,8 @@
       "bol": 1,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "83": {
     "name": "Jersey",
@@ -375,7 +416,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "85": {
     "name": "Jo Daviess",
@@ -384,7 +426,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "87": {
     "name": "Johnson",
@@ -393,7 +436,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "89": {
     "name": "Kane",
@@ -402,7 +446,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "91": {
     "name": "Kankakee",
@@ -411,7 +456,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "93": {
     "name": "Kendall",
@@ -420,7 +466,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "95": {
     "name": "Knox",
@@ -429,7 +476,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "97": {
     "name": "Lake",
@@ -438,7 +486,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "99": {
     "name": "LaSalle",
@@ -447,7 +496,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "101": {
     "name": "Lawrence",
@@ -456,7 +506,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "103": {
     "name": "Lee",
@@ -465,7 +516,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "105": {
     "name": "Livingston",
@@ -474,7 +526,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "107": {
     "name": "Logan",
@@ -483,7 +536,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "109": {
     "name": "McDonough",
@@ -492,7 +546,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "111": {
     "name": "McHenry",
@@ -501,7 +556,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "113": {
     "name": "McLean",
@@ -510,7 +566,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "115": {
     "name": "Macon",
@@ -519,7 +576,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "117": {
     "name": "Macoupin",
@@ -528,7 +586,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "119": {
     "name": "Madison",
@@ -537,7 +596,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "121": {
     "name": "Marion",
@@ -546,7 +606,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "123": {
     "name": "Marshall",
@@ -555,7 +616,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "125": {
     "name": "Mason",
@@ -564,7 +626,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "127": {
     "name": "Massac",
@@ -573,7 +636,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "129": {
     "name": "Menard",
@@ -582,7 +646,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "131": {
     "name": "Mercer",
@@ -591,7 +656,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "133": {
     "name": "Monroe",
@@ -600,7 +666,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "135": {
     "name": "Montgomery",
@@ -609,7 +676,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "137": {
     "name": "Morgan",
@@ -618,7 +686,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "139": {
     "name": "Moultrie",
@@ -627,7 +696,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "141": {
     "name": "Ogle",
@@ -636,7 +706,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "143": {
     "name": "Peoria",
@@ -645,7 +716,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "145": {
     "name": "Perry",
@@ -654,7 +726,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "147": {
     "name": "Piatt",
@@ -663,7 +736,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "149": {
     "name": "Pike",
@@ -672,7 +746,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "151": {
     "name": "Pope",
@@ -681,7 +756,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "153": {
     "name": "Pulaski",
@@ -690,7 +766,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "155": {
     "name": "Putnam",
@@ -699,7 +776,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "157": {
     "name": "Randolph",
@@ -708,7 +786,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "159": {
     "name": "Richland",
@@ -717,7 +796,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "161": {
     "name": "Rock Island",
@@ -726,7 +806,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "163": {
     "name": "Saint Clair",
@@ -735,7 +816,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "165": {
     "name": "Saline",
@@ -744,7 +826,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "167": {
     "name": "Sangamon",
@@ -753,7 +836,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "169": {
     "name": "Schuyler",
@@ -762,7 +846,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "171": {
     "name": "Scott",
@@ -771,7 +856,8 @@
       "bol": 10,
       "dwpc": 10,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "173": {
     "name": "Shelby",
@@ -780,7 +866,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "175": {
     "name": "Stark",
@@ -789,7 +876,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "177": {
     "name": "Stephenson",
@@ -798,7 +886,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "179": {
     "name": "Tazewell",
@@ -807,7 +896,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "181": {
     "name": "Union",
@@ -816,7 +906,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "183": {
     "name": "Vermilion",
@@ -825,7 +916,8 @@
       "bol": 1,
       "dwpc": 1,
       "dpws": 1
-    }
+    },
+    "permits": {}
   },
   "185": {
     "name": "Wabash",
@@ -834,7 +926,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "187": {
     "name": "Warren",
@@ -843,7 +936,8 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 10
-    }
+    },
+    "permits": {}
   },
   "189": {
     "name": "Washington",
@@ -852,7 +946,8 @@
       "bol": 2,
       "dwpc": 2,
       "dpws": 2
-    }
+    },
+    "permits": {}
   },
   "191": {
     "name": "Wayne",
@@ -861,7 +956,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "193": {
     "name": "White",
@@ -870,7 +966,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "195": {
     "name": "Whiteside",
@@ -879,7 +976,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "197": {
     "name": "Will",
@@ -888,7 +986,8 @@
       "bol": 3,
       "dwpc": 3,
       "dpws": 4
-    }
+    },
+    "permits": {}
   },
   "199": {
     "name": "Williamson",
@@ -897,7 +996,8 @@
       "bol": 6,
       "dwpc": 6,
       "dpws": 6
-    }
+    },
+    "permits": {}
   },
   "201": {
     "name": "Winnebago",
@@ -906,7 +1006,8 @@
       "bol": 9,
       "dwpc": 9,
       "dpws": 9
-    }
+    },
+    "permits": {}
   },
   "203": {
     "name": "Woodford",
@@ -915,6 +1016,7 @@
       "bol": 8,
       "dwpc": 8,
       "dpws": 9
-    }
+    },
+    "permits": {}
   }
 }
