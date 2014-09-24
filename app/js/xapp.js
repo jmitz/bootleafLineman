@@ -7,12 +7,16 @@ var stateSummary = {
   permits: {},
   politicalDistricts:{
     House: {
+      bhArray: [],
       '0': {
+        title: '0 - Missing House District',
         permits: {}
       }
     },
     Senate: {
+      bhArray: [],
       '0': {
+        title: '0 - Missing ',
         permits: {}
       }
     }
@@ -20,11 +24,9 @@ var stateSummary = {
   counties:{}
 };
 var permitLayers = {};
-var permitCount;
 var countyList;
 var displayPermitTypes = [];
 var officeList;
-var politicalDistricts = {};
 var politicalDistrict;
 var referenceLayers = {
   url :''
@@ -57,39 +59,6 @@ var templates = {
 
 var permits = {
   types: {
-    "Solid Waste Permitting": {
-      type: 'Solid Waste Permitting',
-      name: 'Solid Waste Permits',
-      mediaType: 'LAND',
-      mediaAbbr: 'BOL',
-      color: '#08F0D3',
-      markerIcon: 'img/solidWaste.png',
-      popupTemplate: "<h5>Land Permit - Solid Waste<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
-      markerTitle: "name",
-      abbr: 'NPDES'
-    },
-    "Npdes": {
-      type: 'Npdes',
-      name: 'NPDES Permits',
-      mediaType: 'WATER',
-      mediaAbbr: 'BOW',
-      color: '#88F0D3',
-      markerIcon: 'img/npdesPermit.png',
-      popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
-      markerTitle: "name",
-      abbr: 'NPDES'
-    },
-    "WPC State Construction/Operating Permit": {
-      type: 'WPC State Construction/Operating Permit',
-      name: 'WPC State Construction/Operating Permit',
-      mediaType: 'WATER',
-      mediaAbbr: 'BOW',
-      color: '#C563E6',
-      markerIcon: 'img/stateConPermit.png',
-      popupTemplate: "<h5>Water Permit - WPC State Construction/Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID<%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p>",
-      markerTitle: "name",
-      abbr: 'WPC State Con'
-    },
     "LIFETIME": {
       type: 'LIFETIME',
       name: 'Lifetime Permits',
@@ -166,6 +135,39 @@ var permits = {
       popupTemplate: "<h5>Air Permit - Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
       markerTitle: "name",
       abbr: 'BOA Oper'
+    },
+    "Solid Waste Permitting": {
+      type: 'Solid Waste Permitting',
+      name: 'Solid Waste Permits',
+      mediaType: 'LAND',
+      mediaAbbr: 'BOL',
+      color: '#08F0D3',
+      markerIcon: 'img/solidWaste.png',
+      popupTemplate: "<h5>Land Permit - Solid Waste<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
+      markerTitle: "name",
+      abbr: 'NPDES'
+    },
+    "Npdes": {
+      type: 'Npdes',
+      name: 'NPDES Permits',
+      mediaType: 'WATER',
+      mediaAbbr: 'BOW',
+      color: '#88F0D3',
+      markerIcon: 'img/npdesPermit.png',
+      popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
+      markerTitle: "name",
+      abbr: 'NPDES'
+    },
+    "WPC State Construction/Operating Permit": {
+      type: 'WPC State Construction/Operating Permit',
+      name: 'WPC State Construction/Operating Permit',
+      mediaType: 'WATER',
+      mediaAbbr: 'BOW',
+      color: '#C563E6',
+      markerIcon: 'img/stateConPermit.png',
+      popupTemplate: "<h5>Water Permit - WPC State Construction/Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID<%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p>",
+      markerTitle: "name",
+      abbr: 'WPC State Con'
     }
   }
 };
@@ -185,36 +187,13 @@ $.getJSON('data/officeList.json', function (data){
   }
 });
 
-$.getJSON('data/permitCount.json', function (data){
-  var tmpPermits = {};
-  for (var tmpCounty in data){
-    tmpPermits[data[tmpCounty].countyFips] = {
-      info: countyList[data[tmpCounty].countyFips],
-      total: data[tmpCounty].count
-    };
-    for (var tmpPermit in data[tmpCounty].detail){
-      tmpPermits[data[tmpCounty].countyFips][data[tmpCounty].detail[tmpPermit].interestType] = data[tmpCounty].detail[tmpPermit].count;
-    }
-  }
-  permitCount = tmpPermits;
-});
-
 $.getJSON('data/district.json', function(data){
   for (var tmpDistrict in data){
     data[tmpDistrict].title = data[tmpDistrict].district + ' - ' + data[tmpDistrict].name;
+    stateSummary.politicalDistricts[data[tmpDistrict].type].bhArray.push(data[tmpDistrict]);
     data[tmpDistrict].permits = {};
     stateSummary.politicalDistricts[data[tmpDistrict].type][data[tmpDistrict].district] = data[tmpDistrict];
   }
-});
-
-$.getJSON('data/district.json', function(data){
-  politicalDistricts.Senate = [];
-  politicalDistricts.House = [];
-  for (var tmpDistrict in data){
-    data[tmpDistrict].title = data[tmpDistrict].district + ' - ' + data[tmpDistrict].name;
-    politicalDistricts[data[tmpDistrict].type].push(data[tmpDistrict]);
-  }
-
 });
 
 var maxMapBounds = L.latLngBounds(L.latLng(36.9, -91.6),L.latLng(42.6, -87.4));
@@ -295,10 +274,10 @@ function getCountyChartValues(inFips){
   var tmpData = [];
   var tmpTypes = activeDisplayTypes();
   for (var tmpType in tmpTypes){
-    if (typeof(permitCount[inFips][tmpType])!=='undefined'){
+    if (typeof(stateSummary.counties[inFips][tmpType])!=='undefined'){
       var tmpBureau = tmpTypes[tmpType].mediaType;
       var tmpPermitInfo = {};
-      tmpPermitInfo.value = permitCount[inFips][tmpType];
+      tmpPermitInfo.value = stateSummary.counties[inFips][tmpType];
       tmpPermitInfo.color = permits.types[tmpBureau][tmpType].color;
       tmpPermitInfo.label = permits.types[tmpBureau][tmpType].abbr;
       tmpPermitInfo.labelColor = '#000';
@@ -389,7 +368,7 @@ function getCountyPermitCount(inFips){
   var tmpTypes = activeDisplayTypesArray();
   var outPermitCount = 0;
   for (var tmpType in tmpTypes){
-    outPermitCount += (typeof(permitCount[inFips][tmpTypes[tmpType]])!=='undefined')?permitCount[inFips][tmpTypes[tmpType]]:0;
+    outPermitCount += (typeof(stateSummary.counties[inFips][tmpTypes[tmpType]])!=='undefined')?stateSummary.counties[inFips][tmpTypes[tmpType]]:0;
   }
   return outPermitCount;
 }
@@ -423,12 +402,12 @@ function buildLocalInfo(inName, inFips){
   dispChart("localChart",buildCountyChartOptions(inFips));
   // Put together an UL with the Total Permits for the County and the Total for each of the bureaus.
 
-  var infoHtml = '<h5 class="text-center">' + permitCount[inFips].total + ' Total Permits' + '</h5><ul>';
+  var infoHtml = '<h5 class="text-center">' + stateSummary.counties[inFips].total + ' Total Permits' + '</h5><ul>';
   for (var tmpBureau in permits.types){
     infoHtml += '<li>' + permits.types[tmpBureau].typeName + '<table class="table">';
     for (var tmpType in permits.types[tmpBureau]){
       if(permits.types[tmpBureau][tmpType].hasOwnProperty('name')){
-        infoHtml += '<tr><td class="text-right">' + ((permitCount[inFips].hasOwnProperty(tmpType))?permitCount[inFips][tmpType]:0) +  '</td>';
+        infoHtml += '<tr><td class="text-right">' + ((stateSummary.counties[inFips].hasOwnProperty(tmpType))?stateSummary.counties[inFips][tmpType]:0) +  '</td>';
         infoHtml += '<td>' + permits.types[tmpBureau][tmpType].name + '</td></tr>';
       }
     }
@@ -464,7 +443,7 @@ function milesToFieldOffice(inFips, inLocation, inTemplate, inType){
 }
 
 function getOfficer(inArray, inType){
-  var outString = '$1$2 - ' + politicalDistricts[inType][inArray[2]-1].name;
+  var outString = '$1$2 - ' + stateSummary.politicalDistricts[inType][inArray[2]].name;
   return outString;
 }
 
@@ -500,7 +479,7 @@ function configureCountyFeature(feature, layer) {
     id: L.stamp(layer),
     bounds: layer.getBounds()
   });
-  feature.properties.PermitTotal = permitCount[feature.properties.CO_FIPS].total;
+  feature.properties.PermitTotal = stateSummary.counties[feature.properties.CO_FIPS].total;
   //generalPermitLayer.setStyle(colorCountyFeature);
 /*  layer.on('mouseover mousemove', function(e){
     if (!infoPopupFlag){
@@ -945,7 +924,7 @@ $(document).one("ajaxStop", function () {
       return Bloodhound.tokenizers.whitespace(d.title);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: politicalDistricts.Senate,
+    local: stateSummary.politicalDistricts.Senate.bhArray,
     limit: 10
   });
 
@@ -957,7 +936,7 @@ $(document).one("ajaxStop", function () {
       return Bloodhound.tokenizers.whitespace(d.title);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: politicalDistricts.House,
+    local: stateSummary.politicalDistricts.House.bhArray,
     limit: 10
   });
 
@@ -989,7 +968,7 @@ $(document).one("ajaxStop", function () {
         datum.bounds = queryDistrict.findDistrict(datum, map);
         politicalDistrict = datum;
         legislativeDistricts.setWhere(getLegislativeWhere('Search'));
-        permitCluster.setWhere(buildWhere(displayPermitTypes));
+        //permitCluster.setWhere(buildWhere(displayPermitTypes));
         //map.fitBounds(legislativeDistricts.getBounds());
       }
       if ($(".navbar-collapse").height() > 50) {
