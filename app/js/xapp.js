@@ -23,10 +23,10 @@ var stateSummary = {
   },
   counties:{}
 };
-var permitLayers = {};
 var countyList;
 var displayPermitTypes = [];
 var officeList;
+var currCountyFips;
 var politicalDistrict;
 var referenceLayers = {
   url :''
@@ -290,12 +290,11 @@ function getCountyChartValues(inFips){
   var tmpData = [];
   var tmpTypes = activeDisplayTypes();
   for (var tmpType in tmpTypes){
-    if (typeof(stateSummary.counties[inFips][tmpType])!=='undefined'){
-      var tmpBureau = tmpTypes[tmpType].mediaType;
+    if (typeof(stateSummary.counties[inFips].permits[tmpType])!=='undefined'){
       var tmpPermitInfo = {};
-      tmpPermitInfo.value = stateSummary.counties[inFips][tmpType];
-      tmpPermitInfo.color = permits.types[tmpBureau][tmpType].color;
-      tmpPermitInfo.label = permits.types[tmpBureau][tmpType].abbr;
+      tmpPermitInfo.value = stateSummary.counties[inFips].permits[tmpType].locatedPermits;
+      tmpPermitInfo.color = permits.types[tmpType].color;
+      tmpPermitInfo.label = permits.types[tmpType].abbr;
       tmpPermitInfo.labelColor = '#000';
       tmpPermitInfo.labelFontSize = '0.8em';
       tmpData.push(tmpPermitInfo);
@@ -410,23 +409,27 @@ function colorCountyFeature(feature){
 }
 
 function buildLocalInfo(inName, inFips){
+  currCountyFips = inFips;
   var html = '<h4>{{CountyName}} County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>';
   $('#divFeatureInfo').html('<h4>'+inName+' County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>');
   dispChart("localChart",buildCountyChartOptions(inFips));
   // Put together an UL with the Total Permits for the County and the Total for each of the bureaus.
 
-  var infoHtml = '<h5 class="text-center">' + stateSummary.counties[inFips].total + ' Total Permits' + '</h5><ul>';
-  for (var tmpBureau in permits.types){
-    infoHtml += '<li>' + permits.types[tmpBureau].typeName + '<table class="table">';
-    for (var tmpType in permits.types[tmpBureau]){
-      if(permits.types[tmpBureau][tmpType].hasOwnProperty('name')){
-        infoHtml += '<tr><td class="text-right">' + ((stateSummary.counties[inFips].hasOwnProperty(tmpType))?stateSummary.counties[inFips][tmpType]:0) +  '</td>';
-        infoHtml += '<td>' + permits.types[tmpBureau][tmpType].name + '</td></tr>';
-      }
+  var infoHtml = '<h5 class="text-center">' + getCountyPermitCount(inFips) + ' Total Permits' + '</h5><ul>';
+  var currMediaType = '';
+  for (var type in permits.types){
+    if (currMediaType !== permits.types[type].mediaType){
+      infoHtml += (currMediaType.length>0)?'</table></li>':'';
+      currMediaType = permits.types[type].mediaType;
+      infoHtml += '<li>' + permits.types[type].mediaAbbr + ' Permits<table class="table">';
     }
-    infoHtml += '</table></li>';
+    
+    if(permits.types[type].hasOwnProperty('name')){
+      infoHtml += '<tr><td class="text-right">' + ((stateSummary.counties[inFips].permits.hasOwnProperty(type))?stateSummary.counties[inFips].permits[type].locatedPermits:0) +  '</td>';
+      infoHtml += '<td>' + permits.types[type].name + '</td></tr>';
+    }
   }
-  infoHtml += '</ul>';
+  infoHtml += '</table></li></ul>';
   $('#localTable').html(infoHtml);
 }
 
@@ -789,6 +792,9 @@ map.on("overlayadd", function(e){
       localPermitMarkers.addLayer(displayPermitTypes[index].actionLayer);
       // update General State info
       dispChart('stateChart', buildStateChartOptions());
+      if (typeof(currCountyFips) !== 'undefined'){
+        dispChart('localChart',buildCountyChartOptions(currCountyFips));
+      }
     }
   }
 });
@@ -810,6 +816,9 @@ map.on('overlayremove', function(e){
       localPermitMarkers.removeLayer(displayPermitTypes[index].actionLayer);
       // update General State info
       dispChart('stateChart', buildStateChartOptions());
+      if (typeof(currCountyFips) !== 'undefined'){
+        dispChart('localChart',buildCountyChartOptions(currCountyFips));
+      }
     }
   }
 });
