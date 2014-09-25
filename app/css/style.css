@@ -17,6 +17,7 @@ input[type="radio"], input[type="checkbox"] {
   right: 15px;
   z-index: 1020;
   opacity: 0.75;
+  visibility: hidden;
 }
 #loading {
   position: absolute;

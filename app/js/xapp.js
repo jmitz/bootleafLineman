@@ -182,7 +182,8 @@ var permits = {
   }
 };
 
-$.getJSON('data/countyList.json', function (data){
+var countyListLoad = $.getJSON('data/countyList.json', function (data){
+  console.log('Loading County List');
   stateSummary.counties = data;
   stateSummary.counties['0'] = {
     permits: {}
@@ -190,14 +191,16 @@ $.getJSON('data/countyList.json', function (data){
   countyList = data; //To Be Removed
 });
 
-$.getJSON('data/officeList.json', function (data){
+var officeListLoad = $.getJSON('data/officeList.json', function (data){
+  console.log('Loading Office List');
   officeList = data;
   for (var office in officeList){
     officeList[office].location = new L.LatLng(officeList[office].location.lat, officeList[office].location.lon);
   }
 });
 
-$.getJSON('data/district.json', function(data){
+var districtListLoad = $.getJSON('data/district.json', function(data){
+  console.log('Loading District List');
   for (var tmpDistrict in data){
     data[tmpDistrict].title = data[tmpDistrict].district + ' - ' + data[tmpDistrict].name;
     stateSummary.politicalDistricts[data[tmpDistrict].type].bhArray.push(data[tmpDistrict]);
@@ -408,20 +411,41 @@ function colorCountyFeature(feature){
   return {color: colorVal};
 }
 
-function buildLocalInfo(inName, inFips){
-  currCountyFips = inFips;
-  var html = '<h4>{{CountyName}} County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>';
-  $('#divFeatureInfo').html('<h4>'+inName+' County</h4><p><canvas id="localChart" class="pieChart"></canvas></p><span id="localTable"></span>');
-  dispChart("localChart",buildCountyChartOptions(inFips));
-  // Put together an UL with the Total Permits for the County and the Total for each of the bureaus.
-
-  var infoHtml = '<h5 class="text-center">' + getCountyPermitCount(inFips) + ' Total Permits' + '</h5><ul>';
+function buildStateInfo(){
+  var infoHtml = '<h5 class="text-center"><span id="stateTotal">' + stateSummary.totalCount + '</span> Total Permits</h5><ul>';
   var currMediaType = '';
   for (var type in permits.types){
     if (currMediaType !== permits.types[type].mediaType){
       infoHtml += (currMediaType.length>0)?'</table></li>':'';
       currMediaType = permits.types[type].mediaType;
-      infoHtml += '<li>' + permits.types[type].mediaAbbr + ' Permits<table class="table">';
+      infoHtml += '<li>' + permits.types[type].mediaAbbr + ' Permits<table class="table table-condensed">';
+    }
+    
+    if(permits.types[type].hasOwnProperty('name')){
+      infoHtml += '<tr><td class="text-right">' + ((stateSummary.counties.permits.hasOwnProperty(type))?stateSummary.permits[type].totalPermits:0)  +  '</td>';
+      infoHtml += '<td>' + permits.types[type].name + '</td></tr>';
+    }
+  }
+  infoHtml += '</table></li></ul>';
+  $('#stateInfo').html(infoHtml);
+
+}
+
+function buildCountyInfo(inName, inFips){
+  currCountyFips = inFips;
+  $('#featureName').html(inName);
+  $('#featureChart').html('<canvas id="localChart" class="pieChart"></canvas>');
+  var html = '<span id="localTable"></span>';
+  $('#divFeatureInfo').html(html);
+  dispChart("localChart",buildCountyChartOptions(inFips));
+
+  var infoHtml = '<h5 class="text-center"><span id="countyTotal">' + getCountyPermitCount(inFips) + '</span> Total Permits</h5><ul>';
+  var currMediaType = '';
+  for (var type in permits.types){
+    if (currMediaType !== permits.types[type].mediaType){
+      infoHtml += (currMediaType.length>0)?'</table></li>':'';
+      currMediaType = permits.types[type].mediaType;
+      infoHtml += '<li>' + permits.types[type].mediaAbbr + ' Permits<table class="table table-condensed">';
     }
     
     if(permits.types[type].hasOwnProperty('name')){
@@ -479,7 +503,9 @@ function updateLocalInfo(inLocationInfo){
     infoPopup.setLatLng(inLocationInfo.inLocation)
       .setContent(popupHtml)
       .openOn(map);
-    buildLocalInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
+    buildCountyInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
+    $('#collapseGenOne').collapse('hide');
+    $('#collapseGenTwo').collapse('show');
     infoPopupFlag = true;
     getViewport();
   }
@@ -693,51 +719,54 @@ function summatePermitLocations(inPermit){
 }
 
 // This may result in a race conditions since it is loading data into the displayPermitTypes array
-$.getJSON('data/permits.json', function(data){
-  var dataCollections = {};
-  var reDate = /\/Date\(\d+\)\//;
-  for (var i = data.length - 1; i >= 0; i--) {
-    var mediaType = permits.types[data[i].type].mediaType;
-    stateSummary.totalCount++;
-    if (typeof(dataCollections[mediaType]) === 'undefined'){
-      dataCollections[mediaType] = {
-        abbr: permits.types[data[i].type].mediaAbbr
-      };
-    }
-    if (typeof (dataCollections[mediaType][data[i].type]) === 'undefined'){
-      dataCollections[mediaType][data[i].type] = createDataCollection();
-    }
-    ++dataCollections[mediaType][data[i].type].totalRecords;
-    for (var attribute in data[i]){
-      if (reDate.test(data[i][attribute])){
-        data[i][attribute] = new Date(parseInt(data[i][attribute].substr(6), 10));
+$.when(countyListLoad, districtListLoad, officeListLoad).done(function(){
+  console.log('Loading Permit Data');
+  $.getJSON('data/permits.json', function(data){
+    var dataCollections = {};
+    var reDate = /\/Date\(\d+\)\//;
+    for (var i = data.length - 1; i >= 0; i--) {
+      var mediaType = permits.types[data[i].type].mediaType;
+      console.log(mediaType);
+      stateSummary.totalCount++;
+      if (typeof(dataCollections[mediaType]) === 'undefined'){
+        dataCollections[mediaType] = {
+          abbr: permits.types[data[i].type].mediaAbbr
+        };
       }
-    }
-    if(data[i].lon!=null && data[i].lat!=null){
-      summatePermitLocations(data[i]);
-      var feature = {
-        type: 'Feature',
-        id: i,
-        properties: data[i],
-        geometry: {
-          type: 'Point',
-          coordinates: [
-            data[i].lon,
-            data[i].lat
-          ]
+      if (typeof (dataCollections[mediaType][data[i].type]) === 'undefined'){
+        dataCollections[mediaType][data[i].type] = createDataCollection();
+      }
+      ++dataCollections[mediaType][data[i].type].totalRecords;
+      for (var attribute in data[i]){
+        if (reDate.test(data[i][attribute])){
+          data[i][attribute] = new Date(parseInt(data[i][attribute].substr(6), 10));
         }
-      };
-      dataCollections[mediaType][data[i].type].features.push(feature);
+      }
+      if(data[i].lon!=null && data[i].lat!=null){
+        summatePermitLocations(data[i]);
+        var feature = {
+          type: 'Feature',
+          id: i,
+          properties: data[i],
+          geometry: {
+            type: 'Point',
+            coordinates: [
+              data[i].lon,
+              data[i].lat
+            ]
+          }
+        };
+        dataCollections[mediaType][data[i].type].features.push(feature);
+      }
+      ++stateSummary.permits[data[i].type].totalPermits;
     }
-    ++stateSummary.permits[data[i].type].totalPermits;
-  }
-  for (var permitType in displayPermitTypes){
-    var currPermitType = displayPermitTypes[permitType];
-    currPermitType.actionLayer.addData(dataCollections[currPermitType.mediaType][currPermitType.permitType]);
-    currPermitType.totalRecords = dataCollections[currPermitType.mediaType][currPermitType.permitType].totalRecords;
-  }
+    for (var permitType in displayPermitTypes){
+      var currPermitType = displayPermitTypes[permitType];
+      currPermitType.actionLayer.addData(dataCollections[currPermitType.mediaType][currPermitType.permitType]);
+      currPermitType.totalRecords = dataCollections[currPermitType.mediaType][currPermitType.permitType].totalRecords;
+    }
+  });
 });
-
 
 function updatePermitDisplay(){
   try{
@@ -784,6 +813,14 @@ map.on('viewreset', function(e){
   }
 });
 
+function updateSideBar(){
+  dispChart('stateChart', buildStateChartOptions());
+  if (typeof(currCountyFips) !== 'undefined'){
+    dispChart('localChart',buildCountyChartOptions(currCountyFips));
+  }
+  $('#countyTotal').html(getCountyPermitCount(currCountyFips));
+}
+
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e){
   for (var index = 0; index < displayPermitTypes.length; ++index){
@@ -791,11 +828,8 @@ map.on("overlayadd", function(e){
       displayPermitTypes[index].active = true;
       localPermitMarkers.addLayer(displayPermitTypes[index].actionLayer);
       // update General State info
-      dispChart('stateChart', buildStateChartOptions());
-      if (typeof(currCountyFips) !== 'undefined'){
-        dispChart('localChart',buildCountyChartOptions(currCountyFips));
-      }
     }
+    updateSideBar();
   }
 });
 
@@ -815,10 +849,7 @@ map.on('overlayremove', function(e){
       displayPermitTypes[index].active = false;
       localPermitMarkers.removeLayer(displayPermitTypes[index].actionLayer);
       // update General State info
-      dispChart('stateChart', buildStateChartOptions());
-      if (typeof(currCountyFips) !== 'undefined'){
-        dispChart('localChart',buildCountyChartOptions(currCountyFips));
-      }
+      updateSideBar();
     }
   }
 });
@@ -931,7 +962,7 @@ $("#searchbox").click(function () {
 });
 
 // Actions to run after all AJAX calls have completed
-$(document).on("ajaxStop", function () {
+$(document).one("ajaxStop", function () {
 
   dispChart('stateChart', buildStateChartOptions());
   $("#loading").hide();
