@@ -416,13 +416,14 @@ function buildStateInfo(){
   var currMediaType = '';
   for (var type in permits.types){
     if (currMediaType !== permits.types[type].mediaType){
+      console.log(type);
       infoHtml += (currMediaType.length>0)?'</table></li>':'';
       currMediaType = permits.types[type].mediaType;
       infoHtml += '<li>' + permits.types[type].mediaAbbr + ' Permits<table class="table table-condensed">';
     }
     
     if(permits.types[type].hasOwnProperty('name')){
-      infoHtml += '<tr><td class="text-right">' + ((stateSummary.counties.permits.hasOwnProperty(type))?stateSummary.permits[type].totalPermits:0)  +  '</td>';
+      infoHtml += '<tr><td class="text-right">' + ((stateSummary.permits.hasOwnProperty(type))?stateSummary.permits[type].totalPermits:0)  +  '</td>';
       infoHtml += '<td>' + permits.types[type].name + '</td></tr>';
     }
   }
@@ -964,8 +965,15 @@ $("#searchbox").click(function () {
 // Actions to run after all AJAX calls have completed
 $(document).one("ajaxStop", function () {
 
+  // Apply open/close click event to genAccordion in sidebar
+  $('.genCollapse').click(function(){
+    $('.genCollapse').children('.collapse').collapse('hide');
+    $(this).children('.collapse').collapse('show');
+  });
   dispChart('stateChart', buildStateChartOptions());
   $("#loading").hide();
+
+  buildStateInfo();
 
   var senateBH = new Bloodhound({
     name: "senateDistricts",

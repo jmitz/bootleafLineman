@@ -65,26 +65,26 @@
         <div id="map"></div>
         <div id="sidebar">
           <div class='panel-group' id='genAccordion'>
-            <div class="panel panel-default">
+            <div class="panel panel-default genCollapse">
               <div class="panel-heading">
                 <h4 class="panel-title">
                   Statewide Permit Totals
                 </h4>
                 <canvas class='pieChart' id='stateChart'></canvas>
               </div>
-              <div id="collapseGenOne" class="panel-collapse collapse in genCollapse">
+              <div id="collapseGenOne" class="panel-collapse collapse in">
                 <div id='stateInfo' class="panel-body">
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default genCollapse">
               <div class="panel-heading">
                 <h4 class="panel-title">
                   <span id='featureName'></span> County Permit Totals
                 </h4>
                 <span id='featureChart'></span>
               </div>
-              <div id="collapseGenTwo" class="panel-collapse collapse genCollapse">
+              <div id="collapseGenTwo" class="panel-collapse collapse">
                 <div id='divFeatureInfo' class="panel-body">
                   <h4>No Location Selected<h4>
                   <p>Click on map to select 
