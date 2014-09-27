@@ -379,6 +379,15 @@ var baseSatteliteWithTransportMap = new L.LayerGroup([
 ]);
 
 
+function getStatePermitCount(){
+  var tmpTypes = activeDisplayTypesArray();
+  var outPermitCount = 0;
+  for (var tmpType in tmpTypes){
+    outPermitCount += (typeof(stateSummary.permits[tmpTypes[tmpType]])!=='undefined')?stateSummary.permits[tmpTypes[tmpType]].totalPermits:0;
+  }
+  return outPermitCount;
+}
+
 function getCountyPermitCount(inFips){
   var tmpTypes = activeDisplayTypesArray();
   var outPermitCount = 0;
@@ -412,7 +421,7 @@ function colorCountyFeature(feature){
 }
 
 function buildStateInfo(){
-  var infoHtml = '<h5 class="text-center"><span id="stateTotal">' + stateSummary.totalCount + '</span> Total Permits</h5><ul>';
+  var infoHtml = '<ul>';
   var currMediaType = '';
   for (var type in permits.types){
     if (currMediaType !== permits.types[type].mediaType){
@@ -429,7 +438,7 @@ function buildStateInfo(){
   }
   infoHtml += '</table></li></ul>';
   $('#stateInfo').html(infoHtml);
-
+  $('#stateTotal').html(getStatePermitCount());
 }
 
 function buildCountyInfo(inName, inFips){
@@ -818,8 +827,9 @@ function updateSideBar(){
   dispChart('stateChart', buildStateChartOptions());
   if (typeof(currCountyFips) !== 'undefined'){
     dispChart('localChart',buildCountyChartOptions(currCountyFips));
+    $('#countyTotal').html(getCountyPermitCount(currCountyFips));
   }
-  $('#countyTotal').html(getCountyPermitCount(currCountyFips));
+  $('#stateTotal').html(getStatePermitCount());
 }
 
 /* Layer control listeners that allow for a single markerClusters layer */

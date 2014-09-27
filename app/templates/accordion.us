@@ -1,0 +1,47 @@
+<!--
+Template for building accordion
+
+parameters
+------------
+accordionName - id for the accordion
+className - unique class name for the accordion used to attach click events for opening and closing
+sectionInfo - array containing information for accordion sections
+  name - title of accordion section
+  info - html to be displayed in section
+
+Sample call
+html = JST['app/templates/accordion.us']({
+  accordionName: 'newAccordion',
+  className: 'testClass',
+  sectionInfo:[{
+    name:'Type 1',
+    info:'blah blah blah'
+  },{
+    name:'Type 2',
+    info:'blah blah blah'
+  },{
+    name:'Type 3',
+    info:'blah blah blah'
+}]})
+-->
+
+<div class="panel-group" id="<%= accordionName %>">
+
+<% _.each(sectionInfo, function(section){ %>
+  <div class="panel panel-default <%= className %>">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#<%= accordionName %>">
+          <%= section.name %>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+        <%= section.info %>
+      </div>
+    </div>
+  </div>
+<% }) %>
+
+</div>

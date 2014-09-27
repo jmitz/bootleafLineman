@@ -68,7 +68,7 @@
             <div class="panel panel-default genCollapse">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  Statewide Permit Totals
+                  Statewide Permits - <span id="stateTotal"></span> Permits Charted
                 </h4>
                 <canvas class='pieChart' id='stateChart'></canvas>
               </div>
