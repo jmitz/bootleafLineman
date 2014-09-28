@@ -80,7 +80,7 @@
             <div class="panel panel-default genCollapse">
               <div class="panel-heading">
                 <h4 class="panel-title">
-                  <span id='featureName'></span> County Permit Totals
+                  <span id='featureName'></span> County Permits - <span id="featureCount"></span> Permits Charted
                 </h4>
                 <span id='featureChart'></span>
               </div>

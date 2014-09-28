@@ -444,12 +444,13 @@ function buildStateInfo(){
 function buildCountyInfo(inName, inFips){
   currCountyFips = inFips;
   $('#featureName').html(inName);
+  $('#featureCount').html(getCountyPermitCount(inFips));
   $('#featureChart').html('<canvas id="localChart" class="pieChart"></canvas>');
   var html = '<span id="localTable"></span>';
   $('#divFeatureInfo').html(html);
   dispChart("localChart",buildCountyChartOptions(inFips));
 
-  var infoHtml = '<h5 class="text-center"><span id="countyTotal">' + getCountyPermitCount(inFips) + '</span> Total Permits</h5><ul>';
+  var infoHtml = '<ul>';
   var currMediaType = '';
   for (var type in permits.types){
     if (currMediaType !== permits.types[type].mediaType){
@@ -827,7 +828,7 @@ function updateSideBar(){
   dispChart('stateChart', buildStateChartOptions());
   if (typeof(currCountyFips) !== 'undefined'){
     dispChart('localChart',buildCountyChartOptions(currCountyFips));
-    $('#countyTotal').html(getCountyPermitCount(currCountyFips));
+    $('#featureCount').html(getCountyPermitCount(currCountyFips));
   }
   $('#stateTotal').html(getStatePermitCount());
 }
