@@ -66,7 +66,7 @@ var permits = {
       mediaAbbr: 'BOA',
       color: '#C563E6',
       markerIcon: 'img/lifetimePermit.png',
-      popupTemplate: "<h5>Air Permit - Lifetime<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      popupTemplate: "<h5>Air Permit - Lifetime<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'boa') %></p>",
       markerTitle: "name",
       abbr: 'Lifetime'
     },
@@ -78,7 +78,7 @@ var permits = {
       mediaAbbr: 'BOA',
       color: '#C563E6',
       markerIcon: 'img/constrPermit.png',
-      popupTemplate: "<h5>Air Permit - Construction<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      popupTemplate: "<h5>Air Permit - Construction<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'boa') %></p>",
       markerTitle: "name",
       abbr: 'BOA Con'
     },
@@ -90,7 +90,7 @@ var permits = {
       mediaAbbr: 'BOA',
       color: '#C563B6',
       markerIcon: 'img/rossPermit.png',
-      popupTemplate: "<h5>Air Permit - ROSS<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      popupTemplate: "<h5>Air Permit - ROSS<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'boa') %></p>",
       markerTitle: "name",
       abbr: 'ROSS'
     },
@@ -102,7 +102,7 @@ var permits = {
       mediaAbbr: 'BOA',
       color: '#C563E6',
       markerIcon: 'img/titleVPermit.png',
-      popupTemplate: "<h5>Air Permit - Title V<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      popupTemplate: "<h5>Air Permit - Title V<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'boa') %></p>",
       markerTitle: "name",
       abbr: 'TitleV'
     },
@@ -114,7 +114,7 @@ var permits = {
       mediaAbbr: 'BOA',
       color: '#C563E6',
       markerIcon: 'img/airPermit.png',
-      popupTemplate: "<h5>Air Permit - FESOP<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      popupTemplate: "<h5>Air Permit - FESOP<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'boa') %></p>",
       markerTitle: "name",
       abbr: 'FESOP'
     },
@@ -126,7 +126,7 @@ var permits = {
       mediaAbbr: 'BOA',
       color: '#C563E6',
       markerIcon: 'img/jointPermit.png',
-      popupTemplate: "<h5>Air Permit - Joint Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      popupTemplate: "<h5>Air Permit - Joint Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'boa') %></p>",
       markerTitle: "name",
       abbr: 'Joint'
     },
@@ -138,7 +138,7 @@ var permits = {
       mediaAbbr: 'BOA',
       color: '#C563E6',
       markerIcon: 'img/operatingPermit.png',
-      popupTemplate: "<h5>Air Permit - Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p>",
+      popupTemplate: "<h5>Air Permit - Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Bureau SiteID <%= properties.bureauId %></p><p>Permit ID <%= properties.permitId%> <%= properties.permitStatus%></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'boa') %></p>",
       markerTitle: "name",
       abbr: 'BOA Oper'
     },
@@ -150,7 +150,7 @@ var permits = {
       mediaAbbr: 'BOL',
       color: '#E6995F',
       markerIcon: 'img/solidWaste.png',
-      popupTemplate: "<h5>Land Permit - Solid Waste<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
+      popupTemplate: "<h5>Land Permit - Solid Waste<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'bol') %></p>",
       markerTitle: "name",
       abbr: 'Solid'
     },
@@ -162,7 +162,7 @@ var permits = {
       mediaAbbr: 'BOW',
       color: '#88F0D3',
       markerIcon: 'img/npdesPermit.png',
-      popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p>",
+      popupTemplate: "<h5>Water Permit - NPDES<h5><h4><%= properties.name %></h4><p>Agency SiteID <%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'dwpc') %></p>",
       markerTitle: "name",
       abbr: 'NPDES'
     },
@@ -174,7 +174,7 @@ var permits = {
       mediaAbbr: 'BOW',
       color: '#88F0D3',
       markerIcon: 'img/stateConPermit.png',
-      popupTemplate: "<h5>Water Permit - WPC State Construction/Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID<%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p>",
+      popupTemplate: "<h5>Water Permit - WPC State Construction/Operating Permit<h5><h4><%= properties.name %></h4><p>Agency SiteID<%= properties.agencySiteId %></p><p>Permit ID <%= properties.permitId %></p><p><%= milesToFieldOffice(properties.countyFips, properties.location ,templates.permitFieldOffice, 'dwpc') %></p>",
       markerTitle: "name",
       abbr: 'St Const'
     }
@@ -807,6 +807,7 @@ $.when(countyListLoad, districtListLoad, officeListLoad).done(function(){
         }
       }
       if(data[i].lon!=null && data[i].lat!=null){
+        data[i].location = new L.LatLng(data[i].lat,data[i].lon);
         summatePermitLocations(data[i]);
         var feature = {
           type: 'Feature',
