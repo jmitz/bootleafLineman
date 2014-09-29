@@ -25,7 +25,14 @@ var stateSummary = {
 };
 var countyList;
 var displayPermitTypes = [];
-var officeList;
+
+var officeList = {
+  testLayer: new L.geoJson(null),
+  layer: new L.geoJson(null,{
+    pointToLayer: makeOfficeMarker
+  })
+};
+
 var currCountyFips;
 var politicalDistrict;
 var referenceLayers = {
@@ -183,7 +190,6 @@ var permits = {
 };
 
 var countyListLoad = $.getJSON('data/countyList.json', function (data){
-  console.log('Loading County List');
   stateSummary.counties = data;
   stateSummary.counties['0'] = {
     permits: {}
@@ -193,16 +199,30 @@ var countyListLoad = $.getJSON('data/countyList.json', function (data){
 
 var officeListLoad = $.getJSON('data/officeList.json', function (data){
   console.log('Loading Office List');
-  officeList = data;
-  for (var office in officeList){
-    officeList[office].location = new L.LatLng(officeList[office].location.lat, officeList[office].location.lon);
-    officeList[office].permits = {};
+  officeList.data = data;
+  var dataCollection = {
+    type:'FeatureCollection',
+    features: []
+  };
+  for (var office in officeList.data){
+    console.log(office);
+    officeList.data[office].location = new L.LatLng(officeList.data[office].location.lat, officeList.data[office].location.lon);
+    officeList.data[office].permits = {};
+    var currFeature = {
+      type: 'Feature',
+      id: office,
+      properties: officeList.data[office],
+      geometry: {
+        type: 'Point',
+        coordinates: [officeList.data[office].location.lng, officeList.data[office].location.lat]
+      }
+    };
+    dataCollection.features.push(currFeature);
   }
-
+  officeList.layer.addData(dataCollection);
 });
 
 var districtListLoad = $.getJSON('data/district.json', function(data){
-  console.log('Loading District List');
   for (var tmpDistrict in data){
     data[tmpDistrict].title = data[tmpDistrict].district + ' - ' + data[tmpDistrict].name;
     stateSummary.politicalDistricts[data[tmpDistrict].type].bhArray.push(data[tmpDistrict]);
@@ -475,7 +495,7 @@ function milesToFieldOffice(inFips, inLocation, inTemplate, inType){
   var offices = countyList[inFips].offices;
   var outOfficeList = {};
   for (var office in offices){
-    var testOffice = officeList[offices[office]];
+    var testOffice = officeList.data[offices[office]];
     if (officeType === null || officeType === office){
       if (!outOfficeList[offices[office]]){
         outOfficeList[offices[office]]={
@@ -624,6 +644,21 @@ function bindPermitMarker(inGeoJson, inMarker){
   //inMarker.bindPopup( L.popup({className: 'permitPopup'}).setContent(_.template(permitType.popupTemplate,inGeoJson)));
 }
 
+function makeOfficeMarker(inGeoJson, inLatLng){
+  console.log(inGeoJson.properties.name);
+  return L.marker(inLatLng, {
+    icon: L.icon({
+      iconUrl: 'img/star.png',
+      iconRetinaUrl: 'img/star.png',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+      //popupAnchor:[0, -27]
+    }),
+    title: inGeoJson.properties[name],
+    riseOnHover: true
+  });
+}
+
 function makePermitMarker(inGeoJson, inLatLng){
   var permitType = permits.types[inGeoJson.properties.type];
   var iconUrl = permitType.markerIcon;
@@ -743,7 +778,6 @@ function summatePermitLocations(inPermit){
 
 // This may result in a race conditions since it is loading data into the displayPermitTypes array
 $.when(countyListLoad, districtListLoad, officeListLoad).done(function(){
-  console.log('Loading Permit Data');
   $.getJSON('data/permits.json', function(data){
     var dataCollections = {};
     var reDate = /\/Date\(\d+\)\//;
@@ -815,7 +849,7 @@ var map = L.map("map", {
   zoomControl: false,
   attributionControl: true,
   maxBounds: maxMapBounds,
-  bounceAtZoomLimits: true
+  bounceAtZoomLimits: false
 });
 
 map.on('click', function (e) {
@@ -855,13 +889,18 @@ function updateSideBar(){
 
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e){
-  for (var index = 0; index < displayPermitTypes.length; ++index){
-    if (e.layer === displayPermitTypes[index].testLayer) {
-      displayPermitTypes[index].active = true;
-      localPermitMarkers.addLayer(displayPermitTypes[index].actionLayer);
-      // update General State info
+  if (e.layer === officeList.testLayer){
+    map.addLayer(officeList.layer);
+  }
+  else{
+    for (var index = 0; index < displayPermitTypes.length; ++index){
+      if (e.layer === displayPermitTypes[index].testLayer) {
+        displayPermitTypes[index].active = true;
+        localPermitMarkers.addLayer(displayPermitTypes[index].actionLayer);
+        // update General State info
+      }
+      updateSideBar();
     }
-    updateSideBar();
   }
 });
 
@@ -876,12 +915,17 @@ map.on('popupclose', function(e){
 });
 
 map.on('overlayremove', function(e){
-  for (var index = 0; index < displayPermitTypes.length; ++index){
-    if (e.layer === displayPermitTypes[index].testLayer){
-      displayPermitTypes[index].active = false;
-      localPermitMarkers.removeLayer(displayPermitTypes[index].actionLayer);
-      // update General State info
-      updateSideBar();
+  if (e.layer === officeList.testLayer){
+    map.removeLayer(officeList.layer);
+  }
+  else{
+    for (var index = 0; index < displayPermitTypes.length; ++index){
+      if (e.layer === displayPermitTypes[index].testLayer){
+        displayPermitTypes[index].active = false;
+        localPermitMarkers.removeLayer(displayPermitTypes[index].actionLayer);
+        // update General State info
+        updateSideBar();
+      }
     }
   }
 });
@@ -934,7 +978,8 @@ var baseLayers = {
 };
 
 var referenceLayers = {
-  "County Permit Counts": generalPermitTestLayer
+  "County Permit Counts": generalPermitTestLayer,
+  "<img src='img/star.png' width='20' height='20'>&nbsp;Regional Offices": officeList.testLayer
 };
 
 
