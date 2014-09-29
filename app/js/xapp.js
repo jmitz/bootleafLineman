@@ -211,14 +211,12 @@ var officeList = {
 };
 
 var officeListLoad = $.getJSON('data/officeList.json', function (data){
-  console.log('Loading Office List');
   officeList.data = data;
   var dataCollection = {
     type:'FeatureCollection',
     features: []
   };
   for (var office in officeList.data){
-    console.log(office);
     officeList.data[office].location = new L.LatLng(officeList.data[office].location.lat, officeList.data[office].location.lon);
     officeList.data[office].permits = {};
     var currFeature = {
@@ -460,7 +458,6 @@ function buildStateInfo(){
   var currMediaType = '';
   for (var type in permits.types){
     if (currMediaType !== permits.types[type].mediaType){
-      console.log(type);
       infoHtml += (currMediaType.length>0)?'</table></li>':'';
       currMediaType = permits.types[type].mediaType;
       infoHtml += '<li>' + permits.types[type].mediaAbbr + ' Permits<table class="table table-condensed">';
