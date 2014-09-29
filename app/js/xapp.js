@@ -196,7 +196,9 @@ var officeListLoad = $.getJSON('data/officeList.json', function (data){
   officeList = data;
   for (var office in officeList){
     officeList[office].location = new L.LatLng(officeList[office].location.lat, officeList[office].location.lon);
+    officeList[office].permits = {};
   }
+
 });
 
 var districtListLoad = $.getJSON('data/district.json', function(data){
@@ -500,25 +502,31 @@ function getOfficer(inArray, inType){
 
 function updateLocalInfo(inLocationInfo){
   if (!measureControl.isActive()){
-    var reTable = /<\/table>/;
-    var reHouse = /(id='stateHouse'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Representative Name")
-    var reSenate = /(id='stateSenate'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Senator Name")
-    var reCongress = /<tr><td>US Congress.+Section.+\d<\/td><\/tr>/; // replace(reCongress, '$1')
-    var reFips = /<br>FIPS.+\d{3}<\/span>/; // replace(reFips,'')
-    var popupHtml = inLocationInfo.htmlString
-      .replace(reTable,milesToFieldOffice(inLocationInfo.county.CO_FIPS, inLocationInfo.inLocation, templates.fieldOffice))
-      .replace(reHouse, getOfficer(inLocationInfo.htmlString.match(reHouse),'House'))
-      .replace(reSenate, getOfficer(inLocationInfo.htmlString.match(reSenate), 'Senate'))
-      .replace(reCongress, '')
-      .replace(reFips, '');
+    var popupHtml;
+    if(typeof(inLocationInfo.county) === 'object'){
+      var reTable = /<\/table>/;
+      var reHouse = /(id='stateHouse'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Representative Name")
+      var reSenate = /(id='stateSenate'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Senator Name")
+      var reCongress = /<tr><td>US Congress.+Section.+\d<\/td><\/tr>/; // replace(reCongress, '$1')
+      var reFips = /<br>FIPS.+\d{3}<\/span>/; // replace(reFips,'')
+      popupHtml = inLocationInfo.htmlString
+        .replace(reTable,milesToFieldOffice(inLocationInfo.county.CO_FIPS, inLocationInfo.inLocation, templates.fieldOffice))
+        .replace(reHouse, getOfficer(inLocationInfo.htmlString.match(reHouse),'House'))
+        .replace(reSenate, getOfficer(inLocationInfo.htmlString.match(reSenate), 'Senate'))
+        .replace(reCongress, '')
+        .replace(reFips, '');
+      buildCountyInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
+      $('#collapseGenOne').collapse('hide');
+      $('#collapseGenTwo').collapse('show');
+      infoPopupFlag = true;
+      getViewport();
+    }
+    else{
+      popupHtml = 'Point is outside<br>State boundaries';
+    }
     infoPopup.setLatLng(inLocationInfo.inLocation)
-      .setContent(popupHtml)
-      .openOn(map);
-    buildCountyInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
-    $('#collapseGenOne').collapse('hide');
-    $('#collapseGenTwo').collapse('show');
-    infoPopupFlag = true;
-    getViewport();
+    .setContent(popupHtml)
+    .openOn(map);
   }
 }
 
@@ -558,6 +566,9 @@ function configureCountyFeature(feature, layer) {
  });
   layer.on('dblclick', function(e){
     console.log('doubleclick');
+    if (infoPopupFlag){
+      map.closePopup();
+    }
     map.fitBounds(e.target.getBounds());
 
   });
@@ -596,10 +607,11 @@ var localPermitMarkers = new L.MarkerClusterGroup({
   zoomToBoundsOnClick: true
 });
 
-// localPermitMarkers.on("loading", function(evt){
-//   console.log('Permits Loading');
-//   $("#loading").show();
-// });
+localPermitMarkers.on("clusterclick", function(evt){
+ if(infoPopupFlag){
+  map.closePopup();
+ }
+});
 
 // localPermitMarkers.on("load", function(evt){
 //   console.log('Permits Loaded');
@@ -802,8 +814,8 @@ var map = L.map("map", {
   layers: [baseStreetMap, legislativeDistricts, localPermitMarkers],
   zoomControl: false,
   attributionControl: true,
-//      maxBounds: maxMapBounds,
-bounceAtZoomLimits: false
+  maxBounds: maxMapBounds,
+  bounceAtZoomLimits: true
 });
 
 map.on('click', function (e) {
@@ -821,6 +833,14 @@ map.on('viewreset', function(e){
 //    map.removeLayer(permitCluster);
 //   $('#heatPatch').css('visibility', 'visible');
 //    map.addLayer(generalPermitLayer);
+  }
+});
+
+map.on('dragend', function(e){
+  var mapDimension = map.getSize();
+  var minMoveDimension = Math.min(mapDimension.x, mapDimension.y) * 0.5;
+  if (e.distance > minMoveDimension && infoPopupFlag){
+    map.closePopup();
   }
 });
 
@@ -1032,6 +1052,9 @@ $(document).one("ajaxStop", function () {
       header: "<h4 class='typeahead-header'>Representatives</h4>"
     }
   }).on("typeahead:selected", function (obj, datum) {
+    if (infoPopupFlag){
+      map.closePopup();
+    }
     if (datum.source === "PoliticalDistricts") {
         datum.bounds = queryDistrict.findDistrict(datum, map);
         politicalDistrict = datum;
