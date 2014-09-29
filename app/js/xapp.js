@@ -25,14 +25,6 @@ var stateSummary = {
 };
 var countyList;
 var displayPermitTypes = [];
-
-var officeList = {
-  testLayer: new L.geoJson(null),
-  layer: new L.geoJson(null,{
-    pointToLayer: makeOfficeMarker
-  })
-};
-
 var currCountyFips;
 var politicalDistrict;
 var referenceLayers = {
@@ -196,6 +188,27 @@ var countyListLoad = $.getJSON('data/countyList.json', function (data){
   };
   countyList = data; //To Be Removed
 });
+
+function makeOfficeMarker(inGeoJson, inLatLng){
+  return L.marker(inLatLng, {
+    icon: L.icon({
+      iconUrl: 'img/star.png',
+      iconRetinaUrl: 'img/star.png',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+      //popupAnchor:[0, -27]
+    }),
+    title: inGeoJson.properties.name,
+    riseOnHover: true
+  });
+}
+
+var officeList = {
+  testLayer: new L.geoJson(null),
+  layer: new L.geoJson(null,{
+    pointToLayer: makeOfficeMarker
+  })
+};
 
 var officeListLoad = $.getJSON('data/officeList.json', function (data){
   console.log('Loading Office List');
@@ -633,6 +646,18 @@ localPermitMarkers.on("clusterclick", function(evt){
  }
 });
 
+function clearPoliticalDistrict(){
+  legislativeDistricts.setWhere("DistrictNum = 0");
+  politicalDistrict = null;
+  $('#searchbox').val('');
+}
+
+function zoomToFullExtent(){
+  clearPoliticalDistrict();
+  map.fitBounds(maxMapBounds);
+  return false;
+}
+
 // localPermitMarkers.on("load", function(evt){
 //   console.log('Permits Loaded');
 //   $("#loading").hide();
@@ -642,21 +667,6 @@ function bindPermitMarker(inGeoJson, inMarker){
   var permitType = permits.types[inGeoJson.properties.type];
   inMarker.bindPopup(_.template(permitType.popupTemplate,inGeoJson));
   //inMarker.bindPopup( L.popup({className: 'permitPopup'}).setContent(_.template(permitType.popupTemplate,inGeoJson)));
-}
-
-function makeOfficeMarker(inGeoJson, inLatLng){
-  console.log(inGeoJson.properties.name);
-  return L.marker(inLatLng, {
-    icon: L.icon({
-      iconUrl: 'img/star.png',
-      iconRetinaUrl: 'img/star.png',
-      iconSize: [28, 28],
-      iconAnchor: [14, 14],
-      //popupAnchor:[0, -27]
-    }),
-    title: inGeoJson.properties[name],
-    riseOnHover: true
-  });
 }
 
 function makePermitMarker(inGeoJson, inLatLng){
