@@ -609,7 +609,10 @@ function configureCountyFeature(feature, layer) {
   });
 }
 
-baseIllinoisLayer = new L.esri.DynamicMapLayer('http://geoservices.epa.illinois.gov/arcgis/rest/services/SWAP/Location/MapServer');
+baseIllinoisLayer = new L.esri.DynamicMapLayer('http://geoservices.epa.illinois.gov/arcgis/rest/services/SWAP/Location/MapServer',{
+  opacity: 0.5,
+  position: 'back'
+});
 
 generalPermitTestLayer = new L.geoJson(null);
 
