@@ -943,6 +943,7 @@ map.on('overlayremove', function(e){
     for (var index = 0; index < displayPermitTypes.length; ++index){
       if (e.layer === displayPermitTypes[index].testLayer){
         displayPermitTypes[index].active = false;
+        localPermitMarkers._unspiderfy();
         localPermitMarkers.removeLayer(displayPermitTypes[index].actionLayer);
         updatePermitDisplay();
         updateSideBar();
