@@ -534,29 +534,24 @@ function updateLocalInfo(inLocationInfo){
   if (!measureControl.isActive()){
     var popupHtml;
     if(typeof(inLocationInfo.county) === 'object'){
-      console.log(inLocationInfo);
       var reTable = /<\/table>/;
       var reHouse = /(id='stateHouse'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Representative Name")
       var reSenate = /(id='stateSenate'>)(\d+)(?=<)/; // replace(reHouse, "$1$2 - Senator Name")
       var reCongress = /<tr><td>US Congress.+Section.+\d<\/td><\/tr>/; // replace(reCongress, '$1')
       var reFips = /<br>FIPS.+\d{3}<\/span>/; // replace(reFips,'')
-      var reVehicleTesting = /<tr><td>Vehicle Testing Areas<\/td><td>\d{5}<\/td><\/tr>/; // replace(reVehicleTesting, '')
-      var reGroundWaterOrd = /<tr><td>Groundwater Ordinance<\/td><td>[\D\s]+<\/td><\/tr>/; // replace(reGroundWaterOrd, '')
       popupHtml = inLocationInfo.htmlString
         .replace(reTable,milesToFieldOffice(inLocationInfo.county.CO_FIPS, inLocationInfo.inLocation, templates.fieldOffice))
         .replace(reHouse, getOfficer(inLocationInfo.htmlString.match(reHouse),'House'))
         .replace(reSenate, getOfficer(inLocationInfo.htmlString.match(reSenate), 'Senate'))
         .replace(reCongress, '')
-        .replace(reFips, '')
-        .replace(reVehicleTesting, '')
-        .replace(reGroundWaterOrd, '');
+        .replace(reFips, '');
       buildCountyInfo(inLocationInfo.county.COUNTY_NAM, inLocationInfo.county.CO_FIPS);
       $('#collapseGenOne').collapse('hide');
       $('#collapseGenTwo').collapse('show');
       getViewport();
     }
     else{
-      popupHtml = 'Point is outside<br>State boundaries<br><button onclick="zoomToFullExtent()">Zoom to Illinois</button>';
+      popupHtml = 'Point is outside<br>State boundaries';
     }
     infoPopupFlag = true;
     infoPopup.setLatLng(inLocationInfo.inLocation)
@@ -609,8 +604,6 @@ function configureCountyFeature(feature, layer) {
   });
 }
 
-baseIllinoisLayer = new L.esri.DynamicMapLayer('http://geoservices.epa.illinois.gov/arcgis/rest/services/SWAP/Location/MapServer');
-
 generalPermitTestLayer = new L.geoJson(null);
 
 generalPermitLayer = new L.esri.FeatureLayer("http://geoservices.epa.illinois.gov/arcgis/rest/services/Boundaries/Counties/FeatureServer/0", {
@@ -658,7 +651,6 @@ function clearPoliticalDistrict(){
 
 function zoomToFullExtent(){
   clearPoliticalDistrict();
-  map.closePopup();
   map.fitBounds(maxMapBounds);
   return false;
 }
@@ -843,6 +835,12 @@ $.when(countyListLoad, districtListLoad, officeListLoad).done(function(){
 
 function updatePermitDisplay(){
   try{
+    permitCluster.setWhere(buildWhere(displayPermitTypes));
+  }
+  catch(err){
+    console.log(err.message);
+  } //swallow error when where is set while layer is not displayed
+  try{
     generalPermitLayer.setStyle(colorCountyFeature);
   }
   catch(err){
@@ -855,10 +853,10 @@ var map = L.map("map", {
   minZoom:6,
   zoom: 7,
   center: [40, -89.5],
-  layers: [baseStreetMap, baseIllinoisLayer, legislativeDistricts, localPermitMarkers],
+  layers: [baseStreetMap, legislativeDistricts, localPermitMarkers],
   zoomControl: false,
   attributionControl: true,
-//  maxBounds: maxMapBounds,
+  maxBounds: maxMapBounds,
   bounceAtZoomLimits: false
 });
 
@@ -867,16 +865,16 @@ map.on('click', function (e) {
 });
 
 map.on('viewreset', function(e){
-  if (map.hasLayer(generalPermitTestLayer)){
-    if (map.getZoom()>10) {
-      map.removeLayer(generalPermitLayer);
-      $('#heatPatch').css('visibility', 'hidden');
-      map.closePopup();
-    }
-    else {
-     $('#heatPatch').css('visibility', 'visible');
-      map.addLayer(generalPermitLayer);
-    }
+  if (map.getZoom()>10){
+//    map.removeLayer(generalPermitLayer);
+//    $('#heatPatch').css('visibility', 'hidden');
+//    map.closePopup();
+//    map.addLayer(permitCluster);
+  }
+  else{
+//    map.removeLayer(permitCluster);
+//   $('#heatPatch').css('visibility', 'visible');
+//    map.addLayer(generalPermitLayer);
   }
 });
 
@@ -902,16 +900,12 @@ map.on("overlayadd", function(e){
   if (e.layer === officeList.testLayer){
     map.addLayer(officeList.layer);
   }
-  else if (e.layer === generalPermitTestLayer){
-    map.addLayer(generalPermitLayer);
-    $('#heatPatch').css('visibility', 'visible');
-  }
   else{
     for (var index = 0; index < displayPermitTypes.length; ++index){
       if (e.layer === displayPermitTypes[index].testLayer) {
         displayPermitTypes[index].active = true;
         localPermitMarkers.addLayer(displayPermitTypes[index].actionLayer);
-        updatePermitDisplay();
+        // update General State info
       }
       updateSideBar();
     }
@@ -932,16 +926,12 @@ map.on('overlayremove', function(e){
   if (e.layer === officeList.testLayer){
     map.removeLayer(officeList.layer);
   }
-  else if (e.layer === generalPermitTestLayer){
-    map.removeLayer(generalPermitLayer);
-    $('#heatPatch').css('visibility', 'hidden');
-  }
   else{
     for (var index = 0; index < displayPermitTypes.length; ++index){
       if (e.layer === displayPermitTypes[index].testLayer){
         displayPermitTypes[index].active = false;
         localPermitMarkers.removeLayer(displayPermitTypes[index].actionLayer);
-        updatePermitDisplay();
+        // update General State info
         updateSideBar();
       }
     }
