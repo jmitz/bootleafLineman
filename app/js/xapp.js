@@ -1004,17 +1004,27 @@ var referenceLayers = {
   "<img src='img/star.png' width='20' height='20'>&nbsp;Regional Offices": officeList.testLayer
 };
 
+function getPermitCount(inType){
+  var outStringArr = [
+    stateSummary.permits[inType].totalPermits + ' Permits Statewide'
+  ];
+  var percentMissing = Math.floor((1-(stateSummary.permits[inType].locatedPermits/stateSummary.permits[inType].totalPermits))*100);
+  if (percentMissing>0){
+    outStringArr.push(percentMissing + '% Missing Location Info');
+  }
+  return outStringArr.join('\n');
+}
 
 function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
+  console.log(inPermitArray);
   var outGroupedOverlay = {};
   var types = inPermitArray.types;
-  var layerNameTemplate = "<img src='<%=markerIcon%>' width='24' height='28'>&nbsp;<%=name%>";
+  var layerNameTemplate = "<img src='<%=markerIcon%>' width='24' height='28'>&nbsp;<span title='<%=fullName%>\n<%=getPermitCount(type)%>'><%=name%></span>";
   for (var type in types){
     var groupName = types[type].mediaAbbr + ' Permits';
     if (typeof(outGroupedOverlay[groupName]) === 'undefined'){
       outGroupedOverlay[groupName] = {};
     }
-    
     var layerName = _.template(layerNameTemplate,types[type]);
     var testName = types[type].name;
     for (var j in inDisplayPermitTypes){
@@ -1026,24 +1036,12 @@ function buildGroupedOverlays(inPermitArray, inDisplayPermitTypes){
   return outGroupedOverlay;
 }
 
-var groupedOverlays = buildGroupedOverlays(permits, displayPermitTypes);
-
-groupedOverlays.Reference = referenceLayers;
-
 /* Larger screens get expanded layer control */
 if (document.body.clientWidth <= 767) {
   var isCollapsed = true;
 } else {
   var isCollapsed = false;
 }
-
-var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
-  collapsed: isCollapsed,
-  closeButton: true,
-  position: 'topleft'
-});
-
-layerControl.addTo(map);
 
 sidebar = L.control.sidebar("sidebar", {
   closeButton: true,
@@ -1062,6 +1060,18 @@ $("#searchbox").click(function () {
 
 // Actions to run after all AJAX calls have completed
 $(document).one("ajaxStop", function () {
+
+var groupedOverlays = buildGroupedOverlays(permits, displayPermitTypes);
+
+groupedOverlays.Reference = referenceLayers;
+
+var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
+  collapsed: isCollapsed,
+  closeButton: true,
+  position: 'topleft'
+});
+
+layerControl.addTo(map);
 
   // Apply open/close click event to genAccordion in sidebar
   $('.genCollapse').click(function(){
